@@ -1,0 +1,99 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-008
+! 用例名称：上架商品 (List Product)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-商品 (Merchant-Product)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户上架商品,上架以后顾客才可以购买此商品 (Merchant lists products, customers can only purchase after listing)
+! 触发事件: 商户上架商品 (Merchant lists products)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统展示本店铺所有通过审核的商品
+! 商品名称,分类 (Product name, classification)
+
+! 2
+! 商户选择其中某个商品
+!
+
+! 3
+! 系统显示该商品的所有有效销售及未开始销售 (包括普通销售,团购和预售)
+! 销售起止时间、价格、数量、单次允许购买数 (Sales start/end time, price, quantity, single purchase limit)
+
+! 4
+! 商户选择上架类型为普通销售,输入销售的信息,提交
+! 销售起止时间、价格、销售总数、单次允许购买数 (Sales start/end time, price, total sales quantity, single purchase limit)
+
+! 5
+! 系统上架商品
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 4a
+! 商户将上架类型选择为预售,输入预售的信息,提交
+! 预售起止时间,定金价格和尾款价格,销售总数,单次允许购买数,开始支付尾款时间 (Pre-sale start/end time, deposit price and final payment price, total sales quantity, single purchase limit, start final payment time)
+
+! 5a
+! 商品上架失败,销售起止时间不可重叠
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

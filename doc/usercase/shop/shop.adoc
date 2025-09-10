@@ -1,0 +1,16 @@
+== 3.3 商户
+
+image:商户用例总图.png[]]
+
+=== 3.3.1 管理商品
+image::商户-管理商品.png[]
+
+include::MALL-PRODUCT-004-ApplyNewProduct.adoc[]
+include::MALL-PRODUCT-005-ApplyProductChange.adoc[]
+include::MALL-PRODUCT-006-QueryProduct.adoc[]
+include::MALL-PRODUCT-007-ModifyProductAttributes.adoc[]
+
+=== 3.3.2 管理销售
+image::商户-管理销售.png[]
+
+include::MALL-PRODUCT-008-ListProduct.adoc[]
