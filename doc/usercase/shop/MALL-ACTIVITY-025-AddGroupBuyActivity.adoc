@@ -69,15 +69,6 @@
 [frame="none"]
 [cols="1,4,2", options="header"]
 
-!===
-! 步骤 ! 描述 ! 信息
-
-! 其他
-! 
-!
-
-!===
-
 |
 [frame="none"]
 [cols="1"]
