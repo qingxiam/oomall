@@ -36,9 +36,3 @@ include::MALL-ORDER-004-QueryOrder.adoc[]
 include::MALL-ORDER-005-CancelOrder.adoc[]
 include::MALL-ORDER-006-ShipOrder.adoc[]
 
-
-=== 3.3.5 管理售后
-image::商户-管理售后.png
-include::MALL-POST-006-ReviewAfterSales.adoc[]
-include::MALL-POST-007-CancelAfterSales.adoc[]
-include::MALL-POST-008-QueryAfterSales.adoc[]
