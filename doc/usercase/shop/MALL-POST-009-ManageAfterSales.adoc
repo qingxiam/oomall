@@ -1,0 +1,102 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-POST-009
+! 用例名称：管理售后 (Manage After-sales)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-售后 (Merchant-After-sales)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户管理售后相关业务 (Merchant manages after-sales related business)
+! 触发事件: 商户管理售后相关业务 (Merchant manages after-sales related business)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示售后管理主界面
+! 售后申请列表、售后状态统计、操作菜单
+
+! 2
+! 商户选择售后管理功能
+! 审核售后、查询售后、取消售后、接受售后商品
+
+! 3
+! 系统根据选择的功能执行相应操作
+! 售后申请详情、审核结果、处理状态
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择审核售后功能
+! 调用MALL-POST-006用例
+
+! 2b
+! 商户选择查询售后功能
+! 调用MALL-POST-008用例
+
+! 2c
+! 商户选择取消售后功能
+! 调用MALL-POST-007用例
+
+! 2d
+! 商户选择接受售后商品功能
+! 调用MALL-POST-008用例
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+商户管理售后的权限应该受到系统的访问控制和权限管理的限制,确保只有具备相应权限的商户才能进行售后管理操作。
+商户可以通过售后管理界面统一查看和处理所有售后相关业务,提高工作效率。
+售后管理功能包括审核、查询、取消和接受售后商品等核心业务操作。
+!===
+|===

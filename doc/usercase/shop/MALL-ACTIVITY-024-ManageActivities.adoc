@@ -1,0 +1,98 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-ACTIVITY-024
+! 用例名称：管理活动 (Manage Activities)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理活动 (Merchant - Manage Activities)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户管理促销活动相关业务 (Merchant manages promotional activity related business)
+! 触发事件: 商户管理促销活动相关业务 (Merchant manages promotional activity related business)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示活动管理主界面
+! 活动列表、活动状态统计、操作菜单
+
+! 2
+! 商户选择活动管理功能
+! 添加促销活动、取消活动、查询活动
+
+! 3
+! 系统根据选择的功能执行相应操作
+! 活动详情、操作结果、状态更新
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择添加促销活动功能
+! 调用MALL-PRODUCT-020用例
+
+! 2b
+! 商户选择取消活动功能
+! 调用MALL-PRODUCT-021用例
+
+! 2c
+! 商户选择查询活动功能
+! 调用MALL-PRODUCT-022用例
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+商户管理活动的权限应该受到系统的访问控制和权限管理的限制,确保只有具备相应权限的商户才能进行活动管理操作。
+商户可以通过活动管理界面统一查看和处理所有促销活动相关业务,提高工作效率。
+活动管理功能包括添加、取消和查询促销活动等核心业务操作。
+!===
+|===

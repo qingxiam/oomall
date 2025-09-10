@@ -1,0 +1,94 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-025
+! 用例名称：管理销售 (Manage Sales)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理销售 (Merchant - Manage Sales)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户管理销售相关业务 (Merchant manages sales related business)
+! 触发事件: 商户管理销售相关业务 (Merchant manages sales related business)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示销售管理主界面
+! 销售数据统计、销售报表、操作菜单
+
+! 2
+! 商户选择销售管理功能
+! 查询销售、删除商品销售
+
+! 3
+! 系统根据选择的功能执行相应操作
+! 销售详情、操作结果、数据更新
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择查询销售功能
+! 调用MALL-PRODUCT-010用例
+
+! 2b
+! 商户选择删除商品销售功能
+! 调用MALL-PRODUCT-011用例
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+商户管理销售的权限应该受到系统的访问控制和权限管理的限制,确保只有具备相应权限的商户才能进行销售管理操作。
+商户可以通过销售管理界面统一查看和处理所有销售相关业务,提高工作效率。
+销售管理功能包括查询销售和删除商品销售等核心业务操作。
+!===
+|===

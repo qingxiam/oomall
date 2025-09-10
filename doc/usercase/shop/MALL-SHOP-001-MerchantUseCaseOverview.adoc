@@ -1,0 +1,110 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SHOP-001
+! 用例名称：商户用例总图 (Merchant Use Case Overview)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 系统功能 (System Function)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户系统 (Merchant System)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户系统用例总览 (Merchant system use case overview)
+! 触发事件: 商户系统用例总览 (Merchant system use case overview)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示商户用例总图
+! 用例分类、用例关系、功能模块
+
+! 2
+! 商户查看各功能模块
+! 订单管理、商品管理、活动管理、售后管理、销售管理、服务管理
+
+! 3
+! 系统展示各模块的用例详情
+! 用例编号、用例名称、用例描述
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择订单管理模块
+! 显示MALL-ORDER-003到MALL-ORDER-007用例
+
+! 2b
+! 商户选择商品管理模块
+! 显示MALL-PRODUCT-004到MALL-PRODUCT-025用例
+
+! 2c
+! 商户选择活动管理模块
+! 显示MALL-PRODUCT-020到MALL-PRODUCT-024用例
+
+! 2d
+! 商户选择售后管理模块
+! 显示MALL-POST-006到MALL-POST-009用例
+
+! 2e
+! 商户选择销售管理模块
+! 显示MALL-PRODUCT-010、MALL-PRODUCT-011、MALL-PRODUCT-025用例
+
+! 2f
+! 商户选择服务管理模块
+! 显示MALL-SERVICE-001用例
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+商户用例总图提供了商户系统所有功能的概览,帮助商户了解系统的整体架构和功能分布。
+各功能模块之间相互关联,共同构成完整的商户管理系统。
+商户可以根据总图快速定位所需功能,提高系统使用效率。
+!===
+|===
