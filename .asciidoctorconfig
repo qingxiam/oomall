@@ -1,0 +1,5 @@
+:table-caption: 表
+:figure-caption: 图
+:pdf-fontsdir: {asciidoctorconfigdir}/doc/fonts
+:pdf-themesdir: {asciidoctorconfigdir}/doc/themes
+:pdf-theme: zh_CN

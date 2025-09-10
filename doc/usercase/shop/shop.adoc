@@ -25,6 +25,7 @@ image::商户-管理活动.png[]
 include::MALL-ACTIVITY-020-AddPromotionalActivity.adoc[]
 include::MALL-ACTIVITY-021-CancelActivity.adoc[]
 include::MALL-ACTIVITY-022-QueryActivity.adoc[]
+include::MALL-ACTIVITY-024-SpecifySalesParticipating.adoc[]
 include::MALL-ACTIVITY-025-AddGroupBuyActivity.adoc[]
 
 === 3.3.4 管理订单
