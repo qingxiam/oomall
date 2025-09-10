@@ -14,3 +14,6 @@ include::MALL-PRODUCT-007-ModifyProductAttributes.adoc[]
 image::商户-管理销售.png[]
 
 include::MALL-PRODUCT-008-ListProduct.adoc[]
+include::MALL-PRODUCT-009-DelistProduct.adoc[]
+include::MALL-PRODUCT-010-QuerySales.adoc[]
+include::MALL-PRODUCT-011-DeleteProductSale.adoc[]
