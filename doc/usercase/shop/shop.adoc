@@ -36,3 +36,7 @@ include::MALL-ORDER-004-QueryOrder.adoc[]
 include::MALL-ORDER-005-CancelOrder.adoc[]
 include::MALL-ORDER-006-ShipOrder.adoc[]
 
+== 4. 业务建模
+
+=== 4.1 购买商品
+image::购买商品.png[]
