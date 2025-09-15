@@ -1,0 +1,95 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SHOP-008
+! 用例名称：审核商户开户 (Review Merchant Account Opening)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 平台管理员-商户 (Platform Administrator - Merchant)
+! 参与者：平台管理员 (Platform Administrator)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 平台管理员审核商户提交的开户资质 (Platform administrator reviews the account opening qualifications submitted by the merchant)
+! 触发事件: 平台管理员审核商户开户 (Platform administrator reviews merchant account opening)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有商户开户申请
+! 
+
+! 2
+! 平台管理员选择其中一个申请
+! 
+
+! 3
+! 系统显示商户的申请资料
+! 开户的商户名称 (Name of the merchant opening the account)
+
+! 4
+! 平台管理员同意商户的开户
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 4a
+! 平台管理员不同意开户
+! 
+
+! 4a.1
+! 系统拒绝商户开户申请
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

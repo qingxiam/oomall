@@ -1,0 +1,42 @@
+== 3.4 商户
+
+image::平台管理人员用例总图.png[]
+
+=== 3.4.1 管理商户
+
+image::管理商户.png[]
+include::MALL-SHOP-008-ReviewMerchantAccountOpening.adoc[]
+
+include::MALL-SHOP-009-ReviewMerchantChange.adoc[]
+
+include::MALL-SHOP-011-SuspendMerchant.adoc[]
+
+include::MALL-SHOP-012-RestoreMerchant.adoc[]
+
+=== 3.4.2 管理商品
+
+image::管理商品.png[]
+
+include::MALL-PRODUCT-012-ReviewNewProduct.adoc[]
+include::MALL-PRODUCT-013-ReviewChangedProduct.adoc[]
+include::MALL-PRODUCT-014-EstablishProductCategories.adoc[]
+include::MALL-PRODUCT-015-DeleteProductCategory.adoc[]
+include::MALL-PRODUCT-016-ModifyProductCategory.adoc[]
+include::MALL-PRODUCT-017-QueryProduct.adoc[]
+
+
+=== 3.4.3 管理活动
+
+image::管理活动.png[]
+
+include::MALL-PRODUCT-018-ReviewActivity.adoc[]
+include::MALL-PRODUCT-019-QueryActivity.adoc[]
+
+=== 3.4.4 管理顾客
+
+image::管理顾客.png[]
+
+include::MALL-CUST-013-BanCustomer.adoc[]
+include::MALL-CUST-023-UnbanCustomer.adoc[]
+include::MALL-CUST-014-QueryCustomer.adoc[]
+include::MALL-CUST-015-DeregisterCustomer.adoc[]
