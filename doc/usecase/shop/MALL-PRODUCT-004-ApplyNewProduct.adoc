@@ -75,15 +75,15 @@
 ! 商户选择新增捆绑商品
 !
 
-! 1
+! 2a.1
 ! 系统显示所有审核通过的商品
 ! 商品分类 (Product Category), 商品名称 (Product Name)
 
-! 2
+! 2a.2
 ! 商户选择一个或多个商品,填写捆绑商品信息,提交申请
 ! 商品名称 (Product Name), 商品分类 (Product Category), 原价 (Original Price), 单位 (Unit), 产地 (Origin), 条码 (Barcode), 分账比例 (Revenue Share Ratio), 捆绑中每个商品数量 (Quantity of each product in the bundle), 捆绑中商品间分账比例 (Revenue share ratio between products in the bundle)
 
-! 3
+! 2a.3
 ! 系统显示申请提交成功
 !
 
@@ -91,7 +91,7 @@
 ! 商户选择修改未通过审核的商品
 !
 
-! 1
+! 2b.1
 ! 系统显示申请提交成功
 !
 
@@ -99,7 +99,7 @@
 ! 商品数超过上限
 !
 
-! 1
+! 3a.1
 ! 系统拒绝商户提交商品
 !
 
