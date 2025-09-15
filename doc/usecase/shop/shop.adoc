@@ -35,3 +35,13 @@ include::MALL-ORDER-003-AcceptOrder.adoc[]
 include::MALL-ORDER-004-QueryOrder.adoc[]
 include::MALL-ORDER-005-CancelOrder.adoc[]
 include::MALL-ORDER-006-ShipOrder.adoc[]
+
+=== 3.3.5 管理账户
+image::商户-管理账号.png[]
+
+include::MALL-SHOP-001-AccountOpening.adoc[]
+include::MALL-SHOP-002-AccountCancellation.adoc[]
+include::MALL-SHOP-003-ModifyAccount.adoc[]
+include::MALL-SHOP-004-ModifyAccountAttributes.adoc[]
+include::MALL-SHOP-005-AddStaffAccount.adoc[]
+include::MALL-SHOP-006-DeleteStaffAccount.adoc[]
