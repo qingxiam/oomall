@@ -45,3 +45,9 @@ include::MALL-SHOP-003-ModifyAccount.adoc[]
 include::MALL-SHOP-004-ModifyAccountAttributes.adoc[]
 include::MALL-SHOP-005-AddStaffAccount.adoc[]
 include::MALL-SHOP-006-DeleteStaffAccount.adoc[]
+
+=== 3.3.6 管理账务
+image::商户-管理账务.png[]
+
+include::MALL-PAY-010-QueryPaymentOrder.adoc[]
+include::MALL-PAY-011-QueryRefundOrder.adoc[]
