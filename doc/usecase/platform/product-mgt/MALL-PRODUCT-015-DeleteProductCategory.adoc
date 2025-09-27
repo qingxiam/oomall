@@ -1,0 +1,99 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-015
+! 用例名称：删除商品分类 (Delete Product Category)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商品分类 (Product Category)
+! 参与者：平台管理员 (Platform Administrator)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 平台管理员删除商品分类 (Platform Administrator deletes product category)
+! 触发事件: 平台管理员删除商品分类 (Platform Administrator deletes product category)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有一级分类
+! 
+
+! 2
+! 平台管理员选择一级分类删除
+! 
+
+! 3
+! 系统反馈商品一级分类删除成功
+! 其下所有二级分类也一并删除,所有商品变为无分类商品
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 平台管理员选择一级分类
+! 
+
+! 2a.1
+! 系统显示二级分类
+! 
+
+! 2a.2
+! 平台管理员选择二级分类删除
+! 
+
+! 2a.3
+! 系统删除二级分类,所有下属商品变为无分类商品
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 删除分类时,需要将原有分类的分账比例写到下属商品上
+!===
+|===

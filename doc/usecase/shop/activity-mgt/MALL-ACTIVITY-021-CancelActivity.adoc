@@ -1,0 +1,81 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-ACTIVITY-021
+! 用例名称：取消活动 (Cancel Activity)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理活动 (Merchant-Manage Activities)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户为销售取消优惠和团购活动 (Merchant cancels discount and group-buy activities for sales)
+! 触发事件: 商户取消优惠和团购活动 (Merchant cancels discount and group-buy activities)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示该商户当前所有的通过审核的活动(优惠和团购)
+! 优惠活动, 团购
+
+! 2
+! 商户选择待取消的活动
+!
+
+! 3
+! 系统显示活动所关联的销售
+!
+
+! 4
+! 商户选择预取消的销售, 提交
+!
+
+! 5
+! 系统将所选择的销售与活动脱钩
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

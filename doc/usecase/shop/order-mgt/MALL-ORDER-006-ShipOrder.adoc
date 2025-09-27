@@ -1,0 +1,101 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-ORDER-006
+! 用例名称：发货 (Ship Order)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理订单 (Merchant - Manage Orders)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户发货 (Merchant ships order)
+! 触发事件: 商户发货 (Merchant ships order)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 商户输入发货订单的运单号
+! 运单号, 重量
+
+! 2
+! 系统显示订单的信息
+! 订单号、快递单号、商品名、商品数量、配送地区、重量
+
+! 3
+! 商户确认发货, 并更新货物重量
+!
+
+! 4
+! 系统标注订单已发货, 进入揽件的子用例
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 订单处于不能发货的状态
+!
+
+! 2a.1
+! 系统显示订单不能发货
+!
+
+! 4a
+! 当一个订单有多个包裹且有包裹未发货
+!
+
+! 4a.1
+! 系统不改变订单状态
+!
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

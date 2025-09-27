@@ -1,0 +1,70 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-ACTIVITY-022
+! 用例名称：查询活动 (Query Activity)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理活动 (Merchant-Manage Activity)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户查询优惠和团购活动 (Merchant queries promotions and group-buy activities)
+! 触发事件: 商户查询优惠和团购活动 (Merchant queries promotions and group-buy activities)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 商户选择输入活动类型,活动名称或商品,起止时间查询优惠和团购活动
+! 活动类型,活动名称、商品、起止时间
+
+! 2
+! 系统显示所有符合条件的团购和优惠活动
+! 活动名称,活动类型
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

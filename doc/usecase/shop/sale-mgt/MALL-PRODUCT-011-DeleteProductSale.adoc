@@ -1,0 +1,91 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-011
+! 用例名称：删除商品销售 (Delete Product Sale)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商品 (Product)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户删除某个商品的销售 (Merchant deletes a sale of a certain product)
+! 触发事件: 商户主动删除某个商品的销售 (Merchant actively deletes a sale of a certain product)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有商品销售
+! 商品名称、起止时间、价格、总数
+
+! 2
+! 商户选择一个销售删除
+!
+
+! 3
+! 系统提示删除成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 3a
+! 当前时间在该销售的起止时间中间, 或者该销售有相关的订单
+!
+
+! 3a.1
+! 系统提示删除失败
+! 删除失败原因
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

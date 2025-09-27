@@ -1,0 +1,90 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-ORDER-005
+! 用例名称：取消订单 (Cancel Order)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 管理订单 (Manage Orders)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户取消订单 (Merchant Cancels Order)
+! 触发事件: 商户取消订单 (Merchant Cancels Order)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统根据未发货订单的收货地区(一级分类)、日期(二级分类)显示订单
+! 订单号、商品数量、商品名、配送地区
+
+! 2
+! 商户选择订单取消
+!
+
+! 3
+! 系统取消订单,进入取消运单子用例和退款子用例
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 3a
+! 订单的状态不可取消
+!
+
+! 3a.1
+! 系统返回不能取消的订单
+! 订单号、商品名、商品数量、配送地区
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

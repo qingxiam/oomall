@@ -1,0 +1,99 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-013
+! 用例名称：审核变更商品 (Review Changed Product)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商品 (Product)
+! 参与者：平台管理员 (Platform Administrator)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 平台管理员审核变更商品 (Platform Administrator reviews changed product)
+! 触发事件: 平台管理员审核变更商品 (Platform Administrator reviews changed product)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示待审核变更商品列表
+! 
+
+! 2
+! 平台管理员选择待审核的变更商品
+! 商品名称, 商铺名称 (Product Name, Shop Name)
+
+! 3
+! 系统展示待审核商品的变更内容, 变更分账比例分类、商品名称、原价、单位、产地、条码和分账比例
+! 
+
+! 4
+! 平台管理员审核通过变更商品
+! 
+
+! 5
+! 系统反馈变更商品审核通过
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 5a
+! 平台管理员不通过审核
+! 
+
+! 5a.1
+! 管理员提交未通过原因
+! 未通过原因 (Reason for not approving)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

@@ -1,0 +1,68 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SHOP-004
+! 用例名称：修改账户属性 (Modify Account Attributes)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理账号 (Merchant - Manage Account)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户修改账户属性 (Merchant Modifies Account Attributes)
+! 触发事件: 商户修改账户属性 (Merchant Modifies Account Attributes)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示账户的信息
+! 商户名称、商户联系人信息(姓名、电话、地址)、免邮门槛、商品数目上限、商户员工上限
+
+! 2
+! 商户修改账户属性,并提交修改
+! 联系人信息、免邮门槛
+
+! 3
+! 系统提示属性修改成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+! 只有管理用户才可修改 (Only administrative users can modify)
+!===
+|===

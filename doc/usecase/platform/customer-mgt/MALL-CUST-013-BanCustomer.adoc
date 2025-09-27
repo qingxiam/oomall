@@ -1,0 +1,83 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-CUST-013
+! 用例名称：封禁顾客 (Ban Customer)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 平台-管理顾客 (Platform - Manage Customers)
+! 参与者：平台管理人员 (Platform Administrator)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 平台管理人员禁止顾客登录 (Platform administrator prohibits customer login)
+! 触发事件: 
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示符合条件的正常的用户
+! 
+
+! 2
+! 平台管理人员选择要封禁的用户
+! 
+
+! 3
+! 系统显示封禁成功
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

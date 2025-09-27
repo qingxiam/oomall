@@ -1,0 +1,86 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SHOP-005
+! 用例名称：增加人员账号 (Add Staff Account)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户 (Merchant)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户增加人员账号 (Merchant adds staff account)
+! 触发事件: 商户新增人员账号 (Merchant Adds New Staff Account)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 商户增加人员账号
+! 账号、密码、账号描述等
+
+! 2
+! 系统提示新增成功
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户人员账号数量达到上限
+!
+
+! 2a.1
+! 终止后续步骤
+!
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+! 需要调用权限管理系统
+!===
+|===

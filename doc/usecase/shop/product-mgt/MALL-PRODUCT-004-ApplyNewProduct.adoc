@@ -1,0 +1,116 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-004
+! 用例名称：申请新增商品 (Apply for New Products)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理商品 (Merchant - Manage Products)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户申请新增商品 (Merchant applies for new products)
+! 触发事件: 商户申请新增商品 (Merchant applies for new products)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有的商品(包括审核过和未审过的商品)
+! 商品的分类 (Product Category), 商品名称 (Product Name)
+
+! 2
+! 商户申请新增商品
+! 商品的分类 (Product Category), 商品名称 (Product Name), 原价 (Original Price), 单位 (Unit), 产地 (Origin), 条码 (Barcode), 分帐比例 (Revenue Share Ratio)
+
+! 3
+! 系统显示 申请提交成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择新增捆绑商品
+!
+
+! 2a.1
+! 系统显示所有审核通过的商品
+! 商品分类 (Product Category), 商品名称 (Product Name)
+
+! 2a.2
+! 商户选择一个或多个商品,填写捆绑商品信息,提交申请
+! 商品名称 (Product Name), 商品分类 (Product Category), 原价 (Original Price), 单位 (Unit), 产地 (Origin), 条码 (Barcode), 分账比例 (Revenue Share Ratio), 捆绑中每个商品数量 (Quantity of each product in the bundle), 捆绑中商品间分账比例 (Revenue share ratio between products in the bundle)
+
+! 2a.3
+! 系统显示申请提交成功
+!
+
+! 2b
+! 商户选择修改未通过审核的商品
+!
+
+! 2b.1
+! 系统显示申请提交成功
+!
+
+! 3a
+! 商品数超过上限
+!
+
+! 3a.1
+! 系统拒绝商户提交商品
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+选择绑定1个商品时需要此商品数量大于1,即捆绑销售多个相同商品 (When choosing to bundle 1 product, the quantity of this product needs to be greater than 1, i.e., bundling and selling multiple identical products).
+增加控制商户商品总数的需求 (Need to add control over the total number of merchant products).
+!===
+|===

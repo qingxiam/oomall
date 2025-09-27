@@ -1,0 +1,74 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-ACTIVITY-020
+! 用例名称：新增优惠活动 (Add New Promotional Activity)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理活动 (Merchant - Management Activities)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户添加优惠活动 (Merchant adds promotional activity)
+! 触发事件: 商户为商品添加优惠活动 (Merchant adds promotional activity for a product)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示该商户当前所有的优惠活动 (包括待审核的)
+! 优惠活动 (Promotional Activity)
+
+! 2
+! 商户新增填写该优惠活动的相关信息
+! 活动名称, 活动规则 (如折扣比例, 有效期等) (Activity Name, Activity Rules (e.g., discount ratio, validity period, etc.))
+
+! 3
+! 系统提示新增申请成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===

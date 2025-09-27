@@ -1,0 +1,107 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SHOP-006
+! 用例名称：删除人员账号 (Delete Staff Account)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户 (Merchant)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户删除人员账号 (Merchant deletes staff account)
+! 触发事件: 商户删除人员账号 (Merchant deletes staff account)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示商户的所有人员
+! 账号, 姓名, 状态
+
+! 2
+! 商户选择要删除的人员账号
+!
+
+! 3
+! 系统提示删除成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户暂停人员
+!
+
+! 2a.1
+! 商户选择要暂停的人员账号
+! 账号
+
+! 2a.2
+! 系统提示暂停成功
+!
+
+! 2b
+! 商户恢复人员
+!
+
+! 2b.1
+! 商户选择要暂停的人员账号
+! 账号
+
+! 2b.2
+! 系统恢复暂停成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 只有暂停的人员才能删除, 需要调用权限管理系统
+!===
+|===

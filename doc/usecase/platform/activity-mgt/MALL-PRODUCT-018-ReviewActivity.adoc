@@ -1,0 +1,95 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PRODUCT-018
+! 用例名称：审核活动 (Review Activity)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 平台-管理活动 (Platform-Management Activity)
+! 参与者：平台管理员 (Platform Administrator)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 平台管理员审核商户提交的活动 (Platform administrator reviews activities submitted by merchants)
+! 触发事件: 商户提交活动申请 (Merchant submits activity application)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示待审核活动信息
+! 活动起止日期、活动名称 (Activity start/end date, activity name)
+
+! 2
+! 平台管理人员选择需要审核的活动
+! 
+
+! 3
+! 系统显示所选活动的详情
+! 活动起止日期、活动名称、打折方式 (Activity start/end date, activity name, discount method)
+
+! 4
+! 平台管理人员审核通过该活动
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 4a
+! 活动不符合审核条件
+! 
+
+! 4a.1
+! 平台管理人员拒绝通过活动并提交拒绝理由
+! 拒绝通过的理由 (Reason for rejection)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
