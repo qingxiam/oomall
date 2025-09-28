@@ -6,7 +6,7 @@
 [frame="none"]
 [cols="1,1"]
 !===
-! 用例编号：MALL-SERVICE-003
+! 用例编号：MALL-SERVICE-015
 ! 用例名称：查询服务商 (Query Service Provider)
 !===
 
