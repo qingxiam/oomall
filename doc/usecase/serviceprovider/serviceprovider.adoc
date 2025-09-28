@@ -6,6 +6,8 @@ image::主用例图.png[]
 
 image::账号管理.png[]
 
+include::account-mgt/MALL-SERVICE-012-ChangeAccount.adoc[]
+
 === 3.5.2 员工管理
 
 image::../shop/商户-管理人员.png[]
