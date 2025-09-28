@@ -6,7 +6,7 @@
 [frame="none"]
 [cols="1,1"]
 !===
-! 用例编号：MALL-SERVICE-002
+! 用例编号：MALL-SERVICE-014
 ! 用例名称：审核服务商变更 (Review Service Provider Change)
 !===
 
