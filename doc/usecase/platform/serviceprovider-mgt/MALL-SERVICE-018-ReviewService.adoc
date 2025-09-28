@@ -48,7 +48,7 @@
 
 ! 1
 ! 系统显示待审核服务列表
-! 服务商名称 (Service provider name) , 商户名称 (Merchant name)
+! 服务商名称, 商户名称
 
 ! 2
 ! 平台管理员选择待审核服务
