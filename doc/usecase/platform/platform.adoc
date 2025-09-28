@@ -41,3 +41,5 @@ include::customer-mgt/MALL-CUST-015-DeregisterCustomer.adoc[]
 === 3.4.5 管理服务商
 
 image::管理服务商.png[]
+
+include::service-mgt/MALL-SERVICE-022-ReviewServiceProvider.adoc[]
