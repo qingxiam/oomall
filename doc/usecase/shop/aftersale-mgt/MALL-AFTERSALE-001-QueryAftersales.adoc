@@ -1,0 +1,95 @@
+Author：罗芳魁
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-AFTERSALE-001
+! 用例名称：查询售后 (Query Aftersales)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 售后 (After-sales)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户查询售后 (Merchant queries after-sales)
+! 触发事件: 商户查询售后 (Merchant queries after-sales)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 商户按物流单号, 商品, 时间, 售后状态等信息来查询售后
+!
+
+! 2
+! 系统显示所有符合查询条件的售后
+! 物流单号, 商品, 时间, 售后状态
+
+! 3
+! 用户点击具体要查看的售后
+!
+
+! 4
+! 系统显示所选售后的详细对应信息
+! 物流单号, 商品, 时间, 售后状态 ,售后问题描述 ,客户联系方式
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 没有符合查询条件的售后单
+!
+
+! 2a.1
+! 系统提示“未找到符合条件的售后”，终止后续步骤
+!
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
