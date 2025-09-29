@@ -1,0 +1,96 @@
+王浩东
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-018
+! 用例名称：审核服务 (Review Service)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 平台管理员-管理服务商 (Platform Administrator - Manage Service Provider)
+! 参与者：平台管理员 (Platform Administrator)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 平台管理员审核服务 (Platform Administrator reviews service)
+! 触发事件: 平台管理员审核服务 (Platform Administrator reviews service contract)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示待审核服务列表
+! 商户名称, 商品名称
+
+! 2
+! 平台管理员选择待审核服务
+! 
+
+! 3
+! 系统展示待审核服务的详细信息
+! 商品名称, 服务内容, 服务价格, 服务期限
+
+! 4
+! 平台管理员审核通过服务
+! 
+
+! 5
+! 系统反馈服务审核通过
+! 
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 4a
+! 管理员未通过该服务，提交未通过原因
+! 未通过原因
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
