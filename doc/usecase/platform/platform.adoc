@@ -42,5 +42,5 @@ include::customer-mgt/MALL-CUST-015-DeregisterCustomer.adoc[]
 
 image::管理服务商.png[]
 
+宋浩元
 include::service-mgt/MALL-SERVICE-022-ReviewServiceProvider.adoc[]
-include::service-mgt/MALL-SERVICE-026-CancelServiceProvider.adoc[]
