@@ -119,6 +119,6 @@
 [frame="none"]
 [cols="1"]
 !===
-! 其他:只有商户拥有管理权的账户才可以新增商品服务（Only accounts with merchant management rights can add new products services.）
+! 其他:只有拥有管理权的商户账户才可以新增商品服务（Only accounts with merchant management rights can add new products services.）
 !===
 |===
