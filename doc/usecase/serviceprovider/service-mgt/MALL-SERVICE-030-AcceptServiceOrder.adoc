@@ -1,4 +1,4 @@
-
+陈诗媛
 [cols="1a"]
 |===
 
@@ -7,7 +7,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-030
-! 用例名称：服务商接单
+! 用例名称：服务商接单(Service Provider Accept Service Order)
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 服务商(Service Provider)
+! 参与者：服务商(Service Provider)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：服务商接取订单(Service Provider accept service order)
+! 触发事件:服务商接取订单(Service Provider accept service order)
 !===
 
 |
@@ -46,16 +46,18 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+!系统显示待接受订单列表
+!服务类型、地址、来源、服务时间
 
 ! 2
-!
+!服务商选择一个订单接受
 !
 
 ! 3
-!
-!
+!系统显示接受成功
+!服务单号
+
+
 !===
 
 |
@@ -72,23 +74,13 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
-!
 
-!
-!
-!
-
-!
-!
-!
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 其他:
+! 其他:服务商已登录且具有服务资质
 !===
 |===
