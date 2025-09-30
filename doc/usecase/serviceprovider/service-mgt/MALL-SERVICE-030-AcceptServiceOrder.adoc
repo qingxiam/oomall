@@ -28,8 +28,8 @@
 [frame="none"]
 [cols="1"]
 !===
-! 描述：服务商接取订单(Service Provider accept service order)
-! 触发事件:服务商接取订单(Service Provider accept service order)
+! 描述：服务商接取服务单(Service Provider accept service order)
+! 触发事件:服务商接取服务单(Service Provider accept service order)
 !===
 
 |
@@ -50,7 +50,7 @@
 !服务类型、地址、来源、服务时间
 
 ! 2
-!服务商选择一个订单接受
+!服务商选择一个服务单接受
 !
 
 ! 3
