@@ -6,8 +6,8 @@
 [frame="none"]
 [cols="1,1"]
 !===
-! 用例编号：MALL-SERVICE-011
-! 用例名称：申请注册服务商
+! 用例编号：MALL-SERVICE-020
+! 用例名称：增加员工账号(Add Staff Account)
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 服务商-管理员工(Service Provider - Manage Staff)
+! 参与者：服务商(Service Provider)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：服务商增加员工账号(Service provider adds staff account)
+! 触发事件: 服务商需要增加员工账号(Service provider needs to add staff account)
 !===
 
 |
@@ -46,16 +46,14 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+! 服务商填写员工账号注册信息
+! 账号名，密码，员工身份信息
 
 ! 2
-!
-!
+! 系统创建员工账号
+! 创建成功提示
 
-! 3
-!
-!
+
 !===
 
 |
@@ -72,17 +70,15 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
-!
-
-!
-!
+! 2a
+! 注册信息不全
 !
 
-!
-!
-!
+! 2a.1
+! 系统显示错误提示
+! 显示对应不全的信息
+
+
 !===
 
 |
