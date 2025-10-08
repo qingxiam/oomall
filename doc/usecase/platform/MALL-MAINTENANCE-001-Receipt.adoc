@@ -1,0 +1,84 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"][cols="1,1"]
+!===
+! 用例编号：MALL-MAINTENANCE-001-Receipt
+! 用例名称：确认收到维修设备 (Confirm Receipt of Maintenance Equipment)
+!===
+
+|
+[frame="none"][cols="1", options="header"]
+!===
+! 级别：用户目标 (User Goal)
+!===
+
+|
+[frame="none"][cols="2"]
+!===
+! 包： 服务单管理 (Service Order Management)
+! 参与者：维修人员 (Repairer)
+!===
+
+|
+[frame="none"][cols="1"]
+!===
+! 描述： 维修人员收到用户提交的待修设备后，在系统中确认收件状态，记录设备外观 / 配件完整性
+! 触发事件：维修人员实际收到待修设备
+!===
+
+|
+[frame="none"][cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"][cols="1,4,2", options="header"]
+!===
+! 步骤!描述!信息
+! 1
+! 系统显示待确认收件的服务单列表
+! 服务单号、设备名称、预计收件时间
+! 2
+! 维修人员选择目标服务单
+!
+! 3
+! 系统展示服务单关联的设备信息
+! 设备型号、SN 码、预期配件清单
+! 4
+! 维修人员检查设备实际状态并确认
+! 设备外观描述、配件完整性记录
+! 5
+! 系统反馈收件确认成功
+!
+!===
+
+|
+[frame="none"][cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"][cols="1,4,2", options="header"]
+!===
+! 步骤!描述!信息
+! 4a
+! 实际收到的设备与系统记录不符
+!
+! 4a.1
+! 维修人员录入差异详情并提交异常说明
+! 差异描述、异常照片
+! 4a.2
+! 系统通知相关人员
+!
+!===
+
+|
+[frame="none"][cols="1"]
+!===
+! 其他:
+!===
+|===
