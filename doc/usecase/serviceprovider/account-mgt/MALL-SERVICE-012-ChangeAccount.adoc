@@ -7,7 +7,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-012
-! 用例名称：申请修改账号信息
+! 用例名称：申请变更账号信息(Request to Change Account Information)
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 服务商-管理账号(Service Provider - Account Management)
+! 参与者：服务商(Service Provider)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：服务商申请变更账号信息(Service provider requests to change account information)
+! 触发事件: 服务商发起账号信息变更申请(Service provider requests to change account information)
 !===
 
 |
@@ -45,17 +45,21 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
+
 ! 1
-!
-!
+! 系统显示服务商账号信息
+! 包括账号名、联系方式、邮箱、营业执照等详细资料
 
 ! 2
-!
+! 服务商选择要修改的信息进行修改
 !
 
 ! 3
+! 系统显示更改成功
 !
-!
+
+
+
 !===
 
 |
@@ -72,17 +76,15 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
-!
-
-!
-!
+! 3a
+! 服务商更改的信息未被审核通过
 !
 
-!
-!
-!
+! 3a.1
+! 系统显示审核未通过，无法更改
+! 显示未通过原因
+
+
 !===
 
 |
