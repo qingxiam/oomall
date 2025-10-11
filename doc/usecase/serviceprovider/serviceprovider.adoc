@@ -11,6 +11,7 @@ include::account-mgt/MALL-SERVICE-011-ApplyAccount.adoc[]
 
 image::../shop/商户-管理人员.png[]
 
+罗芳魁
 include::staff-mgt/MALL-SERVICE-020-AddStaff.adoc[]
 
 == 3.5.3 服务管理
