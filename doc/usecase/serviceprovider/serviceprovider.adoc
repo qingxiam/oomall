@@ -10,6 +10,10 @@ image::账号管理.png[]
 
 image::../shop/商户-管理人员.png[]
 
+include::staff-mgt/MALL-SERVICE-020-AddStaff.adoc[]
+include::staff-mgt/MALL-SERVICE-021-ChangeStaff.adoc[]
+罗芳魁
+include::staff-mgt/MALL-SERVICE-023-ResumeStaffAccount.adoc[]
 == 3.5.3 服务管理
 
 image::管理服务.png[]
