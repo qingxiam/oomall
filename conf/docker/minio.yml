@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  minio:
+    image: swr.cn-north-4.myhuaweicloud.com/oomall-javaee/quay.io/minio/minio:latest
+    networks:
+      - javaee-proxy
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - /root/minio/data:/data
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=JavaEE20251014
+    command: server /data --console-address ":9001"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.minio==yes
+
+networks:
+  javaee-proxy:
+    driver: overlay
+    attachable: true
+    external: true
+
