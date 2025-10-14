@@ -17,7 +17,6 @@
 3. 将OOMALL下的pom.xml文件中注释掉的部分修改回来<br>
 4. 编译打包其他部分<br>
 5. 以后修改了core的代码，只需要单独install core到maven本地仓库，无需重复上述步骤<br>
-
 ## 环境安装
 ### 安装docker
 如果没有安装docker需要先安装docker
