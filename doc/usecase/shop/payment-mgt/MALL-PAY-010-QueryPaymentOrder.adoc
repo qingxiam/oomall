@@ -1,0 +1,63 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PAY-010
+! 用例名称：查支付单 (Query Payment Order)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 平台-管理账务 (Platform - Account Management)
+! 参与者：平台管理人员, 商户 (Platform Administrator, Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 用户按照时间,金额,单号等条件查询所有支付交易 (User queries all payment transactions based on conditions such as time, amount, and order number.)
+! 触发事件: 
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 用户按照时间,支付金额,支付单号等条件查询时间,支付金额,支付单号 所有支付交易 (商户仅能查询自己的支付单,平台可查询所有的支付单) (User queries payment transactions by time, payment amount, payment order number, etc. (Merchants can only query their own payment orders, the platform can query all payment orders))
+! 
+
+! 2
+! 系统显示所有符合条件的支付单 (The system displays all matching payment orders)
+! 支付单以及支付单的分账记录 (Payment orders and their split account records)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
