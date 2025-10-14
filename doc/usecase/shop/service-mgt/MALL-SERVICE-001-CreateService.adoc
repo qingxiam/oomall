@@ -1,5 +1,4 @@
-
-[cols="1a"]
+﻿[cols="1a"]
 |===
 
 |
@@ -7,7 +6,8 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-001
-! 用例名称：新增商品服务
+! 用例名称：新增商品服务 (Create Service)
+!===
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 商户-管理服务 (Merchant - Manage Services)
+! 参与者：商户 (Merchant)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：商户新增服务项目 (Merchant creates a new service offering)
+! 触发事件: 商户点击新增服务 (Merchant clicks Create Service)
 !===
 
 |
@@ -46,15 +46,15 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+! 系统显示已有服务列表
+! 服务名称 (Name), 服务类型 (Type), 状态 (Status)
 
 ! 2
-!
-!
+! 商户填写并提交服务信息
+! 服务名称 (Name), 服务类型 (Type), 服务价格 (Price), 服务时长 (Duration), 服务区域 (Region), 可服务时间窗 (Time Window), 适用商品/类目 (Applicable Products/Categories), 资质/证照 (Qualifications)
 
 ! 3
-!
+! 系统提示提交成功，服务进入待审核或可用状态（视规则配置）
 !
 !===
 
@@ -68,20 +68,31 @@
 |
 [frame="none"]
 [cols="1,4,2", options="header"]
-
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
+! 2a
+! 缺少必填项
+! 必填项高亮 (Highlight missing fields)
+
+! 2a.1
+! 系统提示并要求补充后重试
 !
 
-!
-!
+! 2b
+! 服务名称重复或与现有冲突
 !
 
+! 2b.1
+! 重新输入服务名称或选择复制已有服务并修改
 !
+
+! 2c
+! 服务资质过期或缺失
 !
+
+! 2c.1
+! 系统拒绝提交并提示上传有效资质
 !
 !===
 
@@ -90,5 +101,7 @@
 [cols="1"]
 !===
 ! 其他:
+! 可与平台审核/资质系统联动；可配置是否需要平台审核，或直接生效需记录审计日志。
 !===
 |===
+
