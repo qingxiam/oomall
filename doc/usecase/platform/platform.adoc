@@ -44,3 +44,9 @@ image::管理服务商.png[]
 
 宋浩元
 include::service-mgt/MALL-SERVICE-022-ReviewServiceProvider.adoc[]
+
+刘建超
+include::service-mgt/MALL-SERVICE-060-AuditService.adoc[]
+
+刘建超
+include::service-mgt/MALL-SERVICE-061-AuditService.adoc[]
