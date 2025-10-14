@@ -5,13 +5,22 @@ image::主用例图.png[]
 === 3.5.1 账号管理
 
 image::账号管理.png[]
-
-include::account-mgt/MALL-SERVICE-012-ChangeAccount.adoc[]
-
+罗芳魁
+include::account-mgt/MALL-SERVICE-011-ApplyAccount.adoc[]
 === 3.5.2 员工管理
 
 image::../shop/商户-管理人员.png[]
 
+罗芳魁
+include::staff-mgt/MALL-SERVICE-020-AddStaff.adoc[]
+
+include::staff-mgt/MALL-SERVICE-021-ChangeStaff.adoc
+
+罗芳魁
+include::staff-mgt/MALL-SERVICE-022-SuspendStaffAccount.adoc
+
+罗芳魁
+include::staff-mgt/MALL-SERVICE-023-ResumeStaffAccount.adoc
 == 3.5.3 服务管理
 
 image::管理服务.png[]
@@ -19,3 +28,7 @@ image::管理服务.png[]
 === 3.5.4 服务单管理
 
 image::管理服务单.png[]
+王浩东
+include::servicecontract-mgt/MALL-SERVICE-043-CancelServiceContract.adoc[]
+王浩东
+include::servicecontract-mgt/MALL-SERVICE-042-ConfirmServiceContract.adoc[]
