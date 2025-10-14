@@ -6,7 +6,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-006
-! 用例名称：创建服务合同 (Create Service Contract)
+! 用例名称：订立服务合同 (Create Service Contract)
 !===
 
 |
@@ -101,7 +101,7 @@
 [cols="1"]
 !===
 ! 其他:
-! 支持线上签署与线下上传附件；需保留审计日志。
+
 !===
 |===
 
