@@ -30,6 +30,8 @@ include::service-mgt/MALL-SERVICE-043-CancelServiceContract.adoc[]
 include::service-mgt/MALL-SERVICE-042-ConfirmServiceContract.adoc[]
 王浩东
 include::service-mgt/MALL-SERVICE-044-SuspendServiceContract.adoc[]
+王浩东
+include::service-mgt/MALL-SERVICE-045-RestoreServiceContract.adoc[]
 === 3.5.4 服务单管理
 
 image::管理服务单.png[]
