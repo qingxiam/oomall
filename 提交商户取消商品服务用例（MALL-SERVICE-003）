@@ -1,0 +1,115 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-003
+! 用例名称：取消商品服务 (Cancel Product Services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理服务 (Merchant - Manage Services)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户取消已有商品服务 (Merchant cancels existing product services)
+! 触发事件: 商户取消商品服务 (Merchant cancels product services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示商户所有的商品服务
+! 服务分类 (Service Category), 服务名称 (Service Name), 上架状态 (Listing Status)
+
+! 2
+! 商户选择需要取消的服务并确认取消
+! 服务名称 (Service Name), 取消原因 (Cancellation Reason)
+
+! 3
+! 系统显示 取消成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择取消服务套餐
+!
+
+! 2a.1
+! 系统显示该套餐的详细信息
+! 套餐名称 (Package Name), 包含的服务列表 (Service List)
+
+! 2a.2
+! 商户确认取消套餐
+! 取消原因 (Cancellation Reason)
+
+! 2a.3
+! 系统显示取消成功
+!
+
+! 2b
+! 商户取消存在未完成订单的服务
+!
+
+! 2b.1
+! 系统提示该服务有进行中的订单,无法取消
+! 未完成订单数量 (Number of Pending Orders), 订单状态 (Order Status)
+
+! 2c
+! 商户取消正在审核中的服务
+!
+
+! 2c.1
+! 系统提示该服务正在审核中,无法取消
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 取消的服务将下架且无法恢复 (Cancelled services will be delisted and cannot be restored). 服务被取消前需确保无进行中的订单 (Services must have no pending orders before cancellation).
+!===
+|===
