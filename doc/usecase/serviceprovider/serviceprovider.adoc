@@ -14,13 +14,17 @@ image::../shop/商户-管理人员.png[]
 罗芳魁
 include::staff-mgt/MALL-SERVICE-020-AddStaff.adoc[]
 
-include::staff-mgt/MALL-SERVICE-021-ChangeStaff.adoc
+include::staff-mgt/MALL-SERVICE-021-ChangeStaff.adoc[]
 
 罗芳魁
-include::staff-mgt/MALL-SERVICE-022-SuspendStaffAccount.adoc
+include::staff-mgt/MALL-SERVICE-022-SuspendStaffAccount.adoc[]
 
 罗芳魁
-include::staff-mgt/MALL-SERVICE-023-ResumeStaffAccount.adoc
+include::staff-mgt/MALL-SERVICE-023-ResumeStaffAccount.adoc[]
+
+黄晨阳
+include::staff-mgt/MALL-SERVICE-025-DeleteStaffAccount.adoc[]
+
 == 3.5.3 服务管理
 
 image::管理服务.png[]
