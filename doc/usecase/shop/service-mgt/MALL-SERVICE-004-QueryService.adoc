@@ -1,4 +1,4 @@
-
+马雅欣
 [cols="1a"]
 |===
 
@@ -7,7 +7,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-004
-! 用例名称：取消商品服务
+! 用例名称：查询商品服务(Query product service)
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 商户-管理服务(Merchant - Management Service)
+! 参与者：商户(Merchant)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：商户查询商品服务信息(Merchant query product service)
+! 触发事件:商户查询创建的商品服务信息(Merchant query product service)
 !===
 
 |
@@ -46,16 +46,20 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+!商户输入查询条件
+!商品名称、服务状态、服务类型、时间范围(Product name, service status, service type, time range)
 
 ! 2
-!
-!
+!系统根据查询条件检索服务数据,返回符合条件的服务列表
+!服务ID、服务名称、关联商品、服务状态、价格、创建时间(Service ID, service name, associated product, service status, creation time)
 
 ! 3
-!
-!
+!商户选择查看特定服务详情
+!服务ID(Service ID)
+
+!4
+!系统返回该服务的完整详细信息
+!服务全部属性、审核记录、关联订单(Service all attributes, audit record, associated order)
 !===
 
 |
@@ -72,16 +76,20 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
-!
-
-!
-!
+!2a
+!查询条件为空
 !
 
+!2a.1
+!系统返回所有服务列表
 !
+
+!3a
+!服务已被除
 !
+
+!3a.1
+!系统显示服务基本信息并标记"已删除"状态
 !
 !===
 

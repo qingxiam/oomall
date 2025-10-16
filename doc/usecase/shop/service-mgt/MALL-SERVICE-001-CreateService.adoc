@@ -1,4 +1,4 @@
-
+马雅欣
 [cols="1a"]
 |===
 
@@ -7,7 +7,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-001
-! 用例名称：新增商品服务
+! 用例名称：新增商品服务（Add new product service）
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 商户-管理服务（Merchant - Management Services）
+! 参与者：商户（Merchant）
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：商户新增商品服务(Merchant adds new product service)
+! 触发事件:商户点击新增商品服务（Merchant clicks to add new product service）
 !===
 
 |
@@ -46,17 +46,31 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+!系统显示所有的商品（包括审核过的和未审核的商品）
+!商品ID、商品种类、商品名称（Product ID, product category, product name）
 
 ! 2
-!
-!
+!商户选择要新增服务的商品
+!商品ID（Product ID）
+
 
 ! 3
+!系统验证商品状态并返回商品详情
+!商品ID、商品分类、商品名称、可操作状态（Product ID, product category, product name,operational status）
+
+! 4
+! 商户填写服务信息并提交,包括：服务名称、服务类型（如：安装、维修、清洁等）、服务描述、服务价格、预计耗时、服务范围等。
+!服务名称、服务类型、服务描述、服务价格、预计耗时、服务范围(Service name, service type, service description, service price, estimated time required, service scope)
+
+!5
+!系统验证输入信息的完整性和有效性
 !
-!
+
+!6
+!系统保存新服务，并将其与所选商品关联。
+!服务ID、关联商品ID（Service ID, associated product ID）
 !===
+
 
 |
 [frame="none"]
@@ -72,16 +86,32 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
-!
-
-!
-!
+!2a
+! 商户选择的商品未通过审核
 !
 
+!2a.1
+! 系统提示“该商品尚未通过审核，无法添加服务。请先确保商品已上架。”
 !
+
+!4a
+!商户在填写过程中取消操作
 !
+
+!4a.1
+!系统清空已填写表单内容,并返回商品的服务管理页面
+!
+
+!5a
+!必填信息缺失
+!
+
+!5a.1
+!系统提示必填项缺失或格式不符
+!
+
+!5a.2
+!商户补充信息后，重新提交
 !
 !===
 
@@ -89,6 +119,6 @@
 [frame="none"]
 [cols="1"]
 !===
-! 其他:
+! 其他:只有拥有管理权的商户账户才可以新增商品服务（Only accounts with merchant management rights can add new products services.）
 !===
 |===
