@@ -5,7 +5,7 @@
 [frame="none"]
 [cols="1,1"]
 !===
-! 用例编号：MALL-SERVICE-034
+! 用例编号：MALL-SERVICE-031
 ! 用例名称：查看服务单 (View Service Order)
 
 |
