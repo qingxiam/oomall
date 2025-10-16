@@ -51,11 +51,11 @@
 
 ! 2
 !商户选择要删除的商品服务
-!服务ID(Service ID)
+!
 
 ! 3
-!系统显示服务详情并要求确认删除操作
-!服务名称、服务类型、服务描述、服务价格、预计耗时、服务范围(Service name, service type, service description, service price, estimated time required, service scope)
+!系统询问商户是否确认删除操作
+!
 
 !4
 !商户确认删除该服务
