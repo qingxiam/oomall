@@ -56,7 +56,7 @@
 
 ! 3
 !系统验证商品状态并返回商品详情
-!商品分类、商品名称、可操作状态（ product category, product name,operational status）
+!商品分类、商品名称、商品状态（ product category, product name,product status）
 
 ! 4
 ! 商户填写服务信息并提交,包括：服务名称、服务类型（如：安装、维修、清洁等）、服务描述、服务价格、预计耗时、服务范围等。
