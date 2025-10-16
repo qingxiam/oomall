@@ -55,11 +55,11 @@
 
 ! 3
 !商户选择查看特定服务详情
-!服务ID(Service ID)
+!
 
 !4
 !系统返回该服务的完整详细信息
-!服务全部属性、审核记录、关联订单(Service all attributes, audit record, associated order)
+!服务全部属性、审核记录(Service all attributes, audit record)
 !===
 
 |
