@@ -46,7 +46,7 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!系统获取商户已有的商品服务列表
+!系统获取商户已创建的商品服务列表
 !服务ID、服务名称、关联商品(Service ID, Service Name, Associated Product)
 
 ! 2
