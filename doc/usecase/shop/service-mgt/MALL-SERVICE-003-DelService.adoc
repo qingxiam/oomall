@@ -1,4 +1,4 @@
-
+马雅欣
 [cols="1a"]
 |===
 
@@ -7,7 +7,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-003
-! 用例名称：取消商品服务
+! 用例名称：删除商品服务(Delete product service)
 
 |
 [frame="none"]
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 商户-管理服务(Merchant - Management Service)
+! 参与者：商户(Merchant)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：商户删除商品服务(Merchant delete product service)
+! 触发事件:商户点击删除商品服务(Merchant clicks to delete product service)
 !===
 
 |
@@ -46,15 +46,23 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+!系统获取商户已有的商品服务列表
+!服务ID、服务名称、关联商品(Service ID, Service Name, Associated Product)
 
 ! 2
-!
-!
+!商户选择要删除的商品服务
+!服务ID(Service ID)
 
 ! 3
+!系统显示服务详情并要求确认删除操作
+!服务名称、服务类型、服务描述、服务价格、预计耗时、服务范围(Service name, service type, service description, service price, estimated time required, service scope)
+
+!4
+!商户确认删除该服务
 !
+
+!5
+!系统系统执行删除商品服务操作
 !
 !===
 
@@ -72,16 +80,20 @@
 !===
 ! 步骤 ! 描述 ! 信息
 
-!
-!
-!
-
-!
-!
+!3a
+!服务存在进行中的订单
 !
 
+!3a.1
+!系统提示"该服务存在进行中的订单，无法取消"
 !
+
+!4a
+!商户取消删除商品服务
 !
+
+!4a.1
+!系统返回服务列表，不执行取消
 !
 !===
 
@@ -89,6 +101,6 @@
 [frame="none"]
 [cols="1"]
 !===
-! 其他:
+! 其他:只有拥有管理权的商户账户才可以删除商品服务（Only accounts with merchant management rights can delete new products services.）
 !===
 |===
