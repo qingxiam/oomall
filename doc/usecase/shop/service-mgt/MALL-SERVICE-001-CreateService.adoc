@@ -46,17 +46,17 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!系统显示所有的商品（包括审核过的和未审核的商品）
-!商品ID、商品种类、商品名称（Product ID, product category, product name）
+!系统显示所有通过审核的商品
+!商品种类、商品名称（product category, product name）
 
 ! 2
 !商户选择要新增服务的商品
-!商品ID（Product ID）
+!
 
 
 ! 3
 !系统验证商品状态并返回商品详情
-!商品ID、商品分类、商品名称、可操作状态（Product ID, product category, product name,operational status）
+!商品分类、商品名称、可操作状态（ product category, product name,operational status）
 
 ! 4
 ! 商户填写服务信息并提交,包括：服务名称、服务类型（如：安装、维修、清洁等）、服务描述、服务价格、预计耗时、服务范围等。
@@ -68,7 +68,7 @@
 
 !6
 !系统保存新服务，并将其与所选商品关联。
-!服务ID、关联商品ID（Service ID, associated product ID）
+!
 !===
 
 
@@ -85,15 +85,6 @@
 
 !===
 ! 步骤 ! 描述 ! 信息
-
-!2a
-! 商户选择的商品未通过审核
-!
-
-!2a.1
-! 系统提示“该商品尚未通过审核，无法添加服务。请先确保商品已上架。”
-!
-
 !4a
 !商户在填写过程中取消操作
 !
