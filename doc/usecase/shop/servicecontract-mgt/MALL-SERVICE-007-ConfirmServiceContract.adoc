@@ -1,0 +1,94 @@
+Author：徐瑞婷
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-007
+! 用例名称：确认服务合同
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理服务合同
+! 参与者：商户
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述：商户对服务商已确认的合同进行最终确认 (Merchant makes the final confirmation of the contract confirmed by the service provider)
+! 触发事件：商户收到服务商已确认合同的通知 (Merchant received the notification that the service provider has confirmed the contract)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+!商户请求查看待最终确认的合同列表
+!
+
+! 2
+!系统返回状态为"待商户确认"的合同列表
+!合同摘要列表、服务商名称、合同限定地区、合同标题、合同起始时间、合同结束时间
+
+! 3
+!商户选择特定合同进行最终确认操作
+!服务商名称、合同限定地区、合同标题、合同起始时间、合同结束时间
+
+! 4
+!系统将合同状态更新为"已生效"并生成正式版本
+!合同生效状态、正式合同文件、生效时间戳
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+!3a
+!商户拒绝确认，系统记录原因并通知服务商
+!
+
+!4a
+!合同状态异常，系统确认失败并提示商户
+!
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:合同确认前必须完成所有必填条款的审核，已确认合同自动进入履约监控周期
+!===
+|===
