@@ -1,0 +1,94 @@
+Author：徐瑞婷
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-041
+! 用例名称：订立服务合同
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 服务商-管理服务
+! 参与者：服务商
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述：服务商创建新的服务合同并发送给商户 (Service provider creates a new service contract and sends it to merchant)
+! 触发事件：服务商需要与商户建立合作关系 (Service provider needs to establish cooperation with a merchant)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+!服务商选择多个商品和目标商户
+!
+
+! 2
+!系统显示合同草案并分配唯一编号
+!服务名称、服务地区、服务期限、服务商品、服务价格
+
+! 3
+!服务商确认合同内容并提交
+!服务名称、服务地区、服务期限、服务商品、服务价格
+
+! 4
+!系统将合同状态更新为"待确认"并发送合同给商户
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+!3a
+!服务商保存草稿，系统记录为未完成状态
+!
+
+!4a
+!商户账户异常，系统发送失败并通知服务商
+!
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他：合同创建权限需与服务商角色绑定
+!===
+|===
