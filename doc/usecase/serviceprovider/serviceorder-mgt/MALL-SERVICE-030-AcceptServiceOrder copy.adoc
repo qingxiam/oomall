@@ -1,0 +1,83 @@
+蔡欣琪
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-030
+! 用例名称：查看服务单 (Query Service Order)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 服务商-服务单管理 (Service Provider - Manage Service Orders)
+! 参与者：服务商 (Service Provider)
+!===
+
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述：服务商查看服务单 (Service Provider queries service orders)
+! 触发事件：服务商查看服务单 (Service Provider queries service orders)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有服务单
+! 
+
+! 2
+! 服务商输入查询条件
+! 服务单号、服务状态、服务类型、服务时间、客户姓名、服务地址、商品、派工师傅
+
+! 3
+! 系统显示符合条件的服务单
+! 符合条件的服务单号、服务状态、服务类型、服务时间
+
+! 4
+! 服务商选择查看服务单详情
+!
+
+! 5
+! 系统显示服务单详情
+! 服务单号、服务状态、服务类型、服务时间、客户姓名、服务地址、商品、派工师傅、服务内容、费用明细
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
