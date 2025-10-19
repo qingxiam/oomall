@@ -4,7 +4,7 @@
 |
 [frame="none"][cols="1,1"]
 !===
-! 用例编号：MALL-MAINTENANCE-002-Completion
+! 用例编号：MALL-SERVICE-MAINTENANCE-002-Completion
 ! 用例名称：完成维修服务单 (Complete Maintenance Service Order)
 !===
 
@@ -39,7 +39,7 @@
 !===
 ! 步骤!描述!信息
 ! 1
-! 维修人员选择还未完成维修的服务单
+! 维修人员选择一个已经接收但还未完成维修的服务单
 !
 ! 2
 ! 系统展示服务单维修详情页
