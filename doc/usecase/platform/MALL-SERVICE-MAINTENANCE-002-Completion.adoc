@@ -1,0 +1,78 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"][cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-MAINTENANCE-002-Completion
+! 用例名称：完成维修服务单 (Complete Maintenance Service Order)
+!===
+
+|
+[frame="none"][cols="1", options="header"]
+!===
+! 级别：用户目标 (User Goal)
+!===
+
+|
+[frame="none"][cols="2"]
+!===
+! 包： 服务单管理 (Service Order Management)
+! 参与者：维修人员 (Repairer)
+!===
+
+|
+[frame="none"][cols="1"]
+!===
+! 描述： 维修人员完成设备维修后，记录维修内容并提交服务单完成申请，更新服务单状态
+! 触发事件：维修人员完成设备维修工作
+!===
+
+|
+[frame="none"][cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"][cols="1,4,2", options="header"]
+!===
+! 步骤!描述!信息
+! 1
+! 维修人员选择一个已经接收但还未完成维修的服务单
+!
+! 2
+! 系统展示服务单维修详情页
+! 服务单号、原故障描述、已用配件记录入口、故障设备图片
+! 3
+! 维修人员填写维修后的情况,并确认提交 “完成服务单” 的结果
+! 维修说明、配件型号及数量、故障解决情况
+! 4
+! 系统反馈提交成功，并通知相关用户
+!
+!===
+
+|
+[frame="none"][cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"][cols="1,4,2", options="header"]
+!===
+! 步骤!描述!信息
+! 3a
+! 维修后设备仍存在部分次要故障
+!
+! 3a.1
+! 维修人员注明未解决的次要问题及建议方案
+! 未解决问题描述、后续处理建议
+!===
+
+|
+[frame="none"][cols="1"]
+!===
+! 其他:
+!===
+|===
