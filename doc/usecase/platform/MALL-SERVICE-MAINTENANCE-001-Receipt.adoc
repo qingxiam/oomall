@@ -4,8 +4,8 @@
 |
 [frame="none"][cols="1,1"]
 !===
-! 用例编号：MALL-MAINTENANCE-001-Receipt
-! 用例名称：确认收到维修设备 (Confirm Receipt of Maintenance Equipment)
+! 用例编号：MALL-SERVICE-MAINTENANCE-001-Receipt
+! 用例名称：确认收到维修设备并接收服务单 (Confirm Receipt of Maintenance Equipment)
 !===
 
 |
@@ -51,7 +51,7 @@
 ! 维修人员检查设备实际状态并确认
 ! 设备外观描述、配件完整性记录
 ! 5
-! 系统反馈收件确认成功
+! 系统反馈收件确认接收服务单成功
 !
 !===
 
