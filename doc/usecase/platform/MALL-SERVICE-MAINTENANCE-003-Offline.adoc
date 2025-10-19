@@ -1,0 +1,90 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-MAINTENANCE-Offline-003
+! 用例名称：维修师傅处理设备维修申请（线下上门服务） (Handle Equipment Maintenance Application)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别：用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 设备维修 (Equipment Maintenance)
+! 参与者：维修人员 (Maintenance Staff)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 维修人员接收并处理用户提交的请求线下上门服务的设备维修申请 (Maintenance Staff receives and handles equipment maintenance applications submitted by users)
+! 触发事件：维修人员启动设备维修申请处理流程 (Maintenance Staff starts the equipment maintenance application handling process)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤!描述!信息
+! 1
+! 系统显示待处理维修申请列表
+! 申请单号、设备名称、报修人、上门时间、上门地点、联系方式
+! 2
+! 维修人员选择一个待处理的维修申请
+!
+! 3
+! 系统展示待处理申请的详细信息
+! 设备型号、故障描述、报修时间、使用部门
+! 4
+! 维修人员确认接收该维修申请
+!
+! 5
+! 系统反馈维修申请处理方案已确认
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤!描述!信息
+! 4a
+! 维修人员无法立即处理该维修申请，如缺配件
+!
+! 4a.1
+! 维修人员拒绝处理该服务单，并填写无法立即处理的原因
+! 无法处理原因
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
