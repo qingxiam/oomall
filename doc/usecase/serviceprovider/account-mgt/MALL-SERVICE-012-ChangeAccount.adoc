@@ -1,4 +1,4 @@
-
+Author:陈泽峯
 [cols="1a"]
 |===
 
@@ -20,16 +20,16 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 商户-管理服务
-! 参与者：商户
+! 包： 服务商-管理账号(Service Provider - Management Account)
+! 参与者：服务商(Service Provider)
 !===
 
 |
 [frame="none"]
 [cols="1"]
 !===
-! 描述：
-! 触发事件:
+! 描述：服务商申请修改账号信息
+! 触发事件：服务商申请修改账号信息
 !===
 
 |
@@ -46,16 +46,16 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-!
-!
+! 服务商填写修改信息
+! 服务商名称、联系人姓名、联系电话、邮箱地址、注册地址、证明文件
 
 ! 2
-!
+! 服务商提交修改申请
 !
 
 ! 3
-!
-!
+! 系统生成申请编号并通知管理员
+! 申请编号、申请状态
 !===
 
 |
@@ -90,5 +90,6 @@
 [cols="1"]
 !===
 ! 其他:
+! 服务商账号修改申请需经过平台管理员审核 (Service provider account modification applications require platform administrator approval)
 !===
 |===
