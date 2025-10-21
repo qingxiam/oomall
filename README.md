@@ -2,7 +2,7 @@
 
 2024 Tutorial Project for course "Object-Oriented Analysis and Design“ and "JavaEE Platform Technologies"
 
-<br>2023-10-12：[API 1.3.1版](https://app.swaggerhub.com/apis/mingqcn/OOMALL/1.3.1#/) 2023年第一版API<br>
+<br>2025-10-15：[API 1.5.1版](https://qbcgzddsjf.apifox.cn) 2025年第一版API<br>
 
 
 ## 测试结果
