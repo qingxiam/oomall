@@ -1,0 +1,54 @@
+version: "3.9"
+services:
+  minio:
+    image: swr.cn-north-4.myhuaweicloud.com/oomall-javaee/quay.io/minio/minio:latest
+    networks:
+      - javaee-proxy
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - /root/minio/data:/data
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=JavaEE20251014
+    command: server /data --console-address ":9001"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.minio==yes
+
+  mysql:
+    image: swr.cn-north-4.myhuaweicloud.com/oomall-javaee/mysql:latest
+    networks:
+      - javaee-proxy
+    ports:
+      - target: 3306 # Container port (Traefik web entry point)
+        published: 3306 # Host port exposed on the nodes
+        protocol: tcp
+    volumes:
+      - /root/mysql/sql:/sql:ro
+      - /root/mysql/conf.d:/etc/mysql/conf.d:ro
+      - /root/mysql/log:/var/log/mysql
+      - /root/mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Jimei20250716
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+
+        # Placement constraints restrict where Traefik tasks can run.
+        # Running on manager nodes is common for accessing the Swarm API via the socket.
+        constraints:
+          - node.labels.mysql==yes
+
+
+networks:
+  javaee-proxy:
+    driver: overlay
+    attachable: true
+    external: true
+
