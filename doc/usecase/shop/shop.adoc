@@ -62,6 +62,9 @@ image::商户-管理服务.png[]
 
 image::商户-管理服务合同.png[]
 
+罗芳魁
+include::servicecontract-mgt/MALL-SERVICE-005-QueryServiceProvider.adoc[]
+
 === 3.3.9 管理支付
 
 image::商户-管理支付.png[]
