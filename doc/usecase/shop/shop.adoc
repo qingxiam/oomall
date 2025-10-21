@@ -50,7 +50,10 @@ image::商户-管理人员.png[]
 
 include::staff-mgt/MALL-SHOP-005-AddStaffAccount.adoc[]
 include::staff-mgt/MALL-SHOP-006-DeleteStaffAccount.adoc[]
-
+罗芳魁
+include::staff-mgt/MALL-SHOP-011-ResumeStaffAccount.adoc[]
+罗芳魁
+include::staff-mgt/MALL-SHOP-012-QueryStaffAccount.adoc[]
 === 3.3.7 管理服务
 
 image::商户-管理服务.png[]
@@ -58,3 +61,10 @@ image::商户-管理服务.png[]
 === 3.3.8 管理服务商
 
 image::商户-管理服务合同.png[]
+
+罗芳魁
+include::servicecontract-mgt/MALL-SERVICE-005-QueryServiceProvider.adoc[]
+
+=== 3.3.9 管理支付
+
+image::商户-管理支付.png[]

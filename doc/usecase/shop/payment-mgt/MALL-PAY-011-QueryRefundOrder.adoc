@@ -1,0 +1,63 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-PAY-011
+! 用例名称：查退款单 (Query Refund Order)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 平台-管理账务 (Platform - Account Management)
+! 参与者：平台管理人员, 商户 (Platform Administrator, Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 用户按照时间,金额,单号等条件查询所有退款交易 (User queries all refund transactions by conditions such as time, amount, order number, etc.)
+! 触发事件: 
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 用户按照时间,退款金额,退款单号等条件查询时间,退款金额,退款单号
+! 所有退款交易 (商户仅能查询自己的退款单,平台可查询所有的退款单) (All refund transactions (Merchants can only query their own refund orders, the platform can query all refund orders))
+
+! 2
+! 系统显示所有符合条件的退款单,同时可以显示退款单以及退款单对应的退分账记录
+! 退款单关联的支付单 (Payment orders associated with refund orders)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
