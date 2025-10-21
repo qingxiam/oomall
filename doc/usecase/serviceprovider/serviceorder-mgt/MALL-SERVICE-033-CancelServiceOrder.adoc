@@ -1,0 +1,91 @@
+吴王韬
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-033
+! 用例名称：取消服务单 (Cancel Service Order)
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 服务商-管理服务单
+! 参与者：服务商
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 服务商取消服务单 (Service Provider Cancels Service Order)
+! 触发事件: 服务商取消服务单 (Service Provider Cancels Service Order)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统根据接受时间顺序显示所有已接受的服务单
+! 服务单号、服务类型、商品名称、顾客姓名、顾客地址
+
+! 2
+! 服务商选择服务单取消
+! 取消原因
+
+! 3
+! 系统更新服务单状态为"已取消"
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+! 3a
+! 服务正在进行，无法取消
+!
+
+! 3a.1
+! 系统提示服务正在进行，取消失败
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!===
+|===
