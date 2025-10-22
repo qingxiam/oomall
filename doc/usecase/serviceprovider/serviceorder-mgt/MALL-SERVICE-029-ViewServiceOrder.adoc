@@ -1,0 +1,90 @@
+Author：徐瑞婷
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-029
+! 用例名称：查看服务单
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 服务商-管理服务单
+! 参与者：服务商
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述：服务商查看服务单的列表及详细信息 (Service provider views the list and details of service orders)
+! 触发事件：服务商需要了解服务单的进度或详情 (Service provider needs to understand the progress or details of the service order)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+!服务商请求查看服务单列表
+!
+
+! 2
+!系统显示可查看的服务单列表
+!服务单列表、服务单编号、服务单状态、客户名称、服务单创建时间
+
+! 3
+!服务商选择要查看的服务单
+!服务单列表、服务单编号、服务单状态、客户名称、服务单创建时间
+
+! 4
+!系统显示服务单详情
+!客户信息、服务问题描述、服务历史记录、服务单当前状态
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+
+!===
+! 步骤 ! 描述 ! 信息
+
+!2a
+!系统未找到任何服务单
+!系统返回空列表及提示信息
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他：服务商只能查看自己权限范围内的服务单
+!===
+|===
