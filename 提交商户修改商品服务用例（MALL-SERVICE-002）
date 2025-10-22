@@ -1,0 +1,115 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-002
+! 用例名称：修改商品服务 (Modify Product Services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理服务 (Merchant - Manage Services)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户修改已有商品服务 (Merchant modifies existing product services)
+! 触发事件: 商户修改商品服务 (Merchant modifies product services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示商户所有的商品服务(包括已审核和未审核的服务)
+! 服务分类 (Service Category), 服务名称 (Service Name), 审核状态 (Review Status)
+
+! 2
+! 商户选择需要修改的服务并修改信息提交
+! 服务名称 (Service Name), 定价 (Price), 分账比例 (Revenue Share Ratio)
+
+! 3
+! 系统显示 修改申请提交成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择修改服务套餐
+!
+
+! 2a.1
+! 系统显示该套餐的当前信息
+! 套餐名称 (Package Name), 包含的服务列表 (Service List)
+
+! 2a.2
+! 商户修改套餐信息并提交
+! 套餐价格 (Package Price), 套餐中各服务数量 (Quantity of each service in package)
+
+! 2a.3
+! 系统显示修改申请提交成功
+!
+
+! 2b
+! 商户修改审核中的服务
+!
+
+! 2b.1
+! 系统提示该服务正在审核中,无法修改
+!
+
+! 3a
+! 修改审核被拒绝
+!
+
+! 3a.1
+! 系统通知商户并说明拒绝原因,商户可重新修改提交
+! 拒绝原因 (Rejection Reason)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 修改已上架服务需重新审核通过后生效 (Modifications to listed services take effect after re-approval). 套餐仅含1个服务时数量必须大于1 (When package contains only 1 service, quantity must be greater than 1).
+!===
+|===
