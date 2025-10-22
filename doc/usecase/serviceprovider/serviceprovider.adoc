@@ -13,22 +13,31 @@ image::../shop/商户-管理人员.png[]
 
 罗芳魁
 include::staff-mgt/MALL-SERVICE-020-AddStaff.adoc[]
-
-include::staff-mgt/MALL-SERVICE-021-ChangeStaff.adoc
+罗芳魁
+include::staff-mgt/MALL-SERVICE-021-ChangeStaff.adoc[]
 
 罗芳魁
-include::staff-mgt/MALL-SERVICE-022-SuspendStaffAccount.adoc
+include::staff-mgt/MALL-SERVICE-022-SuspendStaffAccount.adoc[]
 
 罗芳魁
-include::staff-mgt/MALL-SERVICE-023-ResumeStaffAccount.adoc
+include::staff-mgt/MALL-SERVICE-023-ResumeStaffAccount.adoc[]
+
+黄晨阳
+include::staff-mgt/MALL-SERVICE-025-DeleteStaffAccount.adoc[]
+
 == 3.5.3 服务管理
 
 image::管理服务.png[]
-
+王浩东
+include::service-mgt/MALL-SERVICE-043-CancelServiceContract.adoc[]
+王浩东
+include::service-mgt/MALL-SERVICE-042-ConfirmServiceContract.adoc[]
+王浩东
+include::service-mgt/MALL-SERVICE-044-SuspendServiceContract.adoc[]
+王浩东
+include::service-mgt/MALL-SERVICE-045-RestoreServiceContract.adoc[]
 === 3.5.4 服务单管理
 
 image::管理服务单.png[]
-王浩东
-include::servicecontract-mgt/MALL-SERVICE-043-CancelServiceContract.adoc[]
-王浩东
-include::servicecontract-mgt/MALL-SERVICE-042-ConfirmServiceContract.adoc[]
+严可文
+include::serviceorder-mgt/MALL-SERVICE-031-CompleteServiceOrder.adoc[]
