@@ -879,7 +879,7 @@
                         <option value="merchant">商户</option>
                         <option value="service-provider">服务商</option>
                         <option value="platform-admin">平台管理人员</option>
-                        <option value="technician">维修工</option>
+                        <option value="repair-provider">维修商</option>
                     </select>
                 </div>
             </div>
@@ -2772,230 +2772,785 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- 维修工 PC 页面 -->
-    <div id="techApp" class="container" style="display: none;">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="back-arrow">←</div>
-                <div class="nav-title">导航</div>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item active" onclick="showTechPage('tech-hall')">
-                    <div class="nav-icon"></div>
-                    服务大厅
-                </li>
-                <li class="nav-item" onclick="showTechPage('tech-providers')">
-                    <div class="nav-icon"></div>
-                    服务商
-                </li>
-                <li class="nav-item" onclick="showTechPage('tech-center')">
-                    <div class="nav-icon"></div>
-                    个人中心
-                </li>
-            </ul>
-        </div>
-        <div class="main-content">
-            <div class="header">
-                <div class="search-box">
-                    <span>🔍</span>
-                    <input type="text" class="search-input" id="techSearchInput" placeholder="输入：服务单/详情 等即可跳转" onkeydown="if(event.key==='Enter'){techSearchNavigate();}">
-                </div>
-                <div class="user-info">
-                    <button class="btn btn-primary" style="padding:8px 12px;" onclick="switchToTechMobile()">移动端视图</button>
-                    <span class="welcome-text" id="welcomeTextTech">欢迎你! 维修工</span>
-                    <span>▼</span>
-                    <div class="user-avatar" onclick="logout()" title="退出登录">🛠️</div>
-                </div>
-            </div>
-
-            <!-- 服务大厅：所有订单/我的收藏 -->
-            <div id="tech-hall" class="page active">
-                <h1 class="page-title">服务大厅</h1>
-                <div class="page-subtitle"><div class="subtitle-icon"></div>所有订单与我的收藏</div>
+            <!-- ===================== 服务商页面 ===================== -->
+            <!-- 售前管理（主页面） -->
+            <div id="provider-presales" class="page">
+                <h1 class="page-title">服务商 · 售前管理</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>选择要执行的用例</div>
                 <div class="form-section">
-                    <h2 class="form-title"><div class="form-title-icon"></div>所有订单（可接收）</h2>
-                    <table class="product-table">
+                    <div class="form-buttons" style="flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-primary" onclick="showPage('provider-accept-order')">接受商户单子</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-modify-order')">变更商户单子信息</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 账号管理（主页面） -->
+            <div id="provider-account" class="page">
+                <h1 class="page-title">服务商 · 账号管理</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>选择要执行的用例</div>
+                <div class="form-section">
+                    <div class="form-buttons" style="flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-primary" onclick="showPage('provider-register')">注册服务商管理</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-view-account')">查看账户信息</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-modify-account')">变更账户信息</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 管理服务（主页面） -->
+            <div id="provider-services" class="page">
+                <h1 class="page-title">服务商 · 管理服务</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>选择要执行的用例</div>
+                <div class="form-section">
+                    <div class="form-buttons" style="flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-primary" onclick="showPage('provider-view-services')">查看所有服务单</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-confirm-receive')">确认收件</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-confirm-complete')">确认完成服务单</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-ship')">发件（物流）</button>
+                        <button class="btn btn-primary" onclick="showPage('provider-product-service')">商品服务</button>
+                        <button class="btn btn-warning" onclick="showPage('provider-cancel-service')">撤销服务单</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== 服务商：售前管理子页面 ===================== -->
+            <!-- 接受商户单子 -->
+            <div id="provider-accept-order" class="page">
+                <h1 class="page-title">接受商户单子</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>查看待处理的商户服务单并接受</div>
+                <div class="form-section">
+                    <div class="info-banner">系统显示待处理的商户服务单，选择后可以查看详情并接受服务。</div>
+                    <h2 class="form-title"><div class="form-title-icon"></div>待处理服务单</h2>
+                    <table class="product-table" id="pendingOrdersTable">
                         <thead>
                             <tr>
-                                <th>地区</th>
-                                <th>商品</th>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
                                 <th>服务类型</th>
+                                <th>提交时间</th>
+                                <th>预计完成时间</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
-                        <tbody id="techOrderTable">
-                            <tr>
-                                <td>福建 厦门 翔安区</td>
-                                <td>空调外机</td>
-                                <td>上门维修</td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-edit" onclick="viewTechOrder('SO-001')">详情</button>
-                                        <button class="btn-edit" onclick="acceptTechOrder('SO-001')">接收</button>
-                                        <button class="btn-delete" onclick="rejectTechOrder('SO-001')">拒绝</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>福建 厦门 湖里区</td>
-                                <td>冰箱压缩机</td>
-                                <td>寄回维修</td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn-edit" onclick="viewTechOrder('SO-002')">详情</button>
-                                        <button class="btn-edit" onclick="acceptTechOrder('SO-002')">接收</button>
-                                        <button class="btn-delete" onclick="rejectTechOrder('SO-002')">拒绝</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h2 class="form-title" style="margin-top:20px;"><div class="form-title-icon"></div>我的收藏</h2>
-                    <table class="product-table">
-                        <thead><tr><th>编号</th><th>标题</th><th>类型</th><th>操作</th></tr></thead>
                         <tbody>
-                            <tr><td>F-01</td><td>厦门·空调外机上门维修</td><td>订单</td><td class="action-buttons"><button class="btn-edit" onclick="viewTechOrder('SO-001')">查看</button></td></tr>
+                            <tr data-id="SO-001">
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>商品配送</td>
+                                <td>2025-01-15 09:30</td>
+                                <td>2025-01-16 18:00</td>
+                                <td class="action-buttons">
+                                    <button class="btn-edit" onclick="viewOrderDetail('SO-001')">查看详情</button>
+                                    <button class="btn-primary" onclick="acceptOrder('SO-001')">接受</button>
+                                </td>
+                            </tr>
+                            <tr data-id="SO-002">
+                                <td>SO-002</td>
+                                <td>示例商户B</td>
+                                <td>仓储管理</td>
+                                <td>2025-01-15 14:20</td>
+                                <td>2025-01-17 12:00</td>
+                                <td class="action-buttons">
+                                    <button class="btn-edit" onclick="viewOrderDetail('SO-002')">查看详情</button>
+                                    <button class="btn-primary" onclick="acceptOrder('SO-002')">接受</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
+                    
+                    <div class="detail-card">
+                        <h2 class="form-title"><div class="form-title-icon"></div>服务单详情 <span class="status-tag">待处理</span></h2>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="orderDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="orderDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>服务类型</strong><span id="orderDetailType">-</span></div>
+                            <div class="detail-item"><strong>提交时间</strong><span id="orderDetailSubmitTime">-</span></div>
+                            <div class="detail-item"><strong>预计完成时间</strong><span id="orderDetailExpectedTime">-</span></div>
+                            <div class="detail-item"><strong>服务地址</strong><span id="orderDetailAddress">-</span></div>
+                        </div>
+                        <div class="detail-grid full-width" style="margin-top:10px;">
+                            <div class="detail-item"><strong>服务要求</strong><div id="orderDetailRequirements">-</div></div>
+                            <div class="detail-item"><strong>备注信息</strong><div id="orderDetailNotes">-</div></div>
+                        </div>
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-primary" onclick="acceptSelectedOrder()">接受此服务单</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-presales')">返回</button>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- 订单详情（共享用） -->
-                <div class="form-section" id="tech-order-detail" style="margin-top:12px;">
-                    <h2 class="form-title"><div class="form-title-icon"></div>订单详情</h2>
+            </div>
+
+            <!-- 变更商户单子信息 -->
+            <div id="provider-modify-order" class="page">
+                <h1 class="page-title">变更商户单子信息</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>修改已接受的服务单信息</div>
+                <div class="form-section">
                     <div class="form-grid">
-                        <div class="form-group"><label class="form-label">服务单号</label><input class="form-input" id="detailOrderId" value="SO-001"></div>
-                        <div class="form-group"><label class="form-label">地区</label><input class="form-input" value="福建 厦门 翔安区"></div>
-                        <div class="form-group"><label class="form-label">商品</label><input class="form-input" value="空调外机"></div>
-                        <div class="form-group"><label class="form-label">服务类型</label><input class="form-input" value="上门维修"></div>
-                        <div class="form-group"><label class="form-label">商户信息</label><input class="form-input" value="豪客来商店"></div>
-                        <div class="form-group"><label class="form-label">服务商信息</label><input class="form-input" value="厦门维修服务中心"></div>
-                        <div class="form-group full-width"><label class="form-label">进度</label><input class="form-input" value="待接收"></div>
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="modifyOrderIdInput" class="form-input" placeholder="如：SO-001">
+                        </div>
                     </div>
                     <div class="form-buttons">
-                        <button class="btn btn-primary" onclick="acceptTechOrder(document.getElementById('detailOrderId').value)">接收</button>
-                        <button class="btn btn-secondary" onclick="rejectTechOrder(document.getElementById('detailOrderId').value)">拒绝</button>
+                        <button class="btn btn-primary" onclick="searchOrderToModify()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>服务单信息</h2>
+                    <div class="detail-card">
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="modifyOrderId">-</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="modifyOrderMerchant">-</span></div>
+                            <div class="detail-item"><strong>服务类型</strong><span id="modifyOrderType">-</span></div>
+                            <div class="detail-item"><strong>当前状态</strong><span id="modifyOrderStatus">-</span></div>
+                        </div>
+                        
+                        <h3 class="form-title" style="margin-top:20px;">修改信息</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">预计完成时间</label>
+                                <input id="modifyExpectedTime" class="form-input" placeholder="YYYY-MM-DD HH:mm">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">服务地址</label>
+                                <input id="modifyServiceAddress" class="form-input" placeholder="详细地址">
+                            </div>
+                        </div>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">服务要求</label>
+                                <textarea id="modifyRequirements" class="form-input" rows="3" placeholder="详细的服务要求"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">备注信息</label>
+                                <textarea id="modifyNotes" class="form-input" rows="2" placeholder="其他备注信息"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-primary" onclick="submitOrderModification()">提交修改</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-presales')">返回</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 服务商：所有服务商/我的收藏 -->
-            <div id="tech-providers" class="page">
-                <h1 class="page-title">服务商</h1>
-                <div class="page-subtitle"><div class="subtitle-icon"></div>所有服务商与我的收藏</div>
+            <!-- ===================== 服务商：账号管理子页面 ===================== -->
+            <!-- 注册服务商管理 -->
+            <div id="provider-register" class="page">
+                <h1 class="page-title">注册服务商管理</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>提交服务商注册申请</div>
                 <div class="form-section">
-                    <h2 class="form-title"><div class="form-title-icon"></div>所有服务商</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">服务商名称</label>
+                            <input id="providerName" class="form-input" placeholder="请输入服务商名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系人</label>
+                            <input id="providerContact" class="form-input" placeholder="请输入联系人姓名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系电话</label>
+                            <input id="providerPhone" class="form-input" placeholder="请输入联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">注册地址</label>
+                            <input id="providerAddress" class="form-input" placeholder="请输入注册地址">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">服务范围</label>
+                            <select id="providerScope" class="form-input">
+                                <option value="">请选择服务范围</option>
+                                <option value="商品配送">商品配送</option>
+                                <option value="仓储管理">仓储管理</option>
+                                <option value="仓配一体">仓配一体</option>
+                                <option value="售后服务">售后服务</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">服务区域</label>
+                            <input id="providerRegion" class="form-input" placeholder="如：北京市朝阳区">
+                        </div>
+                    </div>
+                    <div class="form-grid full-width">
+                        <div class="form-group">
+                            <label class="form-label">服务商简介</label>
+                            <textarea id="providerIntro" class="form-input" rows="4" placeholder="请简要介绍服务商的基本情况、服务能力等"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-grid full-width">
+                        <div class="form-group">
+                            <label class="form-label">服务资质证明</label>
+                            <textarea id="providerQualifications" class="form-input" rows="3" placeholder="请列出相关资质证明文件"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitProviderRegistration()">提交注册申请</button>
+                        <button class="btn btn-secondary" onclick="showPage('provider-account')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查看账户信息 -->
+            <div id="provider-view-account" class="page">
+                <h1 class="page-title">查看账户信息</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>查看当前服务商账户的详细信息</div>
+                <div class="form-section">
+                    <div class="detail-card">
+                        <h2 class="form-title"><div class="form-title-icon"></div>账户基本信息</h2>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务商名称</strong><span id="accountProviderName">示例服务商A</span></div>
+                            <div class="detail-item"><strong>账户状态</strong><span class="status-tag">正常</span></div>
+                            <div class="detail-item"><strong>注册时间</strong><span id="accountRegisterTime">2025-01-10 10:30</span></div>
+                            <div class="detail-item"><strong>最后登录</strong><span id="accountLastLogin">2025-01-15 09:15</span></div>
+                        </div>
+                        
+                        <h3 class="form-title" style="margin-top:20px;">联系信息</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>联系人</strong><span id="accountContact">王五</span></div>
+                            <div class="detail-item"><strong>联系电话</strong><span id="accountPhone">13900000001</span></div>
+                            <div class="detail-item"><strong>联系邮箱</strong><span id="accountEmail">wangwu@example.com</span></div>
+                            <div class="detail-item"><strong>注册地址</strong><span id="accountAddress">北京市朝阳区xxx街道xxx号</span></div>
+                        </div>
+                        
+                        <h3 class="form-title" style="margin-top:20px;">服务信息</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务范围</strong><span id="accountScope">商品配送</span></div>
+                            <div class="detail-item"><strong>服务区域</strong><span id="accountRegion">北京市朝阳区</span></div>
+                            <div class="detail-item"><strong>服务等级</strong><span id="accountLevel">A级</span></div>
+                            <div class="detail-item"><strong>信用评分</strong><span id="accountCredit">95分</span></div>
+                        </div>
+                        
+                        <h3 class="form-title" style="margin-top:20px;">业务统计</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>累计服务单数</strong><span id="accountTotalOrders">156</span></div>
+                            <div class="detail-item"><strong>本月服务单数</strong><span id="accountMonthOrders">23</span></div>
+                            <div class="detail-item"><strong>完成率</strong><span id="accountCompletionRate">98.5%</span></div>
+                            <div class="detail-item"><strong>客户满意度</strong><span id="accountSatisfaction">4.8分</span></div>
+                        </div>
+                        
+                        <div class="form-buttons" style="margin-top:20px;">
+                            <button class="btn btn-primary" onclick="showPage('provider-modify-account')">修改账户信息</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-account')">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 变更账户信息 -->
+            <div id="provider-modify-account" class="page">
+                <h1 class="page-title">变更账户信息</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>修改服务商账户的基本信息</div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">联系人</label>
+                            <input id="modifyContact" class="form-input" value="王五" placeholder="请输入联系人姓名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系电话</label>
+                            <input id="modifyPhone" class="form-input" value="13900000001" placeholder="请输入联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系邮箱</label>
+                            <input id="modifyEmail" class="form-input" value="wangwu@example.com" placeholder="请输入联系邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">注册地址</label>
+                            <input id="modifyAddress" class="form-input" value="北京市朝阳区xxx街道xxx号" placeholder="请输入注册地址">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">服务区域</label>
+                            <input id="modifyRegion" class="form-input" value="北京市朝阳区" placeholder="请输入服务区域">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">服务范围</label>
+                            <select id="modifyScope" class="form-input">
+                                <option value="商品配送" selected>商品配送</option>
+                                <option value="仓储管理">仓储管理</option>
+                                <option value="仓配一体">仓配一体</option>
+                                <option value="售后服务">售后服务</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-grid full-width">
+                        <div class="form-group">
+                            <label class="form-label">服务商简介</label>
+                            <textarea id="modifyIntro" class="form-input" rows="4" placeholder="请简要介绍服务商的基本情况、服务能力等">专业提供商品配送服务，拥有完善的物流网络和专业的配送团队，致力于为客户提供高效、安全、便捷的配送服务。</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitAccountModification()">提交修改</button>
+                        <button class="btn btn-secondary" onclick="showPage('provider-view-account')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== 服务商：管理服务子页面 ===================== -->
+            <!-- 查看所有服务单 -->
+            <div id="provider-view-services" class="page">
+                <h1 class="page-title">查看所有服务单</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>查看和管理所有服务单的状态</div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="serviceOrderIdInput" class="form-input" placeholder="如：SO-001">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商户名称</label>
+                            <input id="serviceMerchantInput" class="form-input" placeholder="如：示例商户A">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">服务状态</label>
+                            <select id="serviceStatusSelect" class="form-input">
+                                <option value="">全部</option>
+                                <option value="进行中">进行中</option>
+                                <option value="已完成">已完成</option>
+                                <option value="已取消">已取消</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="searchServiceOrders()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>服务单列表</h2>
                     <table class="product-table">
-                        <thead><tr><th>名称</th><th>地区</th><th>联系电话</th><th>操作</th></tr></thead>
-                        <tbody>
+                        <thead>
                             <tr>
-                                <td>厦门维修服务中心</td>
-                                <td>福建 厦门</td>
-                                <td>13900000001</td>
-                                <td class="action-buttons"><button class="btn-edit" onclick="showProviderDetail('SP-001')">详情</button><button class="btn-edit">收藏</button></td>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
+                                <th>服务类型</th>
+                                <th>提交时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="serviceOrdersBody">
+                            <tr>
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>商品配送</td>
+                                <td>2025-01-15 09:30</td>
+                                <td><span class="status-tag">进行中</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-edit" onclick="viewServiceDetail('SO-001')">查看详情</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SO-002</td>
+                                <td>示例商户B</td>
+                                <td>仓储管理</td>
+                                <td>2025-01-14 14:20</td>
+                                <td><span class="status-tag">已完成</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-edit" onclick="viewServiceDetail('SO-002')">查看详情</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <h2 class="form-title" style="margin-top:20px;"><div class="form-title-icon"></div>我的收藏</h2>
-                    <table class="product-table"><thead><tr><th>名称</th><th>地区</th><th>操作</th></tr></thead><tbody><tr><td>安心安装服务</td><td>广东 深圳</td><td class="action-buttons"><button class="btn-edit" onclick="showProviderDetail('SP-002')">查看</button></td></tr></tbody></table>
-                </div>
-                <div class="form-section" id="tech-provider-detail" style="margin-top:12px;">
-                    <h2 class="form-title"><div class="form-title-icon"></div>服务商详情</h2>
-                    <div class="form-grid">
-                        <div class="form-group"><label class="form-label">服务商编号</label><input class="form-input" id="providerDetailId" value="SP-001"></div>
-                        <div class="form-group"><label class="form-label">服务商名称</label><input class="form-input" value="厦门维修服务中心"></div>
-                        <div class="form-group"><label class="form-label">地区</label><input class="form-input" value="福建 厦门"></div>
-                        <div class="form-group"><label class="form-label">联系电话</label><input class="form-input" value="13900000001"></div>
-                        <div class="form-group full-width"><label class="form-label">简介</label><input class="form-input" value="覆盖厦门全域，提供上门维修与寄回维修。"></div>
+                    
+                    <div class="detail-card">
+                        <h3 class="form-title"><div class="form-title-icon"></div>服务单详情</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="serviceDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="serviceDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>服务类型</strong><span id="serviceDetailType">-</span></div>
+                            <div class="detail-item"><strong>当前状态</strong><span id="serviceDetailStatus">-</span></div>
+                            <div class="detail-item"><strong>提交时间</strong><span id="serviceDetailSubmitTime">-</span></div>
+                            <div class="detail-item"><strong>预计完成时间</strong><span id="serviceDetailExpectedTime">-</span></div>
+                        </div>
+                        <div class="detail-grid full-width" style="margin-top:10px;">
+                            <div class="detail-item"><strong>服务要求</strong><div id="serviceDetailRequirements">-</div></div>
+                            <div class="detail-item"><strong>备注信息</strong><div id="serviceDetailNotes">-</div></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 个人中心：个人信息/已接受/已完成/服务商合同 -->
-            <div id="tech-center" class="page">
-                <h1 class="page-title">个人中心</h1>
-                <div class="page-subtitle"><div class="subtitle-icon"></div>个人信息与订单/合同</div>
+            <!-- 确认收件 -->
+            <div id="provider-confirm-receive" class="page">
+                <h1 class="page-title">确认收件</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>确认收到商户发送的商品或物品</div>
                 <div class="form-section">
-                    <h2 class="form-title"><div class="form-title-icon"></div>个人信息</h2>
                     <div class="form-grid">
-                        <div class="form-group"><label class="form-label">姓名</label><input class="form-input" value="王维修"></div>
-                        <div class="form-group"><label class="form-label">手机号</label><input class="form-input" value="13900001111"></div>
-                        <div class="form-group"><label class="form-label">所属服务商</label><input class="form-input" value="厦门维修服务中心"></div>
-                        <div class="form-group"><label class="form-label">技能标签</label><input class="form-input" value="家电维修/安装"></div>
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="receiveOrderIdInput" class="form-input" placeholder="如：SO-001">
+                        </div>
                     </div>
-                </div>
-                <div class="form-section">
-                    <h2 class="form-title"><div class="form-title-icon"></div>已接受订单</h2>
-                    <table class="product-table"><thead><tr><th>服务单号</th><th>商品</th><th>服务类型</th><th>进度</th></tr></thead><tbody><tr><td>SO-101</td><td>洗衣机电机</td><td>上门维修</td><td>进行中</td></tr></tbody></table>
-                </div>
-                <div class="form-section">
-                    <h2 class="form-title"><div class="form-title-icon"></div>已完成订单</h2>
-                    <table class="product-table"><thead><tr><th>服务单号</th><th>商品</th><th>服务类型</th><th>完成时间</th></tr></thead><tbody><tr><td>SO-080</td><td>冰箱压缩机</td><td>寄回维修</td><td>2025-10-10</td></tr></tbody></table>
-                </div>
-                <div class="form-section">
-                    <h2 class="form-title"><div class="form-title-icon"></div>服务商合同</h2>
-                    <table class="product-table"><thead><tr><th>合同编号</th><th>服务商</th><th>签订日期</th><th>状态</th></tr></thead><tbody><tr><td>SC-2025-01</td><td>厦门维修服务中心</td><td>2025-01-01</td><td>有效</td></tr></tbody></table>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="searchOrderToReceive()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>待收件服务单</h2>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
+                                <th>商品信息</th>
+                                <th>预计送达时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="receiveOrdersBody">
+                            <tr>
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>商品配送 - 10件商品</td>
+                                <td>2025-01-15 16:00</td>
+                                <td class="action-buttons">
+                                    <button class="btn-primary" onclick="confirmReceive('SO-001')">确认收件</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="detail-card">
+                        <h3 class="form-title"><div class="form-title-icon"></div>收件详情</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="receiveDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="receiveDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>商品数量</strong><span id="receiveDetailQuantity">-</span></div>
+                            <div class="detail-item"><strong>商品状态</strong><span id="receiveDetailStatus">-</span></div>
+                        </div>
+                        <div class="form-grid full-width" style="margin-top:15px;">
+                            <div class="form-group">
+                                <label class="form-label">收件备注</label>
+                                <textarea id="receiveNotes" class="form-input" rows="3" placeholder="收件时的备注信息"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-primary" onclick="submitReceiveConfirmation()">确认收件</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-services')">返回</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- 维修工 移动端页面 -->
-    <div id="techMobile" style="display:none;">
-        <div class="login-container" style="height:auto; background:#fff;">
-            <div class="login-card" style="max-width:600px; width:100%;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-                    <div class="login-logo">🛠️</div>
-                    <button class="btn btn-primary" style="padding:8px 14px;" onclick="backToTechPC()">切换到PC视图</button>
-                </div>
-                <h2 class="login-title" style="margin:10px 0 6px;">维修工-服务单</h2>
-                <div class="search-box" style="margin:10px 0 15px;">
-                    <span>🔍</span>
-                    <input type="text" class="search-input" id="techMobileSearch" placeholder="输入任意内容即可跳转" onkeydown="if(event.key==='Enter'){techMobileSearchNavigate();}">
-                </div>
-                <div style="text-align:left;">
-                    <!-- 服务大厅（移动端） -->
-                    <div id="techMobileList" class="form-section" style="padding:15px;">
-                        <div style="font-weight:bold;margin-bottom:10px;">服务大厅 · 待接收服务单</div>
-                        <div style="display:flex;flex-direction:column;gap:10px;">
-                            <div style="border:1px solid #eee;border-radius:8px;padding:12px;">
-                                <div style="font-size:14px;margin-bottom:6px;">SO-001 · 厦门翔安区 · 上门维修 · 空调外机</div>
-                                <div style="display:flex;gap:8px;">
-                                    <button class="btn-edit" onclick="viewTechOrderMobile('SO-001')">查看</button>
-                                    <button class="btn-edit" onclick="acceptTechOrder('SO-001')">接收</button>
-                                    <button class="btn-delete" onclick="rejectTechOrder('SO-001')">拒绝</button>
-                                </div>
-                            </div>
-                            <div style="border:1px solid #eee;border-radius:8px;padding:12px;">
-                                <div style="font-size:14px;margin-bottom:6px;">SO-002 · 厦门湖里区 · 寄回维修 · 冰箱压缩机</div>
-                                <div style="display:flex;gap:8px;">
-                                    <button class="btn-edit" onclick="viewTechOrderMobile('SO-002')">查看</button>
-                                    <button class="btn-edit" onclick="acceptTechOrder('SO-002')">接收</button>
-                                    <button class="btn-delete" onclick="rejectTechOrder('SO-002')">拒绝</button>
-                                </div>
-                            </div>
+            <!-- 确认完成服务单 -->
+            <div id="provider-confirm-complete" class="page">
+                <h1 class="page-title">确认完成服务单</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>确认服务单已完成并提交完成报告</div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="completeOrderIdInput" class="form-input" placeholder="如：SO-001">
                         </div>
                     </div>
-
-                    <!-- 详情视图（移动端） -->
-                    <div id="techMobileDetail" class="form-section" style="padding:15px; display:none;">
-                        <div style="font-weight:bold;margin-bottom:10px;">服务单详情</div>
-                        <div class="form-grid" style="grid-template-columns:1fr;">
-                            <div class="form-group"><label class="form-label">服务单号</label><input class="form-input" id="techMobileDetailId" value="SO-001"></div>
-                            <div class="form-group"><label class="form-label">地区</label><input class="form-input" value="福建 厦门 翔安区"></div>
-                            <div class="form-group"><label class="form-label">商品</label><input class="form-input" value="空调外机"></div>
-                            <div class="form-group"><label class="form-label">服务类型</label><input class="form-input" value="上门维修"></div>
-                            <div class="form-group"><label class="form-label">商户信息</label><input class="form-input" value="豪客来商店"></div>
-                            <div class="form-group"><label class="form-label">服务商信息</label><input class="form-input" value="厦门维修服务中心"></div>
-                            <div class="form-group"><label class="form-label">进度</label><input class="form-input" value="待接收"></div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="searchOrderToComplete()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>待完成服务单</h2>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
+                                <th>服务类型</th>
+                                <th>开始时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completeOrdersBody">
+                            <tr>
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>商品配送</td>
+                                <td>2025-01-15 10:00</td>
+                                <td class="action-buttons">
+                                    <button class="btn-primary" onclick="confirmComplete('SO-001')">确认完成</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="detail-card">
+                        <h3 class="form-title"><div class="form-title-icon"></div>完成详情</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="completeDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="completeDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>服务类型</strong><span id="completeDetailType">-</span></div>
+                            <div class="detail-item"><strong>实际完成时间</strong><span id="completeDetailActualTime">-</span></div>
                         </div>
-                        <div class="form-buttons" style="justify-content:flex-end;">
-                            <button class="btn btn-secondary" onclick="showTechMobilePage('list')">返回</button>
-                            <button class="btn btn-primary" onclick="acceptTechOrder(document.getElementById('techMobileDetailId').value)">接收</button>
-                            <button class="btn btn-secondary" onclick="rejectTechOrder(document.getElementById('techMobileDetailId').value)">拒绝</button>
+                        <div class="form-grid full-width" style="margin-top:15px;">
+                            <div class="form-group">
+                                <label class="form-label">完成报告</label>
+                                <textarea id="completeReport" class="form-input" rows="4" placeholder="请详细描述服务完成情况"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">服务评价</label>
+                                <textarea id="serviceEvaluation" class="form-input" rows="2" placeholder="对本次服务的评价和建议"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-primary" onclick="submitCompleteConfirmation()">提交完成确认</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-services')">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 发件（物流） -->
+            <div id="provider-ship" class="page">
+                <h1 class="page-title">发件（物流）</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>处理商品发货和物流信息</div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="shipOrderIdInput" class="form-input" placeholder="如：SO-001">
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="searchOrderToShip()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>待发货服务单</h2>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
+                                <th>收货地址</th>
+                                <th>商品信息</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shipOrdersBody">
+                            <tr>
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>北京市朝阳区xxx街道</td>
+                                <td>10件商品</td>
+                                <td class="action-buttons">
+                                    <button class="btn-primary" onclick="processShipment('SO-001')">处理发货</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="detail-card">
+                        <h3 class="form-title"><div class="form-title-icon"></div>发货信息</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="shipDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="shipDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>收货人</strong><span id="shipDetailReceiver">-</span></div>
+                            <div class="detail-item"><strong>收货电话</strong><span id="shipDetailPhone">-</span></div>
+                            <div class="detail-item"><strong>收货地址</strong><span id="shipDetailAddress">-</span></div>
+                            <div class="detail-item"><strong>商品信息</strong><span id="shipDetailProducts">-</span></div>
+                        </div>
+                        
+                        <h4 class="form-title" style="margin-top:20px;">物流信息</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">物流公司</label>
+                                <select id="logisticsCompany" class="form-input">
+                                    <option value="">请选择物流公司</option>
+                                    <option value="顺丰速运">顺丰速运</option>
+                                    <option value="圆通速递">圆通速递</option>
+                                    <option value="中通快递">中通快递</option>
+                                    <option value="申通快递">申通快递</option>
+                                    <option value="韵达速递">韵达速递</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">运单号</label>
+                                <input id="trackingNumber" class="form-input" placeholder="请输入运单号">
+                            </div>
+                        </div>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">发货备注</label>
+                                <textarea id="shipNotes" class="form-input" rows="2" placeholder="发货时的备注信息"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-primary" onclick="submitShipment()">确认发货</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-services')">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品服务 -->
+            <div id="provider-product-service" class="page">
+                <h1 class="page-title">商品服务</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>提供商品相关的服务</div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="productServiceOrderIdInput" class="form-input" placeholder="如：SO-001">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">服务类型</label>
+                            <select id="productServiceType" class="form-input">
+                                <option value="">请选择服务类型</option>
+                                <option value="商品检验">商品检验</option>
+                                <option value="商品包装">商品包装</option>
+                                <option value="商品分拣">商品分拣</option>
+                                <option value="商品存储">商品存储</option>
+                                <option value="商品配送">商品配送</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="searchProductService()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>商品服务列表</h2>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
+                                <th>商品信息</th>
+                                <th>服务类型</th>
+                                <th>服务状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productServiceBody">
+                            <tr>
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>商品配送 - 10件商品</td>
+                                <td>商品配送</td>
+                                <td><span class="status-tag">进行中</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-edit" onclick="viewProductServiceDetail('SO-001')">查看详情</button>
+                                    <button class="btn-primary" onclick="updateProductService('SO-001')">更新服务</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="detail-card">
+                        <h3 class="form-title"><div class="form-title-icon"></div>服务详情</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="productServiceDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="productServiceDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>商品信息</strong><span id="productServiceDetailProducts">-</span></div>
+                            <div class="detail-item"><strong>服务类型</strong><span id="productServiceDetailType">-</span></div>
+                            <div class="detail-item"><strong>服务状态</strong><span id="productServiceDetailStatus">-</span></div>
+                            <div class="detail-item"><strong>服务进度</strong><span id="productServiceDetailProgress">-</span></div>
+                        </div>
+                        
+                        <h4 class="form-title" style="margin-top:20px;">服务更新</h4>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">服务进度</label>
+                                <select id="serviceProgress" class="form-input">
+                                    <option value="">请选择服务进度</option>
+                                    <option value="0%">0% - 未开始</option>
+                                    <option value="25%">25% - 进行中</option>
+                                    <option value="50%">50% - 过半</option>
+                                    <option value="75%">75% - 接近完成</option>
+                                    <option value="100%">100% - 已完成</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">服务说明</label>
+                                <textarea id="serviceDescription" class="form-input" rows="3" placeholder="请描述当前服务进展情况"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-primary" onclick="submitServiceUpdate()">更新服务</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-services')">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 撤销服务单 -->
+            <div id="provider-cancel-service" class="page">
+                <h1 class="page-title">撤销服务单</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>撤销已接受的服务单</div>
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">服务单号</label>
+                            <input id="cancelOrderIdInput" class="form-input" placeholder="如：SO-001">
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="searchOrderToCancel()">查询</button>
+                    </div>
+                    
+                    <h2 class="form-title"><div class="form-title-icon"></div>可撤销服务单</h2>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>服务单号</th>
+                                <th>商户名称</th>
+                                <th>服务类型</th>
+                                <th>当前状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cancelOrdersBody">
+                            <tr>
+                                <td>SO-001</td>
+                                <td>示例商户A</td>
+                                <td>商品配送</td>
+                                <td><span class="status-tag">进行中</span></td>
+                                <td class="action-buttons">
+                                    <button class="btn-warning" onclick="cancelService('SO-001')">撤销服务</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="detail-card">
+                        <h3 class="form-title"><div class="form-title-icon"></div>撤销详情</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item"><strong>服务单号</strong><span id="cancelDetailId">请选择服务单</span></div>
+                            <div class="detail-item"><strong>商户名称</strong><span id="cancelDetailMerchant">-</span></div>
+                            <div class="detail-item"><strong>服务类型</strong><span id="cancelDetailType">-</span></div>
+                            <div class="detail-item"><strong>当前状态</strong><span id="cancelDetailStatus">-</span></div>
+                        </div>
+                        
+                        <h4 class="form-title" style="margin-top:20px;">撤销原因</h4>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">撤销原因</label>
+                                <select id="cancelReason" class="form-input">
+                                    <option value="">请选择撤销原因</option>
+                                    <option value="商户要求取消">商户要求取消</option>
+                                    <option value="商品问题">商品问题</option>
+                                    <option value="地址错误">地址错误</option>
+                                    <option value="服务商无法完成">服务商无法完成</option>
+                                    <option value="其他原因">其他原因</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-grid full-width">
+                            <div class="form-group">
+                                <label class="form-label">详细说明</label>
+                                <textarea id="cancelDescription" class="form-input" rows="3" placeholder="请详细说明撤销原因"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-buttons" style="margin-top:15px;">
+                            <button class="btn btn-warning" onclick="submitServiceCancellation()">确认撤销</button>
+                            <button class="btn btn-secondary" onclick="showPage('provider-services')">返回</button>
                         </div>
                     </div>
                 </div>
@@ -3294,7 +3849,7 @@
                     'merchant': '商户',
                     'service-provider': '服务商',
                     'platform-admin': '平台管理人员',
-                    'technician': '维修工'
+                    'repair-provider': '维修商'
                 };
                 document.getElementById('welcomeText').textContent = `欢迎你! ${roleNames[role]}`;
             } else {
@@ -3343,7 +3898,7 @@
                         'merchant': '商户',
                         'service-provider': '服务商',
                         'platform-admin': '平台管理人员',
-                        'technician': '维修工'
+                        'repair-provider': '维修商'
                     }[selectedRole]
                 };
                 
@@ -3361,28 +3916,20 @@
         // 显示主应用
         function showMainApp() {
             document.getElementById('loginPage').style.display = 'none';
-            if (currentUser.role === 'technician') {
-                document.getElementById('techApp').style.display = 'flex';
-                document.getElementById('mainApp').style.display = 'none';
-                document.getElementById('techMobile').style.display = 'none';
-                document.getElementById('welcomeTextTech').textContent = `欢迎你! ${currentUser.roleName}`;
-                showTechPage('tech-orders');
+            document.getElementById('mainApp').style.display = 'flex';
+            
+            // 更新欢迎文本
+            document.getElementById('welcomeText').textContent = `欢迎你! ${currentUser.roleName}`;
+            
+            // 根据角色渲染导航并设置默认页面
+            renderNavForRole(currentUser.role);
+            attachGlobalSearch();
+            if (currentUser.role === 'platform-admin') {
+                showPage('admin-merchants');
+            } else if (currentUser.role === 'service-provider') {
+                showPage('provider-presales');
             } else {
-                document.getElementById('mainApp').style.display = 'flex';
-                document.getElementById('techApp').style.display = 'none';
-                document.getElementById('techMobile').style.display = 'none';
-                
-                // 更新欢迎文本
-                document.getElementById('welcomeText').textContent = `欢迎你! ${currentUser.roleName}`;
-                
-                // 根据角色渲染导航并设置默认页面
-                renderNavForRole(currentUser.role);
-                attachGlobalSearch();
-                if (currentUser.role === 'platform-admin') {
-                    showPage('admin-merchants');
-                } else {
-                    showPage('account-info');
-                }
+                showPage('account-info');
             }
         }
 
@@ -3400,8 +3947,6 @@
                 
                 // 显示登录页面
                 document.getElementById('mainApp').style.display = 'none';
-                document.getElementById('techApp').style.display = 'none';
-                document.getElementById('techMobile').style.display = 'none';
                 document.getElementById('loginPage').style.display = 'flex';
             }
         }
@@ -3523,6 +4068,22 @@
                         管理活动
                     </li>
                 `;
+            } else if (role === 'service-provider') {
+                // 服务商角色：专门的导航
+                navMenu.innerHTML = `
+                    <li class="nav-item" data-nav="provider-presales" onclick="showPage('provider-presales')">
+                        <div class="nav-icon"></div>
+                        售前管理
+                    </li>
+                    <li class="nav-item" data-nav="provider-account" onclick="showPage('provider-account')">
+                        <div class="nav-icon"></div>
+                        账号管理
+                    </li>
+                    <li class="nav-item" data-nav="provider-services" onclick="showPage('provider-services')">
+                        <div class="nav-icon"></div>
+                        管理服务
+                    </li>
+                `;
             } else {
                 // 商户/其他角色：恢复原有导航
                 navMenu.innerHTML = `
@@ -3575,6 +4136,20 @@
                     'admin-customers': ['admin-customers','admin-customer-ban','admin-customer-unban','admin-customer-query','admin-customer-deactivate'],
                     'admin-providers': ['admin-providers','admin-provider-approve-open','admin-provider-approve-change','admin-provider-query','admin-provider-suspend','admin-provider-resume'],
                     'admin-activities': ['admin-activities','admin-activity-approve','admin-activity-query']
+                };
+                for (const [navKey, pages] of Object.entries(mapping)) {
+                    if (pages.includes(pageId)) {
+                        const target = Array.from(navItems).find(li => li.getAttribute('data-nav') === navKey);
+                        if (target) target.classList.add('active');
+                        break;
+                    }
+                }
+            } else if (currentUser.role === 'service-provider') {
+                // 服务商页面归属
+                const mapping = {
+                    'provider-presales': ['provider-presales','provider-accept-order','provider-modify-order'],
+                    'provider-account': ['provider-account','provider-register','provider-view-account','provider-modify-account'],
+                    'provider-services': ['provider-services','provider-view-services','provider-confirm-receive','provider-confirm-complete','provider-ship','provider-product-service','provider-cancel-service']
                 };
                 for (const [navKey, pages] of Object.entries(mapping)) {
                     if (pages.includes(pageId)) {
@@ -3889,89 +4464,11 @@
             }, 2000);
         }
 
-        // 维修工页面切换与导航
-        function showTechPage(pageId) {
-            const pages = document.querySelectorAll('#techApp .page');
-            pages.forEach(p => p.classList.remove('active'));
-            const target = document.getElementById(pageId);
-            if (target) target.classList.add('active');
-
-            const items = document.querySelectorAll('#techApp .nav-item');
-            items.forEach(i => i.classList.remove('active'));
-            if (pageId === 'tech-hall') items[0].classList.add('active');
-            if (pageId === 'tech-providers') items[1].classList.add('active');
-            if (pageId === 'tech-center') items[2].classList.add('active');
-        }
-
-        // 搜索栏导航（PC）
-        function techSearchNavigate() {
-            const kw = (document.getElementById('techSearchInput').value || '').trim();
-            if (kw.includes('服务商')) { showTechPage('tech-providers'); return; }
-            if (kw.includes('个人')||kw.includes('中心')) { showTechPage('tech-center'); return; }
-            // 默认跳转到服务大厅
-            showTechPage('tech-hall');
-        }
-
-        // 移动端视图切换
-        function switchToTechMobile() {
-            document.getElementById('techApp').style.display = 'none';
-            document.getElementById('techMobile').style.display = 'block';
-        }
-        function switchToTechPC() {
-            document.getElementById('techMobile').style.display = 'none';
-            document.getElementById('techApp').style.display = 'flex';
-        }
-        function backToTechPC(){switchToTechPC();}
-
-        // 移动端搜索导航
-        function techMobileSearchNavigate() {
-            const kw = (document.getElementById('techMobileSearch').value || '').trim();
-            if (kw.includes('详情')) {
-                showTechMobilePage('detail');
-            } else {
-                showTechMobilePage('list');
-            }
-        }
-
-        // 查看/接收/拒绝服务单
-        function viewTechOrder(orderId) {
-            document.getElementById('detailOrderId').value = orderId;
-            showTechPage('tech-order-detail');
-        }
-        function viewTechOrderMobile(orderId) {
-            document.getElementById('techMobileDetailId').value = orderId;
-            showTechMobilePage('detail');
-        }
-        function acceptTechOrder(orderId) {
-            showModal('success', '接收成功', `服务单 ${orderId} 接收成功。`, '✓');
-        }
-        function rejectTechOrder(orderId) {
-            // 简单输入理由
-            const reason = prompt(`请输入拒绝服务单 ${orderId} 的理由：`);
-            if (reason && reason.trim()) {
-                showModal('warning', '已拒绝', `已拒绝服务单 ${orderId}。系统将通知商户重新派单。`, '⚠');
-            }
-        }
-
-        function showTechMobilePage(which) {
-            const list = document.getElementById('techMobileList');
-            const detail = document.getElementById('techMobileDetail');
-            if (which === 'detail') {
-                list.style.display = 'none';
-                detail.style.display = 'block';
-            } else {
-                detail.style.display = 'none';
-                list.style.display = 'block';
-            }
-        }
-
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
             // 默认显示登录页面
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('mainApp').style.display = 'none';
-            document.getElementById('techApp').style.display = 'none';
-            document.getElementById('techMobile').style.display = 'none';
         });
 
         
@@ -4782,6 +5279,459 @@
             p.status = 'active';
             showModal('success','恢复成功',`服务商 ${p.name} 的营业权限已恢复，其所有服务恢复销售。`, '✓');
             searchProvidersResume();
+        }
+
+        // ===================== 服务商功能函数 =====================
+        
+        // 售前管理功能
+        function viewOrderDetail(orderId) {
+            // 模拟数据
+            const orderData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    type: '商品配送',
+                    submitTime: '2025-01-15 09:30',
+                    expectedTime: '2025-01-16 18:00',
+                    address: '北京市朝阳区xxx街道xxx号',
+                    requirements: '需要当日配送，商品需要妥善包装，确保商品完整性。',
+                    notes: '客户要求下午2点前送达，请提前联系收货人。'
+                },
+                'SO-002': {
+                    id: 'SO-002',
+                    merchant: '示例商户B',
+                    type: '仓储管理',
+                    submitTime: '2025-01-15 14:20',
+                    expectedTime: '2025-01-17 12:00',
+                    address: '上海市浦东新区xxx路xxx号',
+                    requirements: '需要专业的仓储管理服务，包括商品入库、分拣、出库等。',
+                    notes: '商品为易碎品，需要特别小心处理。'
+                }
+            };
+            
+            const order = orderData[orderId];
+            if (order) {
+                document.getElementById('orderDetailId').textContent = order.id;
+                document.getElementById('orderDetailMerchant').textContent = order.merchant;
+                document.getElementById('orderDetailType').textContent = order.type;
+                document.getElementById('orderDetailSubmitTime').textContent = order.submitTime;
+                document.getElementById('orderDetailExpectedTime').textContent = order.expectedTime;
+                document.getElementById('orderDetailAddress').textContent = order.address;
+                document.getElementById('orderDetailRequirements').textContent = order.requirements;
+                document.getElementById('orderDetailNotes').textContent = order.notes;
+            }
+        }
+
+        function acceptOrder(orderId) {
+            showModal('success', '接受成功', `服务单 ${orderId} 已成功接受，请及时处理相关服务。`, '✓');
+            // 更新表格状态
+            const row = document.querySelector(`tr[data-id="${orderId}"]`);
+            if (row) {
+                const statusCell = row.cells[5];
+                statusCell.innerHTML = '<span class="status-tag">已接受</span>';
+            }
+        }
+
+        function acceptSelectedOrder() {
+            const orderId = document.getElementById('orderDetailId').textContent;
+            if (orderId && orderId !== '请选择服务单') {
+                acceptOrder(orderId);
+            } else {
+                showModal('warning', '提示', '请先选择一个服务单查看详情。', '⚠');
+            }
+        }
+
+        function searchOrderToModify() {
+            const orderId = document.getElementById('modifyOrderIdInput').value;
+            if (!orderId) {
+                showModal('warning', '提示', '请输入服务单号。', '⚠');
+                return;
+            }
+            
+            // 模拟数据
+            const orderData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    type: '商品配送',
+                    status: '进行中',
+                    expectedTime: '2025-01-16 18:00',
+                    address: '北京市朝阳区xxx街道xxx号',
+                    requirements: '需要当日配送，商品需要妥善包装，确保商品完整性。',
+                    notes: '客户要求下午2点前送达，请提前联系收货人。'
+                }
+            };
+            
+            const order = orderData[orderId];
+            if (order) {
+                document.getElementById('modifyOrderId').textContent = order.id;
+                document.getElementById('modifyOrderMerchant').textContent = order.merchant;
+                document.getElementById('modifyOrderType').textContent = order.type;
+                document.getElementById('modifyOrderStatus').textContent = order.status;
+                document.getElementById('modifyExpectedTime').value = order.expectedTime;
+                document.getElementById('modifyServiceAddress').value = order.address;
+                document.getElementById('modifyRequirements').value = order.requirements;
+                document.getElementById('modifyNotes').value = order.notes;
+            } else {
+                showModal('warning', '提示', '未找到该服务单，请检查服务单号是否正确。', '⚠');
+            }
+        }
+
+        function submitOrderModification() {
+            const orderId = document.getElementById('modifyOrderId').textContent;
+            if (orderId && orderId !== '-') {
+                showModal('success', '修改成功', `服务单 ${orderId} 的信息已成功修改。`, '✓');
+            } else {
+                showModal('warning', '提示', '请先查询要修改的服务单。', '⚠');
+            }
+        }
+
+        // 账号管理功能
+        function submitProviderRegistration() {
+            const name = document.getElementById('providerName').value;
+            const contact = document.getElementById('providerContact').value;
+            const phone = document.getElementById('providerPhone').value;
+            const address = document.getElementById('providerAddress').value;
+            const scope = document.getElementById('providerScope').value;
+            const region = document.getElementById('providerRegion').value;
+            const intro = document.getElementById('providerIntro').value;
+            const qualifications = document.getElementById('providerQualifications').value;
+            
+            if (!name || !contact || !phone || !address || !scope || !region) {
+                showModal('warning', '提示', '请填写所有必填字段。', '⚠');
+                return;
+            }
+            
+            showModal('success', '注册申请已提交', '服务商注册申请已成功提交，请等待平台审核。', '✓');
+            
+            // 清空表单
+            document.getElementById('providerName').value = '';
+            document.getElementById('providerContact').value = '';
+            document.getElementById('providerPhone').value = '';
+            document.getElementById('providerAddress').value = '';
+            document.getElementById('providerScope').value = '';
+            document.getElementById('providerRegion').value = '';
+            document.getElementById('providerIntro').value = '';
+            document.getElementById('providerQualifications').value = '';
+        }
+
+        function submitAccountModification() {
+            const contact = document.getElementById('modifyContact').value;
+            const phone = document.getElementById('modifyPhone').value;
+            const email = document.getElementById('modifyEmail').value;
+            const address = document.getElementById('modifyAddress').value;
+            const region = document.getElementById('modifyRegion').value;
+            const scope = document.getElementById('modifyScope').value;
+            const intro = document.getElementById('modifyIntro').value;
+            
+            if (!contact || !phone || !email || !address || !region || !scope) {
+                showModal('warning', '提示', '请填写所有必填字段。', '⚠');
+                return;
+            }
+            
+            showModal('success', '修改成功', '账户信息已成功修改，变更申请已提交审核。', '✓');
+        }
+
+        // 管理服务功能
+        function searchServiceOrders() {
+            const orderId = document.getElementById('serviceOrderIdInput').value;
+            const merchant = document.getElementById('serviceMerchantInput').value;
+            const status = document.getElementById('serviceStatusSelect').value;
+            
+            // 模拟查询结果
+            showModal('success', '查询完成', '已显示符合条件的服务单列表。', '✓');
+        }
+
+        function viewServiceDetail(orderId) {
+            // 模拟数据
+            const serviceData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    type: '商品配送',
+                    status: '进行中',
+                    submitTime: '2025-01-15 09:30',
+                    expectedTime: '2025-01-16 18:00',
+                    requirements: '需要当日配送，商品需要妥善包装，确保商品完整性。',
+                    notes: '客户要求下午2点前送达，请提前联系收货人。'
+                },
+                'SO-002': {
+                    id: 'SO-002',
+                    merchant: '示例商户B',
+                    type: '仓储管理',
+                    status: '已完成',
+                    submitTime: '2025-01-14 14:20',
+                    expectedTime: '2025-01-15 12:00',
+                    requirements: '需要专业的仓储管理服务，包括商品入库、分拣、出库等。',
+                    notes: '商品为易碎品，需要特别小心处理。'
+                }
+            };
+            
+            const service = serviceData[orderId];
+            if (service) {
+                document.getElementById('serviceDetailId').textContent = service.id;
+                document.getElementById('serviceDetailMerchant').textContent = service.merchant;
+                document.getElementById('serviceDetailType').textContent = service.type;
+                document.getElementById('serviceDetailStatus').textContent = service.status;
+                document.getElementById('serviceDetailSubmitTime').textContent = service.submitTime;
+                document.getElementById('serviceDetailExpectedTime').textContent = service.expectedTime;
+                document.getElementById('serviceDetailRequirements').textContent = service.requirements;
+                document.getElementById('serviceDetailNotes').textContent = service.notes;
+            }
+        }
+
+        function searchOrderToReceive() {
+            const orderId = document.getElementById('receiveOrderIdInput').value;
+            if (!orderId) {
+                showModal('warning', '提示', '请输入服务单号。', '⚠');
+                return;
+            }
+            
+            // 模拟数据
+            const receiveData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    quantity: '10件商品',
+                    status: '待收件'
+                }
+            };
+            
+            const order = receiveData[orderId];
+            if (order) {
+                document.getElementById('receiveDetailId').textContent = order.id;
+                document.getElementById('receiveDetailMerchant').textContent = order.merchant;
+                document.getElementById('receiveDetailQuantity').textContent = order.quantity;
+                document.getElementById('receiveDetailStatus').textContent = order.status;
+            } else {
+                showModal('warning', '提示', '未找到该服务单，请检查服务单号是否正确。', '⚠');
+            }
+        }
+
+        function confirmReceive(orderId) {
+            showModal('success', '收件确认', `服务单 ${orderId} 的收件已确认。`, '✓');
+        }
+
+        function submitReceiveConfirmation() {
+            const orderId = document.getElementById('receiveDetailId').textContent;
+            const notes = document.getElementById('receiveNotes').value;
+            
+            if (orderId && orderId !== '请选择服务单') {
+                showModal('success', '收件确认成功', `服务单 ${orderId} 的收件已确认，备注信息已记录。`, '✓');
+                document.getElementById('receiveNotes').value = '';
+            } else {
+                showModal('warning', '提示', '请先查询要确认收件的服务单。', '⚠');
+            }
+        }
+
+        function searchOrderToComplete() {
+            const orderId = document.getElementById('completeOrderIdInput').value;
+            if (!orderId) {
+                showModal('warning', '提示', '请输入服务单号。', '⚠');
+                return;
+            }
+            
+            // 模拟数据
+            const completeData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    type: '商品配送',
+                    actualTime: '2025-01-15 16:30'
+                }
+            };
+            
+            const order = completeData[orderId];
+            if (order) {
+                document.getElementById('completeDetailId').textContent = order.id;
+                document.getElementById('completeDetailMerchant').textContent = order.merchant;
+                document.getElementById('completeDetailType').textContent = order.type;
+                document.getElementById('completeDetailActualTime').textContent = order.actualTime;
+            } else {
+                showModal('warning', '提示', '未找到该服务单，请检查服务单号是否正确。', '⚠');
+            }
+        }
+
+        function confirmComplete(orderId) {
+            showModal('success', '完成确认', `服务单 ${orderId} 的完成已确认。`, '✓');
+        }
+
+        function submitCompleteConfirmation() {
+            const orderId = document.getElementById('completeDetailId').textContent;
+            const report = document.getElementById('completeReport').value;
+            const evaluation = document.getElementById('serviceEvaluation').value;
+            
+            if (orderId && orderId !== '请选择服务单') {
+                if (!report) {
+                    showModal('warning', '提示', '请填写完成报告。', '⚠');
+                    return;
+                }
+                showModal('success', '完成确认成功', `服务单 ${orderId} 的完成已确认，报告和评价已提交。`, '✓');
+                document.getElementById('completeReport').value = '';
+                document.getElementById('serviceEvaluation').value = '';
+            } else {
+                showModal('warning', '提示', '请先查询要确认完成的服务单。', '⚠');
+            }
+        }
+
+        function searchOrderToShip() {
+            const orderId = document.getElementById('shipOrderIdInput').value;
+            if (!orderId) {
+                showModal('warning', '提示', '请输入服务单号。', '⚠');
+                return;
+            }
+            
+            // 模拟数据
+            const shipData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    receiver: '张三',
+                    phone: '13800000000',
+                    address: '北京市朝阳区xxx街道xxx号',
+                    products: '10件商品'
+                }
+            };
+            
+            const order = shipData[orderId];
+            if (order) {
+                document.getElementById('shipDetailId').textContent = order.id;
+                document.getElementById('shipDetailMerchant').textContent = order.merchant;
+                document.getElementById('shipDetailReceiver').textContent = order.receiver;
+                document.getElementById('shipDetailPhone').textContent = order.phone;
+                document.getElementById('shipDetailAddress').textContent = order.address;
+                document.getElementById('shipDetailProducts').textContent = order.products;
+            } else {
+                showModal('warning', '提示', '未找到该服务单，请检查服务单号是否正确。', '⚠');
+            }
+        }
+
+        function processShipment(orderId) {
+            showModal('success', '发货处理', `服务单 ${orderId} 的发货处理已开始。`, '✓');
+        }
+
+        function submitShipment() {
+            const orderId = document.getElementById('shipDetailId').textContent;
+            const company = document.getElementById('logisticsCompany').value;
+            const trackingNumber = document.getElementById('trackingNumber').value;
+            const notes = document.getElementById('shipNotes').value;
+            
+            if (orderId && orderId !== '请选择服务单') {
+                if (!company || !trackingNumber) {
+                    showModal('warning', '提示', '请选择物流公司并填写运单号。', '⚠');
+                    return;
+                }
+                showModal('success', '发货成功', `服务单 ${orderId} 已成功发货，运单号：${trackingNumber}`, '✓');
+                document.getElementById('logisticsCompany').value = '';
+                document.getElementById('trackingNumber').value = '';
+                document.getElementById('shipNotes').value = '';
+            } else {
+                showModal('warning', '提示', '请先查询要发货的服务单。', '⚠');
+            }
+        }
+
+        function searchProductService() {
+            const orderId = document.getElementById('productServiceOrderIdInput').value;
+            const serviceType = document.getElementById('productServiceType').value;
+            
+            // 模拟查询结果
+            showModal('success', '查询完成', '已显示符合条件的商品服务列表。', '✓');
+        }
+
+        function viewProductServiceDetail(orderId) {
+            // 模拟数据
+            const productServiceData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    products: '商品配送 - 10件商品',
+                    type: '商品配送',
+                    status: '进行中',
+                    progress: '50%'
+                }
+            };
+            
+            const service = productServiceData[orderId];
+            if (service) {
+                document.getElementById('productServiceDetailId').textContent = service.id;
+                document.getElementById('productServiceDetailMerchant').textContent = service.merchant;
+                document.getElementById('productServiceDetailProducts').textContent = service.products;
+                document.getElementById('productServiceDetailType').textContent = service.type;
+                document.getElementById('productServiceDetailStatus').textContent = service.status;
+                document.getElementById('productServiceDetailProgress').textContent = service.progress;
+            }
+        }
+
+        function updateProductService(orderId) {
+            showModal('success', '服务更新', `服务单 ${orderId} 的服务更新已开始。`, '✓');
+        }
+
+        function submitServiceUpdate() {
+            const orderId = document.getElementById('productServiceDetailId').textContent;
+            const progress = document.getElementById('serviceProgress').value;
+            const description = document.getElementById('serviceDescription').value;
+            
+            if (orderId && orderId !== '请选择服务单') {
+                if (!progress) {
+                    showModal('warning', '提示', '请选择服务进度。', '⚠');
+                    return;
+                }
+                showModal('success', '服务更新成功', `服务单 ${orderId} 的服务进度已更新为 ${progress}`, '✓');
+                document.getElementById('serviceProgress').value = '';
+                document.getElementById('serviceDescription').value = '';
+            } else {
+                showModal('warning', '提示', '请先查询要更新的服务单。', '⚠');
+            }
+        }
+
+        function searchOrderToCancel() {
+            const orderId = document.getElementById('cancelOrderIdInput').value;
+            if (!orderId) {
+                showModal('warning', '提示', '请输入服务单号。', '⚠');
+                return;
+            }
+            
+            // 模拟数据
+            const cancelData = {
+                'SO-001': {
+                    id: 'SO-001',
+                    merchant: '示例商户A',
+                    type: '商品配送',
+                    status: '进行中'
+                }
+            };
+            
+            const order = cancelData[orderId];
+            if (order) {
+                document.getElementById('cancelDetailId').textContent = order.id;
+                document.getElementById('cancelDetailMerchant').textContent = order.merchant;
+                document.getElementById('cancelDetailType').textContent = order.type;
+                document.getElementById('cancelDetailStatus').textContent = order.status;
+            } else {
+                showModal('warning', '提示', '未找到该服务单，请检查服务单号是否正确。', '⚠');
+            }
+        }
+
+        function cancelService(orderId) {
+            showModal('success', '服务撤销', `服务单 ${orderId} 的撤销处理已开始。`, '✓');
+        }
+
+        function submitServiceCancellation() {
+            const orderId = document.getElementById('cancelDetailId').textContent;
+            const reason = document.getElementById('cancelReason').value;
+            const description = document.getElementById('cancelDescription').value;
+            
+            if (orderId && orderId !== '请选择服务单') {
+                if (!reason) {
+                    showModal('warning', '提示', '请选择撤销原因。', '⚠');
+                    return;
+                }
+                showModal('success', '撤销成功', `服务单 ${orderId} 已成功撤销，原因：${reason}`, '✓');
+                document.getElementById('cancelReason').value = '';
+                document.getElementById('cancelDescription').value = '';
+            } else {
+                showModal('warning', '提示', '请先查询要撤销的服务单。', '⚠');
+            }
         }
     </script>
 </body>
