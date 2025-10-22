@@ -47,11 +47,11 @@
 
 ! 1
 ! 系统显示已有商品一级分类列表
-! 分类名称, 分账比例 (Category Name, Revenue Share Ratio)
+! 分类名称, 分账比例，分类下的商品总数
 
 ! 2
 ! 平台管理员新增一级分类
-! 分类名称, 分账比例 (Category Name, Revenue Share Ratio)
+! 分类名称, 分账比例
 
 ! 3
 ! 系统反馈新增一级分类成功信息

@@ -55,7 +55,7 @@
 
 ! 3
 ! 系统显示所选活动的详情
-! 活动起止日期、活动名称、打折方式 (Activity start/end date, activity name, discount method)
+! 活动起止日期、活动名称、打折方式、活动的历史审核信息
 
 ! 4
 ! 平台管理人员审核通过该活动
