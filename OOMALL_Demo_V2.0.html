@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商户账户管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 20%;
+            min-width: 180px;
+            max-width: 220px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-arrow {
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .nav-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 10px 0;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item.active {
+            background: rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+
+        .nav-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 3px;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f8f8f8;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .search-input {
+            border: none;
+            background: none;
+            outline: none;
+            margin-left: 8px;
+            width: 160px;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .welcome-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* 页面标题 */
+        .page-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .subtitle-icon {
+            width: 16px;
+            height: 16px;
+            background: #4CAF50;
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+
+        /* 表单区域 */
+        .form-section {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #eee;
+            flex: 1;
+        }
+
+        .form-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-title-icon {
+            width: 20px;
+            height: 20px;
+            background: #4CAF50;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 13px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+        }
+
+        .btn-secondary {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #da190b;
+        }
+
+        .btn-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #e68900;
+        }
+
+
+        /* 隐藏页面 */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                min-width: auto;
+                max-width: none;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.show .modal {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .modal-icon.success {
+            background: #4CAF50;
+        }
+
+        .modal-icon.warning {
+            background: #ff9800;
+        }
+
+        .modal-icon.danger {
+            background: #f44336;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .modal-message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .modal-btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .modal-btn-primary:hover {
+            background: #45a049;
+        }
+
+        .modal-btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        .modal-btn-secondary:hover {
+            background: #e9e9e9;
+        }
+
+        /* 登录页面样式 */
+        .login-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .role-selection {
+            margin-bottom: 25px;
+        }
+
+        .role-label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .role-dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .role-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .role-select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .role-select:hover {
+            border-color: #4CAF50;
+        }
+
+        .login-form {
+            text-align: left;
+        }
+
+        .form-group-login {
+            margin-bottom: 20px;
+        }
+
+        .form-label-login {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .form-input-login {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input-login:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .login-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .login-footer {
+            margin-top: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* 商品管理样式 */
+        .product-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 120px;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .filter-select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            background: white;
+        }
+
+        .product-search {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .search-input-product {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background: #45a049;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .product-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        .product-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit {
+            padding: 6px 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+
+        .btn-delete {
+            padding: 6px 12px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .pagination button:hover {
+            background: #f8f9fa;
+        }
+
+        .pagination button.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .pagination button:disabled {
+            background: #f8f9fa;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .add-product-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .add-product-btn:hover {
+            background: #45a049;
+            transform: scale(1.1);
+        }
+
+        /* 针对509mm×286mm比例的优化 */
+        @media (min-aspect-ratio: 16/9) {
+            .sidebar {
+                width: 18%;
+                min-width: 160px;
+                max-width: 200px;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .form-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 登录页面 -->
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="login-logo">🏪</div>
+            <h1 class="login-title">商户管理系统</h1>
+            <p class="login-subtitle">请选择您的角色并登录</p>
+            
+            <div class="role-selection">
+                <label class="role-label">选择角色</label>
+                <div class="role-dropdown">
+                    <select class="role-select" id="roleSelect" onchange="selectRole(this.value)">
+                        <option value="">请选择角色</option>
+                        <option value="merchant">商户</option>
+                        <option value="service-provider">服务商</option>
+                        <option value="platform-admin">平台管理人员</option>
+                        <option value="repair-provider">维修商</option>
+                    </select>
+                </div>
+            </div>
+            
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group-login">
+                    <label class="form-label-login">用户名</label>
+                    <input type="text" class="form-input-login" id="username" placeholder="请输入用户名" required>
+                </div>
+                
+                <div class="form-group-login">
+                    <label class="form-label-login">密码</label>
+                    <input type="password" class="form-input-login" id="password" placeholder="请输入密码" required>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn" disabled>
+                    登录
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>© 2024 商户管理系统. 保留所有权利.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主应用页面 -->
+    <div id="mainApp" class="container" style="display: none;">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="back-arrow">←</div>
+                <div class="nav-title">导航</div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item" onclick="showPage('account-opening')">
+                    <div class="nav-icon"></div>
+                    商户开户
+                </li>
+                <li class="nav-item" onclick="showPage('account-info')">
+                    <div class="nav-icon"></div>
+                    管理账号
+                </li>
+                <li class="nav-item active" onclick="showPage('products')">
+                    <div class="nav-icon"></div>
+                    管理商品
+                </li>
+                <li class="nav-item" onclick="showPage('activities')">
+                    <div class="nav-icon"></div>
+                    管理活动
+                </li>
+                <li class="nav-item" onclick="showPage('service-providers')">
+                    <div class="nav-icon"></div>
+                    管理服务商
+                </li>
+                <li class="nav-item" onclick="showPage('orders')">
+                    <div class="nav-icon"></div>
+                    管理订单
+                </li>
+                <li class="nav-item" onclick="showPage('sales')">
+                    <div class="nav-icon"></div>
+                    销售情况
+                </li>
+                <li class="nav-item" onclick="showPage('after-sales')">
+                    <div class="nav-icon"></div>
+                    管理售后
+                </li>
+            </ul>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <!-- 头部 -->
+            <div class="header">
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" class="search-input" placeholder="输入搜索关键词">
+                </div>
+                <div class="user-info">
+                    <span class="welcome-text" id="welcomeText">欢迎你! 商户</span>
+                    <span>▼</span>
+                    <div class="user-avatar" onclick="logout()" title="退出登录">🐧</div>
+                </div>
+            </div>
+
+            <!-- 页面内容 -->
+            <!-- 管理商品主页面 -->
+            <div id="products" class="page active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h1 class="page-title">管理商品</h1>
+                        <div class="page-subtitle">
+                            <div class="subtitle-icon"></div>
+                            商品管理
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="showPage('apply-new-product')" style="margin: 0;">
+                        + 新增商品
+                    </button>
+                </div>
+
+                <!-- 筛选器 -->
+                <div class="product-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">商品状态</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">全部状态</option>
+                            <option value="approved">已审核</option>
+                            <option value="pending">审核中</option>
+                            <option value="rejected">未审核</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">商品类别</label>
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="">全部类别</option>
+                            <option value="electronics">电子产品</option>
+                            <option value="clothing">服装</option>
+                            <option value="food">食品</option>
+                            <option value="books">图书</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">价格范围</label>
+                        <select class="filter-select" id="priceFilter">
+                            <option value="">全部价格</option>
+                            <option value="0-100">0-100元</option>
+                            <option value="100-500">100-500元</option>
+                            <option value="500-1000">500-1000元</option>
+                            <option value="1000+">1000元以上</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 搜索框 -->
+                <div class="product-search">
+                    <input type="text" class="search-input-product" placeholder="输入商品名称或编号" id="productSearchInput">
+                    <button class="search-btn" onclick="searchProducts()">搜索</button>
+                </div>
+
+                <!-- 商品列表表格 -->
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>商品名称</th>
+                            <th>商品编号</th>
+                            <th>价格</th>
+                            <th>商品类型</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <tr>
+                            <td>iPhone 15 Pro</td>
+                            <td>P001</td>
+                            <td>¥8,999</td>
+                            <td>电子产品</td>
+                            <td><span class="status-badge status-approved">已审核</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-edit" onclick="showPage('apply-product-change')">变更商品</button>
+                                    <button class="btn-edit" onclick="showPage('modify-product-attributes')">修改商品属性</button>
+                                    <button class="btn-delete" onclick="deleteProduct('P001')">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nike运动鞋</td>
+                            <td>P002</td>
+                            <td>¥599</td>
+                            <td>服装</td>
+                            <td><span class="status-badge status-pending">审核中</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-edit" onclick="showPage('apply-product-change')">变更商品</button>
+                                    <button class="btn-edit" onclick="showPage('modify-product-attributes')">修改商品属性</button>
+                                    <button class="btn-delete" onclick="deleteProduct('P002')">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>有机苹果</td>
+                            <td>P003</td>
+                            <td>¥29.9</td>
+                            <td>食品</td>
+                            <td><span class="status-badge status-rejected">未审核</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-edit" onclick="showPage('apply-product-change')">变更商品</button>
+                                    <button class="btn-edit" onclick="showPage('modify-product-attributes')">修改商品属性</button>
+                                    <button class="btn-delete" onclick="deleteProduct('P003')">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button onclick="changePage(-1)" disabled>上一页</button>
+                    <button class="active">1</button>
+                    <button onclick="changePage(1)">2</button>
+                    <button onclick="changePage(1)">3</button>
+                    <button onclick="changePage(1)">下一页</button>
+                </div>
+
+            </div>
+
+            <!-- 商品搜索结果页面 -->
+            <div id="product-search-results" class="page">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h1 class="page-title">管理商品</h1>
+                        <div class="page-subtitle">
+                            <div class="subtitle-icon"></div>
+                            商品管理
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="showPage('apply-new-product')" style="margin: 0;">
+                        + 新增商品
+                    </button>
+                </div>
+
+                <!-- 筛选器 -->
+                <div class="product-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">商品状态</label>
+                        <select class="filter-select" id="searchStatusFilter">
+                            <option value="approved">审核通过</option>
+                            <option value="pending">审核中</option>
+                            <option value="rejected">未审核</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">商品类别</label>
+                        <select class="filter-select" id="searchCategoryFilter">
+                            <option value="food">食品</option>
+                            <option value="electronics">电子产品</option>
+                            <option value="clothing">服装</option>
+                            <option value="books">图书</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">价格</label>
+                        <select class="filter-select" id="searchPriceFilter">
+                            <option value="desc">降序</option>
+                            <option value="asc">升序</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button class="search-btn" style="margin-top: 20px;">筛选</button>
+                    </div>
+                </div>
+
+                <!-- 搜索结果搜索框 -->
+                <div class="product-search" style="margin-bottom: 20px;">
+                    <input type="text" class="search-input-product" placeholder="厦门" id="searchResultsInput" value="厦门">
+                    <button class="search-btn" onclick="searchProductsFromResults()">搜索</button>
+                </div>
+
+                <!-- 返回按钮和搜索结果信息 -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <button class="btn btn-secondary" onclick="showPage('products')" style="margin: 0; padding: 8px 16px; font-size: 13px;">
+                        ← 返回商品列表
+                    </button>
+                    <div style="color: #666; font-size: 14px;">
+                        已为您找到一种商品:
+                    </div>
+                </div>
+
+                <!-- 搜索结果表格 -->
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>商品名称</th>
+                            <th>编号</th>
+                            <th>价格(CNY)</th>
+                            <th>商品类型</th>
+                            <th>审核状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 40px; height: 40px; background: #ff6b6b; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px;">🍅</div>
+                                    <span>厦门西红柿</span>
+                                </div>
+                            </td>
+                            <td>600123</td>
+                            <td>100.00</td>
+                            <td>食品</td>
+                            <td><span class="status-badge status-approved">已通过</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-edit" onclick="showPage('apply-product-change')">变更商品</button>
+                                    <button class="btn-edit" onclick="showPage('modify-product-attributes')">修改商品属性</button>
+                                    <button class="btn-delete" onclick="deleteProduct('600123')">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 分页 -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px; color: #666; font-size: 14px;">
+                        <span>显示结果:</span>
+                        <select style="padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option>1</option>
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                    <div class="pagination">
+                        <button disabled>←</button>
+                        <button class="active">1</button>
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="account-info" class="page">
+                <h1 class="page-title">账户信息</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    管理账号
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        账户信息
+                    </h2>
+                    <div class="form-grid">
+                        <!-- 左列 -->
+                        <div class="form-group">
+                            <label class="form-label">商户名称</label>
+                            <input type="text" class="form-input" value="豪客来商店">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商品数量上限 (件)</label>
+                            <input type="number" class="form-input" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">员工数量上限 (人)</label>
+                            <input type="number" class="form-input" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">免邮门槛</label>
+                            <input type="text" class="form-input" value="20(CNY)">
+                        </div>
+                        
+                        <!-- 右列 -->
+                        <div class="form-group">
+                            <label class="form-label">法人姓名</label>
+                            <input type="text" class="form-input" value="张三">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商户地址</label>
+                            <input type="text" class="form-input" value="福建省厦门市翔安区">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系电话</label>
+                            <input type="tel" class="form-input" value="123456789">
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="showPage('modify-account')">修改账户信息</button>
+                        <button class="btn btn-primary" onclick="showPage('modify-attributes')">修改账户属性</button>
+                    </div>
+                </div>
+
+
+                <div class="form-buttons" style="margin-top: 30px; justify-content: flex-end;">
+                    <button class="btn btn-warning" onclick="showPage('suspend-account')">暂停账户</button>
+                    <button class="btn btn-secondary" onclick="showPage('cancel-account')">注销账户</button>
+                </div>
+            </div>
+
+            <!-- 开户页面 (MALL-SHOP-001) -->
+            <div id="account-opening" class="page">
+                <h1 class="page-title">商户开户申请</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    创建新商户账户
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        开户申请信息
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">商户名称 *</label>
+                            <input type="text" class="form-input" placeholder="请输入商户名称" id="merchantName">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系人姓名 *</label>
+                            <input type="text" class="form-input" placeholder="请输入联系人姓名" id="contactName">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系电话 *</label>
+                            <input type="tel" class="form-input" placeholder="请输入联系电话" id="contactPhone">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商户地址 *</label>
+                            <input type="text" class="form-input" placeholder="请输入商户地址" id="merchantAddress">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商品数目上限 *</label>
+                            <input type="number" class="form-input" placeholder="请输入商品数目上限" id="productLimit">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商户员工上限 *</label>
+                            <input type="number" class="form-input" placeholder="请输入商户员工上限" id="employeeLimit">
+                        </div>
+                    </div>
+                    
+                    <!-- 重要提示 -->
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; border: 1px solid #bbdefb; margin: 20px 0;">
+                        <p style="color: #1976d2; margin: 0; font-size: 14px;">
+                            <strong>📋 重要提示：</strong>用户开户前需先注册系统用户，请确保您已完成系统用户注册。
+                        </p>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitAccountOpening()">提交开户申请</button>
+                        <button class="btn btn-secondary" onclick="showPage('account-info')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 申请新增商品页面 (MALL-PRODUCT-004) -->
+            <div id="apply-new-product" class="page">
+                <h1 class="page-title">申请新增商品</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    新增商品申请
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        商品基本信息
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">商品分类 *</label>
+                            <select class="form-input" id="productCategory">
+                                <option value="">请选择商品分类</option>
+                                <option value="electronics">电子产品</option>
+                                <option value="clothing">服装</option>
+                                <option value="food">食品</option>
+                                <option value="books">图书</option>
+                                <option value="home">家居用品</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商品名称 *</label>
+                            <input type="text" class="form-input" id="productName" placeholder="请输入商品名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">原价 *</label>
+                            <input type="number" class="form-input" id="originalPrice" placeholder="请输入原价">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">单位 *</label>
+                            <input type="text" class="form-input" id="unit" placeholder="请输入单位">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">产地 *</label>
+                            <input type="text" class="form-input" id="origin" placeholder="请输入产地">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">条码 *</label>
+                            <input type="text" class="form-input" id="barcode" placeholder="请输入条码">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">分账比例 *</label>
+                            <input type="number" class="form-input" id="revenueShareRatio" placeholder="请输入分账比例(%)" min="0" max="100">
+                        </div>
+                    </div>
+                    
+                    <!-- 商品类型选择 -->
+                    <div style="margin: 20px 0;">
+                        <label class="form-label">商品类型</label>
+                        <div style="display: flex; gap: 20px; margin-top: 10px;">
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="radio" name="productType" value="normal" checked onchange="toggleBundleOptions(false)">
+                                普通商品
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="radio" name="productType" value="bundle" onchange="toggleBundleOptions(true)">
+                                捆绑商品
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 捆绑商品选项 -->
+                    <div id="bundleOptions" style="display: none; margin: 20px 0;">
+                        <h3 style="color: #333; margin-bottom: 15px;">捆绑商品配置</h3>
+                        <div class="form-group">
+                            <label class="form-label">选择商品</label>
+                            <select class="form-input" id="bundleProductSelect" multiple style="height: 120px;">
+                                <option value="P001">iPhone 15 Pro</option>
+                                <option value="P002">Nike运动鞋</option>
+                                <option value="P003">有机苹果</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">捆绑中每个商品数量</label>
+                            <input type="text" class="form-input" id="bundleQuantities" placeholder="例如：2,1,3">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">捆绑中商品间分账比例</label>
+                            <input type="text" class="form-input" id="bundleShareRatios" placeholder="例如：50,30,20">
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitNewProduct()">提交申请</button>
+                        <button class="btn btn-secondary" onclick="showPage('products')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 销户页面 (MALL-SHOP-002) -->
+            <div id="account-cancellation" class="page">
+                <h1 class="page-title">账户注销申请</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    注销商户账户
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        注销申请信息
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">注销原因 *</label>
+                            <textarea class="form-input" rows="4" placeholder="请详细说明注销原因"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">确认信息</label>
+                            <div style="background: #fff3cd; padding: 15px; border-radius: 6px; border: 1px solid #ffeaa7;">
+                                <p style="color: #856404; margin-bottom: 10px;"><strong>⚠️ 重要提醒：</strong></p>
+                                <ul style="color: #856404; margin-left: 20px;">
+                                    <li>注销后账户将无法恢复</li>
+                                    <li>请确保所有订单分账已完成</li>
+                                    <li>请确保已处理完所有售后问题</li>
+                                    <li>请确保已备份重要数据</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-secondary" onclick="submitAccountCancellation()">提交注销申请</button>
+                        <button class="btn btn-primary" onclick="showPage('account-info')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 申请变更商品页面 (MALL-PRODUCT-005) -->
+            <div id="apply-product-change" class="page">
+                <h1 class="page-title">申请变更商品</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    商品变更申请
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        选择要变更的商品
+                    </h2>
+                    <div class="form-group">
+                        <label class="form-label">已审核通过的商品 *</label>
+                        <select class="form-input" id="changeProductSelect">
+                            <option value="">请选择要变更的商品</option>
+                            <option value="P001">iPhone 15 Pro - 电子产品</option>
+                            <option value="P002">Nike运动鞋 - 服装</option>
+                        </select>
+                    </div>
+                    
+                    <h2 class="form-title" style="margin-top: 30px;">
+                        <div class="form-title-icon"></div>
+                        变更商品信息
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">商品分类</label>
+                            <select class="form-input" id="changeProductCategory">
+                                <option value="">请选择商品分类</option>
+                                <option value="electronics">电子产品</option>
+                                <option value="clothing">服装</option>
+                                <option value="food">食品</option>
+                                <option value="books">图书</option>
+                                <option value="home">家居用品</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商品名称</label>
+                            <input type="text" class="form-input" id="changeProductName" placeholder="请输入商品名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">原价</label>
+                            <input type="number" class="form-input" id="changeOriginalPrice" placeholder="请输入原价">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">单位</label>
+                            <input type="text" class="form-input" id="changeUnit" placeholder="请输入单位">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">产地</label>
+                            <input type="text" class="form-input" id="changeOrigin" placeholder="请输入产地">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">条码</label>
+                            <input type="text" class="form-input" id="changeBarcode" placeholder="请输入条码">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">分账比例</label>
+                            <input type="number" class="form-input" id="changeRevenueShareRatio" placeholder="请输入分账比例(%)" min="0" max="100">
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitProductChange()">提交变更申请</button>
+                        <button class="btn btn-secondary" onclick="showPage('products')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查询商品页面 (MALL-PRODUCT-006) -->
+            <div id="query-product" class="page">
+                <h1 class="page-title">查询商品</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    商品查询
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        查询条件
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">商品名称</label>
+                            <input type="text" class="form-input" id="queryProductName" placeholder="请输入商品名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">条码</label>
+                            <input type="text" class="form-input" id="queryBarcode" placeholder="请输入条码">
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="queryProducts()">查询商品</button>
+                        <button class="btn btn-secondary" onclick="showPage('products')">返回</button>
+                    </div>
+                    
+                    <!-- 查询结果 -->
+                    <div id="queryResults" style="margin-top: 30px; display: none;">
+                        <h2 class="form-title">
+                            <div class="form-title-icon"></div>
+                            查询结果
+                        </h2>
+                        <table class="product-table">
+                            <thead>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>商品分类</th>
+                                    <th>原价</th>
+                                    <th>单位</th>
+                                    <th>产地</th>
+                                    <th>条码</th>
+                                    <th>分账比例</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="queryResultsBody">
+                                <!-- 查询结果将在这里显示 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修改商品属性页面 (MALL-PRODUCT-007) -->
+            <div id="modify-product-attributes" class="page">
+                <h1 class="page-title">修改商品属性</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    商品属性修改
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        选择要修改的商品
+                    </h2>
+                    <div class="form-group">
+                        <label class="form-label">已审核通过的商品 *</label>
+                        <select class="form-input" id="modifyProductSelect">
+                            <option value="">请选择要修改的商品</option>
+                            <option value="P001">iPhone 15 Pro - 电子产品</option>
+                            <option value="P002">Nike运动鞋 - 服装</option>
+                        </select>
+                    </div>
+                    
+                    <h2 class="form-title" style="margin-top: 30px;">
+                        <div class="form-title-icon"></div>
+                        修改商品属性
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">相关商品</label>
+                            <input type="text" class="form-input" id="relatedProducts" placeholder="请输入相关商品">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">运费计算方法</label>
+                            <select class="form-input" id="shippingMethod">
+                                <option value="">请选择运费计算方法</option>
+                                <option value="fixed">固定运费</option>
+                                <option value="weight">按重量计算</option>
+                                <option value="price">按价格计算</option>
+                                <option value="free">免运费</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">配送物流</label>
+                            <input type="text" class="form-input" id="deliveryLogistics" placeholder="请输入配送物流">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商品重量(kg)</label>
+                            <input type="number" class="form-input" id="productWeight" placeholder="请输入商品重量" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">SKU</label>
+                            <input type="text" class="form-input" id="productSku" placeholder="请输入SKU">
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitProductAttributes()">提交修改</button>
+                        <button class="btn btn-secondary" onclick="showPage('products')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修改账户页面 (MALL-SHOP-003) -->
+            <div id="modify-account" class="page">
+                <h1 class="page-title">修改账户信息</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    修改商户基本信息
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        账户信息修改
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">商户名称 *</label>
+                            <input type="text" class="form-input" value="豪客来商店">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商品数目上限 *</label>
+                            <input type="number" class="form-input" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">商户员工上限 *</label>
+                            <input type="number" class="form-input" value="100">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">修改说明</label>
+                            <textarea class="form-input" rows="3" placeholder="请说明修改原因"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitAccountModification()">提交修改申请</button>
+                        <button class="btn btn-secondary" onclick="showPage('account-info')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修改账户属性页面 (MALL-SHOP-004) -->
+            <div id="modify-attributes" class="page">
+                <h1 class="page-title">修改账户属性</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    修改商户属性信息
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        账户属性修改
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">联系人姓名 *</label>
+                            <input type="text" class="form-input" value="张三">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系人电话 *</label>
+                            <input type="tel" class="form-input" value="123456789">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系人地址 *</label>
+                            <input type="text" class="form-input" value="福建省厦门市翔安区">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">免邮门槛 *</label>
+                            <input type="text" class="form-input" value="20(CNY)">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">修改说明</label>
+                            <textarea class="form-input" rows="3" placeholder="请说明修改原因"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="submitAttributeModification()">提交属性修改</button>
+                        <button class="btn btn-secondary" onclick="showPage('account-info')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 暂停账户页面 -->
+            <div id="suspend-account" class="page">
+                <h1 class="page-title">暂停账户</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    暂停商户账户
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        暂停账户申请
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">暂停原因 *</label>
+                            <textarea class="form-input" rows="4" placeholder="请详细说明暂停账户的原因"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">暂停期限</label>
+                            <select class="form-input">
+                                <option value="1">1个月</option>
+                                <option value="3">3个月</option>
+                                <option value="6">6个月</option>
+                                <option value="12">12个月</option>
+                                <option value="indefinite">无限期</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-warning" onclick="submitAccountSuspension()">提交暂停申请</button>
+                        <button class="btn btn-secondary" onclick="showPage('account-info')">取消</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 注销账户页面 -->
+            <div id="cancel-account" class="page">
+                <h1 class="page-title">注销账户</h1>
+                <div class="page-subtitle">
+                    <div class="subtitle-icon"></div>
+                    注销商户账户
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">
+                        <div class="form-title-icon"></div>
+                        注销确认
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">注销原因 *</label>
+                            <textarea class="form-input" rows="4" placeholder="请详细说明注销原因"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">确认信息</label>
+                            <div style="background: #f8d7da; padding: 15px; border-radius: 6px; border: 1px solid #f5c6cb;">
+                                <p style="color: #721c24; margin-bottom: 10px;"><strong>⚠️ 危险操作：</strong></p>
+                                <ul style="color: #721c24; margin-left: 20px;">
+                                    <li>此操作不可逆，账户将被永久删除</li>
+                                    <li>所有相关数据将被清除</li>
+                                    <li>请确保已备份重要信息</li>
+                                    <li>请确保所有业务已妥善处理</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-secondary" onclick="submitAccountCancellation()">确认注销</button>
+                        <button class="btn btn-primary" onclick="showPage('account-info')">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗组件 -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <div id="modalIcon" class="modal-icon success">✓</div>
+            <div id="modalTitle" class="modal-title">操作成功</div>
+            <div id="modalMessage" class="modal-message">操作已完成</div>
+            <div class="modal-buttons">
+                <button id="modalConfirmBtn" class="modal-btn modal-btn-primary" onclick="hideModal()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let currentUser = null;
+        let selectedRole = null;
+
+        // 角色选择功能
+        function selectRole(role) {
+            selectedRole = role;
+            
+            // 启用或禁用登录按钮
+            const loginBtn = document.getElementById('loginBtn');
+            if (role && role !== '') {
+                loginBtn.disabled = false;
+                
+                // 更新欢迎文本
+                const roleNames = {
+                    'merchant': '商户',
+                    'service-provider': '服务商',
+                    'platform-admin': '平台管理人员',
+                    'repair-provider': '维修商'
+                };
+                document.getElementById('welcomeText').textContent = `欢迎你! ${roleNames[role]}`;
+            } else {
+                loginBtn.disabled = true;
+            }
+        }
+
+        // 登录处理
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!selectedRole) {
+                showModal('warning', '请选择角色', '请先选择您的角色类型。', '⚠');
+                return;
+            }
+            
+            if (!username || !password) {
+                showModal('warning', '请填写完整信息', '请输入用户名和密码。', '⚠');
+                return;
+            }
+            
+            // 模拟登录验证 - 支持多个测试账号
+            const validAccounts = [
+                { username: 'admin', password: '123456' },
+                { username: 'merchant', password: 'merchant123' },
+                { username: 'service', password: 'service123' },
+                { username: 'platform', password: 'platform123' },
+                { username: 'repair', password: 'repair123' },
+                { username: 'test', password: 'test123' },
+                { username: 'user', password: 'user123' }
+            ];
+            
+            const isValidAccount = validAccounts.some(account => 
+                account.username === username && account.password === password
+            );
+            
+            if (isValidAccount) {
+                // 登录成功
+                currentUser = {
+                    username: username,
+                    role: selectedRole,
+                    roleName: {
+                        'merchant': '商户',
+                        'service-provider': '服务商',
+                        'platform-admin': '平台管理人员',
+                        'repair-provider': '维修商'
+                    }[selectedRole]
+                };
+                
+                showModal('success', '登录成功', `欢迎回来，${currentUser.roleName}！`, '✓');
+                
+                setTimeout(() => {
+                    hideModal();
+                    showMainApp();
+                }, 1500);
+            } else {
+                showModal('warning', '登录失败', '用户名或密码错误，请重试。\n\n测试账号：\n用户名: admin, 密码: 123456\n用户名: test, 密码: test123', '⚠');
+            }
+        }
+
+        // 显示主应用
+        function showMainApp() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'flex';
+            
+            // 更新欢迎文本
+            document.getElementById('welcomeText').textContent = `欢迎你! ${currentUser.roleName}`;
+            
+            // 显示账户信息页面
+            showPage('account-info');
+        }
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                currentUser = null;
+                selectedRole = null;
+                
+                // 重置登录表单
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('loginBtn').disabled = true;
+                document.getElementById('roleSelect').value = '';
+                
+                // 显示登录页面
+                document.getElementById('mainApp').style.display = 'none';
+                document.getElementById('loginPage').style.display = 'flex';
+            }
+        }
+
+        // 弹窗功能
+        function showModal(type, title, message, icon = '✓') {
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            // 设置图标和样式
+            modalIcon.textContent = icon;
+            modalIcon.className = `modal-icon ${type}`;
+            
+            // 设置标题和消息
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            
+            // 显示弹窗
+            modalOverlay.classList.add('show');
+        }
+
+        function hideModal() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.classList.remove('show');
+        }
+
+        // 点击遮罩层关闭弹窗
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideModal();
+            }
+        });
+
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideModal();
+            }
+        });
+
+        // 页面切换功能
+        function showPage(pageId) {
+            // 隐藏所有页面
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // 显示目标页面
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // 更新导航状态
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            // 根据页面ID设置对应的导航项为活跃状态
+            if (pageId === 'account-opening') {
+                navItems[0].classList.add('active'); // 商户开户
+            } else if (pageId === 'account-info' || pageId === 'modify-account' || pageId === 'modify-attributes' || 
+                pageId === 'account-cancellation' || pageId === 'suspend-account' || pageId === 'cancel-account') {
+                navItems[1].classList.add('active'); // 管理账号
+            } else if (pageId === 'products' || pageId === 'product-search-results' || pageId === 'apply-new-product' || pageId === 'apply-product-change' || 
+                pageId === 'query-product' || pageId === 'modify-product-attributes') {
+                navItems[2].classList.add('active'); // 管理商品
+            }
+        }
+
+        // 提交开户申请
+        function submitAccountOpening() {
+            // 获取表单数据
+            const merchantName = document.getElementById('merchantName').value.trim();
+            const contactName = document.getElementById('contactName').value.trim();
+            const contactPhone = document.getElementById('contactPhone').value.trim();
+            const merchantAddress = document.getElementById('merchantAddress').value.trim();
+            const productLimit = document.getElementById('productLimit').value.trim();
+            const employeeLimit = document.getElementById('employeeLimit').value.trim();
+            
+            // 表单验证
+            if (!merchantName || !contactName || !contactPhone || !merchantAddress || !productLimit || !employeeLimit) {
+                showModal('warning', '请填写完整信息', '请确保所有必填字段都已填写完整。', '⚠');
+                return;
+            }
+            
+            // 验证数字字段
+            if (isNaN(productLimit) || isNaN(employeeLimit) || productLimit <= 0 || employeeLimit <= 0) {
+                showModal('warning', '数据格式错误', '商品数目上限和员工上限必须为正整数。', '⚠');
+                return;
+            }
+            
+            // 验证手机号格式（简单验证）
+            const phoneRegex = /^1[3-9]\d{9}$/;
+            if (!phoneRegex.test(contactPhone)) {
+                showModal('warning', '手机号格式错误', '请输入正确的手机号码格式。', '⚠');
+                return;
+            }
+            
+            // 显示成功弹窗
+            showModal('success', '开户申请提交成功', '您的开户申请已成功提交，请等待平台审核。审核结果将通过系统消息通知您。', '✓');
+            setTimeout(() => {
+                hideModal();
+                showPage('account-info');
+            }, 2000);
+        }
+
+        // 提交销户申请
+        function submitAccountCancellation() {
+            // 显示确认弹窗
+            showModal('danger', '确认注销账户', '您确定要注销账户吗？此操作不可逆，所有数据将被永久删除。', '⚠');
+            
+            // 更新按钮
+            const confirmBtn = document.getElementById('modalConfirmBtn');
+            confirmBtn.textContent = '确认注销';
+            confirmBtn.className = 'modal-btn modal-btn-secondary';
+            confirmBtn.onclick = function() {
+                hideModal();
+                // 显示成功弹窗
+                setTimeout(() => {
+                    showModal('warning', '注销申请提交成功', '您的账户注销申请已成功提交，请等待平台审核。请注意：此操作一旦审核通过将不可逆。', '⚠');
+                    setTimeout(() => {
+                        hideModal();
+                        showPage('account-info');
+                    }, 2000);
+                }, 300);
+            };
+            
+            // 添加取消按钮
+            const modalButtons = document.querySelector('.modal-buttons');
+            if (!document.getElementById('modalCancelBtn')) {
+                const cancelBtn = document.createElement('button');
+                cancelBtn.id = 'modalCancelBtn';
+                cancelBtn.className = 'modal-btn modal-btn-primary';
+                cancelBtn.textContent = '取消';
+                cancelBtn.onclick = function() {
+                    hideModal();
+                    // 重置按钮
+                    confirmBtn.textContent = '确定';
+                    confirmBtn.className = 'modal-btn modal-btn-primary';
+                    confirmBtn.onclick = hideModal;
+                    cancelBtn.remove();
+                };
+                modalButtons.appendChild(cancelBtn);
+            }
+        }
+
+        // 提交账户修改
+        function submitAccountModification() {
+            showModal('success', '账户信息修改成功', '您的账户信息修改申请已成功提交，请等待平台审核。审核通过后修改将生效。', '✓');
+            setTimeout(() => {
+                hideModal();
+                showPage('account-info');
+            }, 2000);
+        }
+
+        // 提交属性修改
+        function submitAttributeModification() {
+            showModal('success', '账户属性修改成功', '您的账户属性修改已成功提交，请等待平台审核。审核通过后修改将生效。', '✓');
+            setTimeout(() => {
+                hideModal();
+                showPage('account-info');
+            }, 2000);
+        }
+
+        // 提交账户暂停
+        function submitAccountSuspension() {
+            showModal('warning', '账户暂停申请提交成功', '您的账户暂停申请已成功提交，请等待平台审核。暂停期间您的账户将无法正常使用。', '⚠');
+            setTimeout(() => {
+                hideModal();
+                showPage('account-info');
+            }, 2000);
+        }
+
+        // 商品管理相关函数
+        function toggleBundleOptions(show) {
+            const bundleOptions = document.getElementById('bundleOptions');
+            bundleOptions.style.display = show ? 'block' : 'none';
+        }
+
+        function searchProducts() {
+            const searchInput = document.getElementById('productSearchInput').value.trim();
+            if (searchInput) {
+                // 跳转到搜索结果页面
+                showPage('product-search-results');
+                // 更新搜索结果页面的搜索框
+                document.getElementById('searchResultsInput').value = searchInput;
+            } else {
+                showModal('warning', '请输入搜索关键词', '请在搜索框中输入商品名称或编号。', '⚠');
+            }
+        }
+
+        function searchProductsFromResults() {
+            const searchInput = document.getElementById('searchResultsInput').value.trim();
+            if (searchInput) {
+                showModal('success', '搜索完成', `正在搜索包含"${searchInput}"的商品...`, '🔍');
+                // 这里可以更新搜索结果
+            } else {
+                showModal('warning', '请输入搜索关键词', '请在搜索框中输入商品名称或编号。', '⚠');
+            }
+        }
+
+
+        function deleteProduct(productId) {
+            if (confirm(`确定要删除商品 ${productId} 吗？`)) {
+                showModal('success', '删除成功', `商品 ${productId} 已删除。`, '✓');
+            }
+        }
+
+        function changePage(direction) {
+            showModal('info', '分页功能', '分页功能演示', '📄');
+        }
+
+        function submitNewProduct() {
+            const productName = document.getElementById('productName').value.trim();
+            const productCategory = document.getElementById('productCategory').value;
+            const originalPrice = document.getElementById('originalPrice').value.trim();
+            const unit = document.getElementById('unit').value.trim();
+            const origin = document.getElementById('origin').value.trim();
+            const barcode = document.getElementById('barcode').value.trim();
+            const revenueShareRatio = document.getElementById('revenueShareRatio').value.trim();
+            
+            if (!productName || !productCategory || !originalPrice || !unit || !origin || !barcode || !revenueShareRatio) {
+                showModal('warning', '请填写完整信息', '请确保所有必填字段都已填写完整。', '⚠');
+                return;
+            }
+            
+            showModal('success', '申请提交成功', '您的新增商品申请已成功提交，请等待平台审核。', '✓');
+            setTimeout(() => {
+                hideModal();
+                showPage('products');
+            }, 2000);
+        }
+
+        function submitProductChange() {
+            const selectedProduct = document.getElementById('changeProductSelect').value;
+            if (!selectedProduct) {
+                showModal('warning', '请选择商品', '请先选择要变更的商品。', '⚠');
+                return;
+            }
+            
+            showModal('success', '变更申请提交成功', '您的商品变更申请已成功提交，请等待平台审核。', '✓');
+            setTimeout(() => {
+                hideModal();
+                showPage('products');
+            }, 2000);
+        }
+
+        function queryProducts() {
+            const productName = document.getElementById('queryProductName').value.trim();
+            const barcode = document.getElementById('queryBarcode').value.trim();
+            
+            if (!productName && !barcode) {
+                showModal('warning', '请输入查询条件', '请输入商品名称或条码进行查询。', '⚠');
+                return;
+            }
+            
+            // 模拟查询结果
+            const queryResults = document.getElementById('queryResults');
+            const queryResultsBody = document.getElementById('queryResultsBody');
+            
+            queryResultsBody.innerHTML = `
+                <tr>
+                    <td>iPhone 15 Pro</td>
+                    <td>电子产品</td>
+                    <td>¥8,999</td>
+                    <td>台</td>
+                    <td>中国</td>
+                    <td>1234567890123</td>
+                    <td>15%</td>
+                    <td><button class="btn-edit" onclick="viewProductDetails('P001')">查看详情</button></td>
+                </tr>
+            `;
+            
+            queryResults.style.display = 'block';
+            showModal('success', '查询完成', '找到匹配的商品信息。', '✓');
+        }
+
+        function viewProductDetails(productId) {
+            showModal('info', '商品详情', `正在查看商品 ${productId} 的详细信息...`, '👁️');
+        }
+
+        function submitProductAttributes() {
+            const selectedProduct = document.getElementById('modifyProductSelect').value;
+            if (!selectedProduct) {
+                showModal('warning', '请选择商品', '请先选择要修改的商品。', '⚠');
+                return;
+            }
+            
+            showModal('success', '属性修改成功', '商品属性修改已成功提交。', '✓');
+            setTimeout(() => {
+                hideModal();
+                showPage('products');
+            }, 2000);
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示登录页面
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('mainApp').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
