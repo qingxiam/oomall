@@ -1,0 +1,116 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-001
+! 用例名称：申请新增商品服务 (Apply for New Product Services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理服务 (Merchant - Manage Services)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户申请新增商品服务 (Merchant applies for new product services)
+! 触发事件: 商户申请新增商品服务 (Merchant applies for new product services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有的商品服务(包括已审核和未审核的服务)
+! 服务分类 (Service Category), 服务名称 (Service Name), 审核状态 (Review Status)
+
+! 2
+! 商户申请新增商品服务
+! 服务分类 (Service Category), 服务名称 (Service Name), 定价 (Price), 分账比例 (Revenue Share Ratio)
+
+! 3
+! 系统显示 申请提交成功
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+! 商户选择新增服务套餐
+!
+
+! 2a.1
+! 系统显示所有审核通过的服务
+! 服务分类 (Service Category), 服务名称 (Service Name)
+
+! 2a.2
+! 商户选择一个或多个服务,填写服务套餐信息,提交申请
+! 套餐名称 (Package Name), 套餐价格 (Package Price), 分账比例 (Revenue Share Ratio), 套餐中各服务数量 (Quantity of each service in package)
+
+! 2a.3
+! 系统显示申请提交成功
+!
+
+! 2b
+! 商户修改审核未通过的服务
+!
+
+! 2b.1
+! 系统显示申请提交成功
+!
+
+! 3a
+! 服务数量超过上限
+!
+
+! 3a.1
+! 系统拒绝商户提交服务
+!
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+!
+!===
+|===
