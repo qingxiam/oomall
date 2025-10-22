@@ -68,3 +68,9 @@ include::servicecontract-mgt/MALL-SERVICE-005-QueryServiceProvider.adoc[]
 === 3.3.9 管理支付
 
 image::商户-管理支付.png[]
+
+=== 3.3.10 管理售后
+image::商户-管理售后.png[]
+罗芳魁
+include::aftersale-mgt/MALL-AFTERSALE-002-ReviewAftersales.adoc[]
+
