@@ -879,7 +879,7 @@
                         <option value="merchant">商户</option>
                         <option value="service-provider">服务商</option>
                         <option value="platform-admin">平台管理人员</option>
-                        <option value="repair-provider">维修商</option>
+                        <option value="technician">维修工</option>
                     </select>
                 </div>
             </div>
@@ -2775,6 +2775,234 @@
         </div>
     </div>
 
+    <!-- 维修工 PC 页面 -->
+    <div id="techApp" class="container" style="display: none;">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="back-arrow">←</div>
+                <div class="nav-title">导航</div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" onclick="showTechPage('tech-hall')">
+                    <div class="nav-icon"></div>
+                    服务大厅
+                </li>
+                <li class="nav-item" onclick="showTechPage('tech-providers')">
+                    <div class="nav-icon"></div>
+                    服务商
+                </li>
+                <li class="nav-item" onclick="showTechPage('tech-center')">
+                    <div class="nav-icon"></div>
+                    个人中心
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <div class="search-box">
+                    <span>🔍</span>
+                    <input type="text" class="search-input" id="techSearchInput" placeholder="输入：服务单/详情 等即可跳转" onkeydown="if(event.key==='Enter'){techSearchNavigate();}">
+                </div>
+                <div class="user-info">
+                    <button class="btn btn-primary" style="padding:8px 12px;" onclick="switchToTechMobile()">移动端视图</button>
+                    <span class="welcome-text" id="welcomeTextTech">欢迎你! 维修工</span>
+                    <span>▼</span>
+                    <div class="user-avatar" onclick="logout()" title="退出登录">🛠️</div>
+                </div>
+            </div>
+
+            <!-- 服务大厅：所有订单/我的收藏 -->
+            <div id="tech-hall" class="page active">
+                <h1 class="page-title">服务大厅</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>所有订单与我的收藏</div>
+                <div class="form-section">
+                    <h2 class="form-title"><div class="form-title-icon"></div>所有订单（可接收）</h2>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>地区</th>
+                                <th>商品</th>
+                                <th>服务类型</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="techOrderTable">
+                            <tr>
+                                <td>福建 厦门 翔安区</td>
+                                <td>空调外机</td>
+                                <td>上门维修</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-edit" onclick="viewTechOrder('SO-001')">详情</button>
+                                        <button class="btn-edit" onclick="acceptTechOrder('SO-001')">接收</button>
+                                        <button class="btn-delete" onclick="rejectTechOrder('SO-001')">拒绝</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>福建 厦门 湖里区</td>
+                                <td>冰箱压缩机</td>
+                                <td>寄回维修</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-edit" onclick="viewTechOrder('SO-002')">详情</button>
+                                        <button class="btn-edit" onclick="acceptTechOrder('SO-002')">接收</button>
+                                        <button class="btn-delete" onclick="rejectTechOrder('SO-002')">拒绝</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2 class="form-title" style="margin-top:20px;"><div class="form-title-icon"></div>我的收藏</h2>
+                    <table class="product-table">
+                        <thead><tr><th>编号</th><th>标题</th><th>类型</th><th>操作</th></tr></thead>
+                        <tbody>
+                            <tr><td>F-01</td><td>厦门·空调外机上门维修</td><td>订单</td><td class="action-buttons"><button class="btn-edit" onclick="viewTechOrder('SO-001')">查看</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 订单详情（共享用） -->
+                <div class="form-section" id="tech-order-detail" style="margin-top:12px;">
+                    <h2 class="form-title"><div class="form-title-icon"></div>订单详情</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">服务单号</label><input class="form-input" id="detailOrderId" value="SO-001"></div>
+                        <div class="form-group"><label class="form-label">地区</label><input class="form-input" value="福建 厦门 翔安区"></div>
+                        <div class="form-group"><label class="form-label">商品</label><input class="form-input" value="空调外机"></div>
+                        <div class="form-group"><label class="form-label">服务类型</label><input class="form-input" value="上门维修"></div>
+                        <div class="form-group"><label class="form-label">商户信息</label><input class="form-input" value="豪客来商店"></div>
+                        <div class="form-group"><label class="form-label">服务商信息</label><input class="form-input" value="厦门维修服务中心"></div>
+                        <div class="form-group full-width"><label class="form-label">进度</label><input class="form-input" value="待接收"></div>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="acceptTechOrder(document.getElementById('detailOrderId').value)">接收</button>
+                        <button class="btn btn-secondary" onclick="rejectTechOrder(document.getElementById('detailOrderId').value)">拒绝</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 服务商：所有服务商/我的收藏 -->
+            <div id="tech-providers" class="page">
+                <h1 class="page-title">服务商</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>所有服务商与我的收藏</div>
+                <div class="form-section">
+                    <h2 class="form-title"><div class="form-title-icon"></div>所有服务商</h2>
+                    <table class="product-table">
+                        <thead><tr><th>名称</th><th>地区</th><th>联系电话</th><th>操作</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td>厦门维修服务中心</td>
+                                <td>福建 厦门</td>
+                                <td>13900000001</td>
+                                <td class="action-buttons"><button class="btn-edit" onclick="showProviderDetail('SP-001')">详情</button><button class="btn-edit">收藏</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2 class="form-title" style="margin-top:20px;"><div class="form-title-icon"></div>我的收藏</h2>
+                    <table class="product-table"><thead><tr><th>名称</th><th>地区</th><th>操作</th></tr></thead><tbody><tr><td>安心安装服务</td><td>广东 深圳</td><td class="action-buttons"><button class="btn-edit" onclick="showProviderDetail('SP-002')">查看</button></td></tr></tbody></table>
+                </div>
+                <div class="form-section" id="tech-provider-detail" style="margin-top:12px;">
+                    <h2 class="form-title"><div class="form-title-icon"></div>服务商详情</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">服务商编号</label><input class="form-input" id="providerDetailId" value="SP-001"></div>
+                        <div class="form-group"><label class="form-label">服务商名称</label><input class="form-input" value="厦门维修服务中心"></div>
+                        <div class="form-group"><label class="form-label">地区</label><input class="form-input" value="福建 厦门"></div>
+                        <div class="form-group"><label class="form-label">联系电话</label><input class="form-input" value="13900000001"></div>
+                        <div class="form-group full-width"><label class="form-label">简介</label><input class="form-input" value="覆盖厦门全域，提供上门维修与寄回维修。"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 个人中心：个人信息/已接受/已完成/服务商合同 -->
+            <div id="tech-center" class="page">
+                <h1 class="page-title">个人中心</h1>
+                <div class="page-subtitle"><div class="subtitle-icon"></div>个人信息与订单/合同</div>
+                <div class="form-section">
+                    <h2 class="form-title"><div class="form-title-icon"></div>个人信息</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">姓名</label><input class="form-input" value="王维修"></div>
+                        <div class="form-group"><label class="form-label">手机号</label><input class="form-input" value="13900001111"></div>
+                        <div class="form-group"><label class="form-label">所属服务商</label><input class="form-input" value="厦门维修服务中心"></div>
+                        <div class="form-group"><label class="form-label">技能标签</label><input class="form-input" value="家电维修/安装"></div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h2 class="form-title"><div class="form-title-icon"></div>已接受订单</h2>
+                    <table class="product-table"><thead><tr><th>服务单号</th><th>商品</th><th>服务类型</th><th>进度</th></tr></thead><tbody><tr><td>SO-101</td><td>洗衣机电机</td><td>上门维修</td><td>进行中</td></tr></tbody></table>
+                </div>
+                <div class="form-section">
+                    <h2 class="form-title"><div class="form-title-icon"></div>已完成订单</h2>
+                    <table class="product-table"><thead><tr><th>服务单号</th><th>商品</th><th>服务类型</th><th>完成时间</th></tr></thead><tbody><tr><td>SO-080</td><td>冰箱压缩机</td><td>寄回维修</td><td>2025-10-10</td></tr></tbody></table>
+                </div>
+                <div class="form-section">
+                    <h2 class="form-title"><div class="form-title-icon"></div>服务商合同</h2>
+                    <table class="product-table"><thead><tr><th>合同编号</th><th>服务商</th><th>签订日期</th><th>状态</th></tr></thead><tbody><tr><td>SC-2025-01</td><td>厦门维修服务中心</td><td>2025-01-01</td><td>有效</td></tr></tbody></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 维修工 移动端页面 -->
+    <div id="techMobile" style="display:none;">
+        <div class="login-container" style="height:auto; background:#fff;">
+            <div class="login-card" style="max-width:600px; width:100%;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                    <div class="login-logo">🛠️</div>
+                    <button class="btn btn-primary" style="padding:8px 14px;" onclick="backToTechPC()">切换到PC视图</button>
+                </div>
+                <h2 class="login-title" style="margin:10px 0 6px;">维修工-服务单</h2>
+                <div class="search-box" style="margin:10px 0 15px;">
+                    <span>🔍</span>
+                    <input type="text" class="search-input" id="techMobileSearch" placeholder="输入任意内容即可跳转" onkeydown="if(event.key==='Enter'){techMobileSearchNavigate();}">
+                </div>
+                <div style="text-align:left;">
+                    <!-- 服务大厅（移动端） -->
+                    <div id="techMobileList" class="form-section" style="padding:15px;">
+                        <div style="font-weight:bold;margin-bottom:10px;">服务大厅 · 待接收服务单</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            <div style="border:1px solid #eee;border-radius:8px;padding:12px;">
+                                <div style="font-size:14px;margin-bottom:6px;">SO-001 · 厦门翔安区 · 上门维修 · 空调外机</div>
+                                <div style="display:flex;gap:8px;">
+                                    <button class="btn-edit" onclick="viewTechOrderMobile('SO-001')">查看</button>
+                                    <button class="btn-edit" onclick="acceptTechOrder('SO-001')">接收</button>
+                                    <button class="btn-delete" onclick="rejectTechOrder('SO-001')">拒绝</button>
+                                </div>
+                            </div>
+                            <div style="border:1px solid #eee;border-radius:8px;padding:12px;">
+                                <div style="font-size:14px;margin-bottom:6px;">SO-002 · 厦门湖里区 · 寄回维修 · 冰箱压缩机</div>
+                                <div style="display:flex;gap:8px;">
+                                    <button class="btn-edit" onclick="viewTechOrderMobile('SO-002')">查看</button>
+                                    <button class="btn-edit" onclick="acceptTechOrder('SO-002')">接收</button>
+                                    <button class="btn-delete" onclick="rejectTechOrder('SO-002')">拒绝</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 详情视图（移动端） -->
+                    <div id="techMobileDetail" class="form-section" style="padding:15px; display:none;">
+                        <div style="font-weight:bold;margin-bottom:10px;">服务单详情</div>
+                        <div class="form-grid" style="grid-template-columns:1fr;">
+                            <div class="form-group"><label class="form-label">服务单号</label><input class="form-input" id="techMobileDetailId" value="SO-001"></div>
+                            <div class="form-group"><label class="form-label">地区</label><input class="form-input" value="福建 厦门 翔安区"></div>
+                            <div class="form-group"><label class="form-label">商品</label><input class="form-input" value="空调外机"></div>
+                            <div class="form-group"><label class="form-label">服务类型</label><input class="form-input" value="上门维修"></div>
+                            <div class="form-group"><label class="form-label">商户信息</label><input class="form-input" value="豪客来商店"></div>
+                            <div class="form-group"><label class="form-label">服务商信息</label><input class="form-input" value="厦门维修服务中心"></div>
+                            <div class="form-group"><label class="form-label">进度</label><input class="form-input" value="待接收"></div>
+                        </div>
+                        <div class="form-buttons" style="justify-content:flex-end;">
+                            <button class="btn btn-secondary" onclick="showTechMobilePage('list')">返回</button>
+                            <button class="btn btn-primary" onclick="acceptTechOrder(document.getElementById('techMobileDetailId').value)">接收</button>
+                            <button class="btn btn-secondary" onclick="rejectTechOrder(document.getElementById('techMobileDetailId').value)">拒绝</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 弹窗组件 -->
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal">
@@ -3066,7 +3294,7 @@
                     'merchant': '商户',
                     'service-provider': '服务商',
                     'platform-admin': '平台管理人员',
-                    'repair-provider': '维修商'
+                    'technician': '维修工'
                 };
                 document.getElementById('welcomeText').textContent = `欢迎你! ${roleNames[role]}`;
             } else {
@@ -3115,7 +3343,7 @@
                         'merchant': '商户',
                         'service-provider': '服务商',
                         'platform-admin': '平台管理人员',
-                        'repair-provider': '维修商'
+                        'technician': '维修工'
                     }[selectedRole]
                 };
                 
@@ -3133,18 +3361,28 @@
         // 显示主应用
         function showMainApp() {
             document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('mainApp').style.display = 'flex';
-            
-            // 更新欢迎文本
-            document.getElementById('welcomeText').textContent = `欢迎你! ${currentUser.roleName}`;
-            
-            // 根据角色渲染导航并设置默认页面
-            renderNavForRole(currentUser.role);
-            attachGlobalSearch();
-            if (currentUser.role === 'platform-admin') {
-                showPage('admin-merchants');
+            if (currentUser.role === 'technician') {
+                document.getElementById('techApp').style.display = 'flex';
+                document.getElementById('mainApp').style.display = 'none';
+                document.getElementById('techMobile').style.display = 'none';
+                document.getElementById('welcomeTextTech').textContent = `欢迎你! ${currentUser.roleName}`;
+                showTechPage('tech-orders');
             } else {
-                showPage('account-info');
+                document.getElementById('mainApp').style.display = 'flex';
+                document.getElementById('techApp').style.display = 'none';
+                document.getElementById('techMobile').style.display = 'none';
+                
+                // 更新欢迎文本
+                document.getElementById('welcomeText').textContent = `欢迎你! ${currentUser.roleName}`;
+                
+                // 根据角色渲染导航并设置默认页面
+                renderNavForRole(currentUser.role);
+                attachGlobalSearch();
+                if (currentUser.role === 'platform-admin') {
+                    showPage('admin-merchants');
+                } else {
+                    showPage('account-info');
+                }
             }
         }
 
@@ -3162,6 +3400,8 @@
                 
                 // 显示登录页面
                 document.getElementById('mainApp').style.display = 'none';
+                document.getElementById('techApp').style.display = 'none';
+                document.getElementById('techMobile').style.display = 'none';
                 document.getElementById('loginPage').style.display = 'flex';
             }
         }
@@ -3649,11 +3889,89 @@
             }, 2000);
         }
 
+        // 维修工页面切换与导航
+        function showTechPage(pageId) {
+            const pages = document.querySelectorAll('#techApp .page');
+            pages.forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+
+            const items = document.querySelectorAll('#techApp .nav-item');
+            items.forEach(i => i.classList.remove('active'));
+            if (pageId === 'tech-hall') items[0].classList.add('active');
+            if (pageId === 'tech-providers') items[1].classList.add('active');
+            if (pageId === 'tech-center') items[2].classList.add('active');
+        }
+
+        // 搜索栏导航（PC）
+        function techSearchNavigate() {
+            const kw = (document.getElementById('techSearchInput').value || '').trim();
+            if (kw.includes('服务商')) { showTechPage('tech-providers'); return; }
+            if (kw.includes('个人')||kw.includes('中心')) { showTechPage('tech-center'); return; }
+            // 默认跳转到服务大厅
+            showTechPage('tech-hall');
+        }
+
+        // 移动端视图切换
+        function switchToTechMobile() {
+            document.getElementById('techApp').style.display = 'none';
+            document.getElementById('techMobile').style.display = 'block';
+        }
+        function switchToTechPC() {
+            document.getElementById('techMobile').style.display = 'none';
+            document.getElementById('techApp').style.display = 'flex';
+        }
+        function backToTechPC(){switchToTechPC();}
+
+        // 移动端搜索导航
+        function techMobileSearchNavigate() {
+            const kw = (document.getElementById('techMobileSearch').value || '').trim();
+            if (kw.includes('详情')) {
+                showTechMobilePage('detail');
+            } else {
+                showTechMobilePage('list');
+            }
+        }
+
+        // 查看/接收/拒绝服务单
+        function viewTechOrder(orderId) {
+            document.getElementById('detailOrderId').value = orderId;
+            showTechPage('tech-order-detail');
+        }
+        function viewTechOrderMobile(orderId) {
+            document.getElementById('techMobileDetailId').value = orderId;
+            showTechMobilePage('detail');
+        }
+        function acceptTechOrder(orderId) {
+            showModal('success', '接收成功', `服务单 ${orderId} 接收成功。`, '✓');
+        }
+        function rejectTechOrder(orderId) {
+            // 简单输入理由
+            const reason = prompt(`请输入拒绝服务单 ${orderId} 的理由：`);
+            if (reason && reason.trim()) {
+                showModal('warning', '已拒绝', `已拒绝服务单 ${orderId}。系统将通知商户重新派单。`, '⚠');
+            }
+        }
+
+        function showTechMobilePage(which) {
+            const list = document.getElementById('techMobileList');
+            const detail = document.getElementById('techMobileDetail');
+            if (which === 'detail') {
+                list.style.display = 'none';
+                detail.style.display = 'block';
+            } else {
+                detail.style.display = 'none';
+                list.style.display = 'block';
+            }
+        }
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
             // 默认显示登录页面
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('mainApp').style.display = 'none';
+            document.getElementById('techApp').style.display = 'none';
+            document.getElementById('techMobile').style.display = 'none';
         });
 
         
