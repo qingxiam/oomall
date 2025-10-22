@@ -3555,6 +3555,1005 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- 订单管理主页面 -->
+            <div id="orders" class="page">
+                <h1 class="page-title">订单管理</h1>
+
+                <!-- 筛选框：根据状态筛选订单 -->
+                <div class="product-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">订单状态</label>
+                        <select class="filter-select" id="orderStatusFilter">
+                            <option value="">所有状态</option>
+                            <option value="pending">待支付</option>
+                            <option value="accepted">待接受</option>
+                            <option value="shipped">待发货</option>
+                            <option value="signed">待签收</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 订单记录列表 -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>商品名称</th>
+                            <th>下单时间</th>
+                            <th>订单状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- 示例订单数据 -->
+                        <tr class="order" data-status="pending">
+                            <td>苹果 iPhone 15 Pro</td>
+                            <td>2025-10-15 14:22</td>
+                            <td><span class="status-badge status-pending">待支付</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-primary" onclick="showPage('accept-order')">接受订单</button>
+                                <button class="btn btn-secondary" onclick="showPage('query-order')">查看订单</button>
+                                <button class="btn btn-danger" onclick="showPage('cancel-order')">取消订单</button>
+                            </td>
+                        </tr>
+                        <tr class="order" data-status="accepted">
+                            <td>小米扫地机器人 X20</td>
+                            <td>2025-10-16 10:31</td>
+                            <td><span class="status-badge status-accepted">待接受</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-primary" onclick="showPage('accept-order')">接受订单</button>
+                                <button class="btn btn-secondary" onclick="showPage('query-order')">查看订单</button>
+                                <button class="btn btn-danger" onclick="showPage('cancel-order')">取消订单</button>
+                            </td>
+                        </tr>
+                        <tr class="order" data-status="shipped">
+                            <td>华为 FreeBuds 6</td>
+                            <td>2025-10-18 11:55</td>
+                            <td><span class="status-badge status-shipped">待发货</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-primary" onclick="showPage('ship-order')">发货</button>
+                                <button class="btn btn-secondary" onclick="showPage('query-order')">查看订单</button>
+                                <button class="btn btn-danger" onclick="showPage('cancel-order')">取消订单</button>
+                            </td>
+                        </tr>
+                        <tr class="order" data-status="signed">
+                            <td>戴森吹风机 HD12</td>
+                            <td>2025-10-19 15:43</td>
+                            <td><span class="status-badge status-signed">待签收</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-secondary" onclick="showPage('query-order')">查看订单</button>
+                            </td>
+                        </tr>
+                        <tr class="order" data-status="pending">
+                            <td>三星 Galaxy Z Fold 5</td>
+                            <td>2025-10-20 09:17</td>
+                            <td><span class="status-badge status-pending">待支付</span></td>
+                            <td class="action-buttons">
+                                <button class="btn btn-primary" onclick="showPage('accept-order')">接受订单</button>
+                                <button class="btn btn-secondary" onclick="showPage('query-order')">查看订单</button>
+                                <button class="btn btn-danger" onclick="showPage('cancel-order')">取消订单</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <script>
+                // 监听筛选框变化
+                document.getElementById('orderStatusFilter').addEventListener('change', function() {
+                    const selectedStatus = this.value.toLowerCase();
+                    const orders = document.querySelectorAll('.order');
+
+                    orders.forEach(order => {
+                        const orderStatus = order.dataset.status.toLowerCase();
+                        if (selectedStatus === "" || orderStatus === selectedStatus) {
+                            order.style.display = "";
+                        } else {
+                            order.style.display = "none";
+                        }
+                    });
+                });
+            </script>
+
+            <style>
+                .product-filters {
+                    margin-bottom: 20px;
+                    display: flex;
+                    justify-content: flex-start;
+                }
+
+                .filter-group {
+                    margin-right: 20px;
+                }
+
+                .filter-label {
+                    font-weight: bold;
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                    color: #333;
+                }
+
+                .filter-select {
+                    padding: 8px;
+                    font-size: 14px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                    background-color: #fff;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+
+                th, td {
+                    padding: 15px;
+                    text-align: left;
+                    font-size: 14px;
+                    color: #333;
+                }
+
+                th {
+                    background-color: #f5f5f5;
+                    font-weight: bold;
+                }
+
+                td {
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .action-buttons button {
+                    margin-right: 10px;
+                    font-size: 14px;
+                }
+
+                .btn {
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .btn-primary {
+                    background-color: #2196F3;
+                    color: white;
+                }
+
+                .btn-danger {
+                    background-color: #f44336;
+                    color: white;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                }
+            </style>
+
+
+
+
+            <!-- 接受订单页面 (自动跳转到发货) -->
+            <div id="accept-order" class="page">
+                <h1 class="page-title">接受订单</h1>
+
+                <div class="form-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>订单编号：</label>
+                            <input type="text" value="ORD12345" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>顾客姓名：</label>
+                            <input type="text" value="李明" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>订单金额：</label>
+                            <input type="text" value="¥ 1,199.00" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>订单内容：</label>
+                            <textarea disabled>苹果 iPhone 15 Pro，128GB，蓝色</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="acceptOrderAndShip()">接受订单并进入发货</button>
+                        <button class="btn btn-secondary" onclick="showPage('orders')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 取消订单页面 -->
+            <div id="cancel-order" class="page">
+                <h1 class="page-title">取消订单</h1>
+
+                <div class="form-section">
+                    <div class="order-details">
+                        <div class="order-item">
+                            <strong>订单编号：</strong><span>ORD12345</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>顾客姓名：</strong><span>李明</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>订单内容：</strong><span>苹果 iPhone 15 Pro，128GB，蓝色</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>下单时间：</strong><span>2025-10-15 14:22</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>订单状态：</strong><span>待发货</span>
+                        </div>
+                    </div>
+
+                    <!-- 输入取消理由 -->
+                    <div class="form-group">
+                        <label for="cancel-reason">取消理由：</label>
+                        <textarea id="cancel-reason" class="form-input" rows="4" placeholder="请输入取消订单的理由"></textarea>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <div class="form-buttons">
+                        <button class="btn btn-danger" onclick="submitCancelOrder()">确认取消</button>
+                        <button class="btn btn-secondary" onclick="showPage('orders')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function submitCancelOrder() {
+                    const cancelReason = document.getElementById('cancel-reason').value;
+                    if (!cancelReason) {
+                        alert('请填写取消理由');
+                        return;
+                    }
+                    alert('订单已取消！');
+                    showPage('orders'); // 返回订单管理页面
+                }
+            </script>
+
+            <style>
+                .order-details {
+                    font-size: 16px;
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-buttons {
+                    text-align: right;
+                    margin-top: 30px;
+                }
+
+                .btn-danger {
+                    background-color: #f44336;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            </style>
+
+
+
+            <!-- 查看订单页面 -->
+            <div id="query-order" class="page">
+                <h1 class="page-title">查看订单</h1>
+
+                <div class="form-section">
+                    <div class="order-details">
+                        <div class="order-item">
+                            <strong>订单编号：</strong><span>5001234</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>下单时间：</strong><span>2025/9/26 8:23</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>订单状态：</strong><span>待签收</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>用户名：</strong><span>rosa</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>电话：</strong><span>13468554132</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>地址：</strong><span>福建省厦门市翔安区厦门大学翔安校区</span>
+                        </div>
+                    </div>
+
+                    <!-- 返回按钮 -->
+                    <div class="form-buttons">
+                        <button class="btn btn-secondary" onclick="showPage('orders')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .order-details {
+                    font-size: 16px;  /* 增加字体大小 */
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-buttons {
+                    text-align: right;
+                    margin-top: 30px;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            </style>
+
+
+            <!-- 发货页面 -->
+            <div id="ship-order" class="page">
+                <h1 class="page-title">发货</h1>
+
+                <div class="form-section">
+                    <div class="order-details">
+                        <div class="order-item">
+                            <strong>订单编号：</strong><span>ORD12345</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>顾客姓名：</strong><span>李明</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>订单内容：</strong><span>苹果 iPhone 15 Pro，128GB，蓝色</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>下单时间：</strong><span>2025-10-15 14:22</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>运单号：</strong><span>运单号：ABC123456</span>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button class="btn btn-primary" onclick="alert('订单已发货！'); showPage('orders')">确认发货</button>
+                        <button class="btn btn-secondary" onclick="showPage('orders')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .order-details {
+                    font-size: 16px;
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-buttons {
+                    text-align: right;
+                    margin-top: 30px;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+
+                .btn-primary {
+                    background-color: #4caf50;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            </style>
+
+
+            <!-- 管理售后主页面 -->
+            <div id="after-sales" class="page">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1 class="page-title">售后管理</h1>
+                    <div class="page-subtitle">
+                        商户售后处理
+                    </div>
+                </div>
+
+                <!-- 筛选条件 -->
+                <div class="product-filters" style="display: flex; gap: 20px; margin-bottom: 20px;">
+                    <div class="filter-group">
+                        <label class="filter-label">售后类型</label>
+                        <select class="filter-select" id="afterSalesType">
+                            <option value="">全部</option>
+                            <option value="refund">退款</option>
+                            <option value="exchange">换货</option>
+                            <option value="repair">维修</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">状态</label>
+                        <select class="filter-select" id="afterSalesStatus">
+                            <option value="">所有状态</option>
+                            <option value="pending">待处理</option>
+                            <option value="inspection">待验收</option>
+                            <option value="refund">待退款</option>
+                            <option value="rejected">已拒绝</option>
+                            <option value="completed">已完成</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 售后记录列表 -->
+                <table class="product-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 10px; text-align: left;">商品名称</th>
+                            <th style="padding: 10px; text-align: left;">售后类型</th>
+                            <th style="padding: 10px; text-align: left;">发起时间</th>
+                            <th style="padding: 10px; text-align: left;">售后需求</th>
+                            <th style="padding: 10px; text-align: left;">状态</th>
+                            <th style="padding: 10px; text-align: left;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="afterSalesTableBody">
+                        <!-- 示例数据，待处理 -->
+                        <tr>
+                            <td style="padding: 10px;">苹果 iPhone 15 Pro</td>
+                            <td style="padding: 10px;">退款</td>
+                            <td style="padding: 10px;">2025-10-15 14:22</td>
+                            <td style="padding: 10px;">屏幕色差严重，申请退款</td>
+                            <td style="padding: 10px;"><span class="status-badge status-pending" style="color: #f44336;">待处理</span></td>
+                            <td style="padding: 10px;">
+                                <button class="btn-edit" onclick="showPage('after-sales-detail')" style="padding: 5px 15px; font-size: 14px; background-color: #2196F3; color: white; border: none; border-radius: 4px;">查看</button>
+                            </td>
+                        </tr>
+                        <!-- 示例数据，待派发服务商 -->
+                        <tr>
+                            <td style="padding: 10px;">小米扫地机器人 X20</td>
+                            <td style="padding: 10px;">维修</td>
+                            <td style="padding: 10px;">2025-10-16 10:31</td>
+                            <td style="padding: 10px;">充电底座接触不良</td>
+                            <td style="padding: 10px;"><span class="status-badge status-pending" style="color: #ff9800;">待派发服务商</span></td>
+                            <td style="padding: 10px;">
+                                <button class="btn-edit" onclick="showPage('assign-service')" style="padding: 5px 15px; font-size: 14px; background-color: #2196F3; color: white; border: none; border-radius: 4px;">派发</button>
+                            </td>
+                        </tr>
+                        <!-- 示例数据，待验收 -->
+                        <tr>
+                            <td style="padding: 10px;">联想拯救者 Y9000P</td>
+                            <td style="padding: 10px;">换货</td>
+                            <td style="padding: 10px;">2025-10-17 09:10</td>
+                            <td style="padding: 10px;">键盘按键失灵</td>
+                            <td style="padding: 10px;"><span class="status-badge status-inspection" style="color: #ffeb3b;">待验收</span></td>
+                            <td style="padding: 10px;">
+                                <button class="btn-edit" onclick="showPage('inspection')" style="padding: 5px 15px; font-size: 14px; background-color: #2196F3; color: white; border: none; border-radius: 4px;">验收</button>
+                            </td>
+                        </tr>
+                        <!-- 示例数据，待退款 -->
+                        <tr>
+                            <td style="padding: 10px;">华为 FreeBuds 6</td>
+                            <td style="padding: 10px;">退款</td>
+                            <td style="padding: 10px;">2025-10-18 11:55</td>
+                            <td style="padding: 10px;">右耳无声</td>
+                            <td style="padding: 10px;"><span class="status-badge status-refund" style="color: #4caf50;">待退款</span></td>
+                            <td style="padding: 10px;">
+                                <button class="btn-edit" onclick="showPage('refund-process')" style="padding: 5px 15px; font-size: 14px; background-color: #2196F3; color: white; border: none; border-radius: 4px;">退款</button>
+                            </td>
+                        </tr>
+                        <!-- 示例数据，已拒绝 -->
+                        <tr>
+                            <td style="padding: 10px;">戴森吹风机 HD12</td>
+                            <td style="padding: 10px;">退款</td>
+                            <td style="padding: 10px;">2025-10-19 15:43</td>
+                            <td style="padding: 10px;">顾客使用后损坏，申请被拒</td>
+                            <td style="padding: 10px;"><span class="status-badge status-rejected" style="color: #f44336;">已拒绝</span></td>
+                            <td style="padding: 10px;">
+                                <button class="btn-edit" onclick="showPage('after-sales-detail')" style="padding: 5px 15px; font-size: 14px; background-color: #2196F3; color: white; border: none; border-radius: 4px;">查看</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <style>
+                .product-filters {
+                    display: flex;
+                    justify-content: flex-start;
+                    gap: 20px;
+                }
+
+                .filter-label {
+                    font-weight: bold;
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                }
+
+                .filter-select {
+                    padding: 8px;
+                    font-size: 14px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                }
+
+                .status-badge {
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+
+                .btn-edit {
+                    padding: 5px 15px;
+                    font-size: 14px;
+                    background-color: #2196F3;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+
+                .btn-edit:hover {
+                    background-color: #1976d2;
+                }
+            </style>
+
+
+            <!-- 售后详情页面 -->
+            <div id="after-sales-detail" class="page">
+                <h1 class="page-title">售后详情</h1>
+
+                <div class="form-section">
+                    <div class="order-details">
+                        <div class="order-item">
+                            <strong>商品名称：</strong><span>苹果 iPhone 15 Pro</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>售后类型：</strong><span>退款</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>顾客申请时间：</strong><span>2025-10-15 14:22</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>售后说明：</strong><span>屏幕色差严重，申请退款</span>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button class="btn-danger" onclick="showPage('reject-application')">拒绝申请</button>
+                        <button class="btn-primary" onclick="showPage('refund-process')">确认退款</button>
+                        <button class="btn-secondary" onclick="showPage('after-sales')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .order-details {
+                    font-size: 16px;
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-buttons {
+                    text-align: right;
+                    margin-top: 30px;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+
+                .btn-primary {
+                    background-color: #4caf50;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+
+                .btn-danger {
+                    background-color: #f44336;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            </style>
+
+            <!-- 拒绝申请页面 -->
+            <div id="reject-application" class="page">
+                <h1 class="page-title">拒绝售后申请</h1>
+                <div class="form-section">
+                    <div class="form-group">
+                        <label>拒绝原因：</label>
+                        <textarea class="form-input" rows="5" placeholder="请输入拒绝原因，例如：商品已使用且损坏，无法退款。"></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="btn-danger" onclick="alert('申请已拒绝'); showPage('after-sales')">提交拒绝</button>
+                        <button class="btn-secondary" onclick="showPage('after-sales-detail')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 退款处理页面 -->
+            <div id="refund-process" class="page">
+                <h1 class="page-title">退款处理</h1>
+                <div class="form-section">
+                    <!-- 商品信息展示 -->
+                    <div class="order-details">
+                        <div class="order-item">
+                            <strong>商品名称：</strong><span>华为 FreeBuds 6</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>原价：</strong><span>¥ 799.00</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>售后类型：</strong><span>退款</span>
+                        </div>
+                        <div class="order-item">
+                            <strong>退款说明：</strong><span>右耳无声</span>
+                        </div>
+                    </div>
+
+                    <!-- 自定义退款金额输入框 -->
+                    <div class="form-group">
+                        <label for="refund-amount">退款金额：</label>
+                        <input type="number" id="refund-amount" class="form-input" placeholder="请输入退款金额" value="799.00" min="0" step="0.01">
+                    </div>
+
+                    <!-- 退款账户 -->
+                    <div class="order-item">
+                        <strong>退款账户：</strong><span>支付宝账号：customer@aliyun.com</span>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <div class="form-buttons">
+                        <button class="btn-primary" onclick="processRefund()">确认退款</button>
+                        <button class="btn-secondary" onclick="showPage('after-sales-detail')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // 处理退款逻辑
+                function processRefund() {
+                    const refundAmount = document.getElementById('refund-amount').value;
+                    
+                    if (!refundAmount || refundAmount <= 0) {
+                        alert('请输入有效的退款金额');
+                        return;
+                    }
+
+                    alert(`已成功退款 ¥${refundAmount}`);
+                    showPage('after-sales'); // 返回售后管理页面
+                }
+            </script>
+
+
+            <style>
+                .order-details {
+                    font-size: 16px;
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-group {
+                    margin-bottom: 20px;
+                }
+
+                .form-group label {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                    display: block;
+                }
+
+                .form-input {
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                    background-color: #f9f9f9;
+                    font-size: 14px;
+                }
+
+                .form-buttons {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-top: 30px;
+                }
+
+                .btn-primary {
+                    background-color: #4caf50;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    margin-right: 10px;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                .btn-primary:hover, .btn-secondary:hover {
+                    opacity: 0.8;
+                }
+            </style>
+
+
+            <!-- 验收售后商品页面 -->
+            <div id="inspection" class="page">
+                <h1 class="page-title">售后验收</h1>
+                <div class="form-section">
+                    <p>商品：联想拯救者 Y9000P</p>
+                    <p>退回时间：2025-10-20 15:12</p>
+                    <p>顾客说明：键盘部分按键失灵</p>
+                    <p>检查结果：</p>
+                    <textarea class="form-input" rows="4" placeholder="请填写检查备注，例如：商品完好或损坏情况"></textarea>
+                    <div class="form-buttons">
+                        <button class="btn-primary" onclick="confirmInspection(true)">货物完好，同意退款</button>
+                        <button class="btn-danger" onclick="confirmInspection(false)">货物不完好，拒绝退款</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // 处理验收成功或失败
+                function confirmInspection(isAccepted) {
+                    if (isAccepted) {
+                        alert('货物完好，跳转到退款页面');
+                        showPage('refund-process'); // 跳转到退款页面
+                    } else {
+                        alert('货物不完好，退款已拒绝');
+                        showPage('after-sales'); // 返回售后管理页面
+                    }
+                }
+            </script>
+
+
+            <style>
+                .order-details {
+                    font-size: 16px;
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-group {
+                    margin-bottom: 20px;
+                }
+
+                .form-group label {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                    display: block;
+                }
+
+                .form-input {
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                    background-color: #f9f9f9;
+                    font-size: 14px;
+                }
+
+                .form-buttons {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-top: 30px;
+                }
+
+                .btn-primary {
+                    background-color: #4caf50;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    margin-right: 10px;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                .btn-primary:hover, .btn-secondary:hover {
+                    opacity: 0.8;
+                }
+            </style>
+
+            <!-- 派发服务商页面 -->
+            <div id="assign-service" class="page">
+                <h1 class="page-title">派发服务商</h1>
+                <div class="form-section">
+                    <p>商品：小米扫地机器人 X20</p>
+                    <p>问题：充电底座接触不良</p>
+                    <label>选择服务商：</label>
+                    <select class="form-input">
+                        <option value="">请选择服务商</option>
+                        <option>上海智能家电维修中心</option>
+                        <option>小米官方授权维修点（浦东店）</option>
+                        <option>闪修侠上门服务</option>
+                    </select>
+                    <div class="form-buttons">
+                        <button class="btn-primary" onclick="alert('已派发服务商'); showPage('after-sales')">确认派发</button>
+                        <button class="btn-secondary" onclick="showPage('after-sales')">返回</button>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .order-details {
+                    font-size: 16px;
+                    line-height: 1.8;
+                    margin-top: 20px;
+                }
+
+                .order-item {
+                    margin-bottom: 15px;
+                }
+
+                .order-item strong {
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .order-item span {
+                    color: #666;
+                }
+
+                .form-group {
+                    margin-bottom: 20px;
+                }
+
+                .form-group label {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                    display: block;
+                }
+
+                .form-input {
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                    background-color: #f9f9f9;
+                    font-size: 14px;
+                }
+
+                .form-buttons {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-top: 30px;
+                }
+
+                .btn-primary {
+                    background-color: #4caf50;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    margin-right: 10px;
+                }
+
+                .btn-secondary {
+                    background-color: #f1f1f1;
+                    color: #333;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                .btn-primary:hover, .btn-secondary:hover {
+                    opacity: 0.8;
+                }
+            </style>
+            
+
         </div>
     </div>
 
@@ -3989,7 +4988,6 @@
             }
         });
 
-        // 页面切换功能
         function showPage(pageId) {
             // 隐藏所有页面
             const pages = document.querySelectorAll('.page');
@@ -4000,7 +4998,7 @@
             if (targetPage) {
                 targetPage.classList.add('active');
             }
-            
+
             // 更新导航状态
             setActiveNavForPage(pageId);
 
@@ -4039,7 +5037,14 @@
                 if (pageId === 'admin-provider-suspend') searchProvidersSuspend();
                 if (pageId === 'admin-provider-resume') searchProvidersResume();
             } catch(err) { /* 初次加载函数尚未定义时忽略 */ }
+
+            // 自动跳转到发货页面，适用于已接受订单
+            if (pageId === 'accept-order') {
+                // 假设在这里调用接受订单并跳转到发货页面
+                acceptOrderAndShip();
+            }
         }
+
 
         // 根据当前角色渲染侧边导航
         function renderNavForRole(role) {
@@ -5733,6 +6738,68 @@
                 showModal('warning', '提示', '请先查询要撤销的服务单。', '⚠');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const typeSelect = document.getElementById('afterSalesType');
+            const statusSelect = document.getElementById('afterSalesStatus');
+            const rows = document.querySelectorAll('#afterSalesTableBody tr');
+
+            function filterTable() {
+                const selectedType = typeSelect.value;
+                const selectedStatus = statusSelect.value;
+
+                rows.forEach(row => {
+                    const type = row.cells[1].textContent.trim().toLowerCase();     // 售后类型列
+                    const statusText = row.cells[4].textContent.trim().toLowerCase(); // 状态列
+
+                    let matchType = !selectedType || type.includes(selectedType);
+                    let matchStatus = !selectedStatus || statusText.includes(selectedStatus);
+
+                    if (matchType && matchStatus) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            typeSelect.addEventListener('change', filterTable);
+            statusSelect.addEventListener('change', filterTable);
+        });
+        function deleteAfterSale(orderId) {
+            alert(`删除售后记录：${orderId}`);
+        }
+        function acceptOrderAndShip() {
+            alert('订单已接受！');
+
+            // 将订单状态更改为待发货，并跳转到发货页面
+            showPage('ship-order');
+        }
+        // 监听状态筛选变化
+        document.getElementById('orderStatusFilter').addEventListener('change', function() {
+            const selectedStatus = this.value.toLowerCase();
+            const orders = document.querySelectorAll('.order');
+
+            orders.forEach(order => {
+                const orderStatus = order.dataset.status.toLowerCase();
+                if (selectedStatus === "" || orderStatus === selectedStatus) {
+                    order.style.display = "";
+                } else {
+                    order.style.display = "none";
+                }
+            });
+        });
+        function submitCancelOrder() {
+            const cancelReason = document.getElementById('cancel-reason').value;
+            if (!cancelReason) {
+                alert('请填写取消理由');
+                return;
+            }
+            alert('订单已取消！');
+            showPage('orders'); // 返回订单管理页面
+        }
+
+
     </script>
 </body>
 </html>
