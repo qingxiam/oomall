@@ -1,0 +1,107 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-PROVIDER-001
+! 用例名称：查询服务商 (Query Service Providers)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理服务合同 (Merchant - Manage Service Contracts)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户查询服务商信息 (Merchant queries service provider information)
+! 触发事件: 商户查询服务商 (Merchant queries service providers)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示所有的服务商
+! 服务商名称 (Provider Name), 服务类型 (Service Type), 合作状态 (Cooperation Status), 评分 (Rating)
+
+! 2
+! 商户选择查看服务商详情
+! 服务商名称 (Provider Name)
+
+! 3
+! 系统显示服务商详细信息
+! 服务商名称 (Provider Name), 联系方式 (Contact Information), 服务类型 (Service Type), 服务区域 (Service Area), 资质信息 (Qualification Information), 合作状态 (Cooperation Status), 评分 (Rating), 注册时间 (Registration Time)
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1a
+! 商户输入筛选条件查询服务商
+! 服务商名称 (Provider Name), 服务类型 (Service Type), 合作状态 (Cooperation Status), 服务区域 (Service Area)
+
+! 1a.1
+! 系统显示符合条件的服务商列表
+! 服务商名称 (Provider Name), 服务类型 (Service Type), 合作状态 (Cooperation Status), 评分 (Rating)
+
+! 3a
+! 商户查看服务商的合作历史
+!
+
+! 3a.1
+! 系统显示该服务商的历史合同记录
+! 合同编号 (Contract Number), 合同状态 (Contract Status), 签订时间 (Contract Date), 合同期限 (Contract Period)
+
+! 3b
+! 商户查看服务商的服务评价
+!
+
+! 3b.1
+! 系统显示该服务商的评价信息
+! 评价内容 (Review Content), 评分 (Rating), 评价时间 (Review Time), 评价人 (Reviewer)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 支持按服务商名称、服务类型、合作状态、服务区域等多条件组合查询 (Support multi-condition query by provider name, service type, cooperation status, service area). 查询结果支持按评分排序 (Query results support sorting by rating).
+!===
+|===
