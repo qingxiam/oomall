@@ -1,0 +1,107 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-004
+! 用例名称：查询商品服务 (Query Product Services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户-管理服务 (Merchant - Manage Services)
+! 参与者：商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户查询商品服务信息 (Merchant queries product service information)
+! 触发事件: 商户查询商品服务 (Merchant queries product services)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示商户所有的商品服务
+! 服务分类 (Service Category), 服务名称 (Service Name), 审核状态 (Review Status), 上架状态 (Listing Status)
+
+! 2
+! 商户选择查看服务详情
+! 服务名称 (Service Name)
+
+! 3
+! 系统显示服务详细信息
+! 服务描述 (Service Description), 定价 (Price), 服务时长 (Service Duration), 服务范围 (Service Scope), 分账比例 (Revenue Share Ratio), 创建时间 (Creation Time)
+
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1a
+! 商户输入筛选条件查询服务
+! 服务分类 (Service Category), 服务名称 (Service Name), 审核状态 (Review Status), 上架状态 (Listing Status)
+
+! 1a.1
+! 系统显示符合条件的服务列表
+! 服务分类 (Service Category), 服务名称 (Service Name), 审核状态 (Review Status), 上架状态 (Listing Status)
+
+! 2a
+! 商户查看服务套餐详情
+!
+
+! 2a.1
+! 系统显示套餐详细信息
+! 套餐名称 (Package Name), 套餐价格 (Package Price), 包含的服务列表 (Service List), 各服务数量 (Service Quantities), 分账比例 (Revenue Share Ratio), 创建时间 (Creation Time)
+
+! 2b
+! 商户查看服务的订单记录
+!
+
+! 2b.1
+! 系统显示该服务的相关订单
+! 订单编号 (Order Number), 订单状态 (Order Status), 下单时间 (Order Time), 订单金额 (Order Amount)
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 支持按服务分类、审核状态、上架状态等多条件组合查询 (Support multi-condition query by service category, review status, listing status). 查询结果支持导出功能 (Query results support export function).
+!===
+|===
