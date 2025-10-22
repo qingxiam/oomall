@@ -1,0 +1,87 @@
+
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SERVICE-013
+! 用例名称：注销账户
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 服务商-管理账号(Service Provider - Management Account)
+! 参与者：服务商(Service Provider)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述：服务商注销账户
+! 触发事件:服务商点击注销账户
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+!用户提交注销申请
+!
+
+! 2
+!系统提示申请提交
+!
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 2a
+!存在未完成服务单，无法提交申请
+!
+
+! 2a.1
+!系统提示存在未完成服务单，申请失败
+!失败原因
+
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他:
+! 只有管理账号才可以提交注销申请 (Only service provider's management users can cancel account)
+!===
+|===
