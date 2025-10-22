@@ -42,3 +42,11 @@ include::customer-mgt/MALL-CUST-015-DeregisterCustomer.adoc[]
 === 3.4.5 管理服务商
 
 image::管理服务商.png[]
+王浩东
+include::serviceprovider-mgt/MALL-SERVICE-017-RestoreServiceProvider.adoc[]
+王浩东
+include::serviceprovider-mgt/MALL-SERVICE-017-RestoreServiceProvider.adoc[]
+王浩东
+include::serviceprovider-mgt/MALL-SERVICE-016-SuspendServiceProvider.adoc[]
+宋浩元
+include::serviceprovider-mgt/MALL-SERVICE-022-ReviewServiceProvider.adoc[]
