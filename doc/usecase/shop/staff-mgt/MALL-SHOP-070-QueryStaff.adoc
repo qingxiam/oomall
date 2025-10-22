@@ -1,0 +1,97 @@
+[cols="1a"]
+|===
+
+|
+[frame="none"]
+[cols="1,1"]
+!===
+! 用例编号：MALL-SHOP-012
+! 用例名称：查询员工账号 (Query Staff Account)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 级别: 用户目标 (User Goal)
+!===
+
+|
+[frame="none"]
+[cols="2"]
+!===
+! 包： 商户 (Merchant)
+! 参与者： 商户 (Merchant)
+!===
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 描述： 商户查询员工账号信息 (Merchant query staff account)
+! 触发事件: 商户点击查询员工账号 (Merchant query staff account)
+!===
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 主成功场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 1
+! 系统显示员工查询界面
+! 查询条件：员工姓名、账号、状态、角色、联系方式
+
+! 2
+! 商户输入查询条件并提交
+!
+
+! 3
+! 系统显示符合条件的员工账号列表
+!
+
+!4
+! 商户点击某个员工查看详细信息
+! 员工详细信息：员工姓名、账号、状态、角色、联系方式
+!===
+
+
+|
+[frame="none"]
+[cols="1", options="header"]
+!===
+! 扩展场景
+!===
+
+|
+[frame="none"]
+[cols="1,4,2", options="header"]
+!===
+! 步骤 ! 描述 ! 信息
+
+! 3a
+! 系统未查询到符合条件的员工
+!
+
+! 3a.1
+! 商户重新查询
+!
+
+!===
+
+
+|
+[frame="none"]
+[cols="1"]
+!===
+! 其他: 查询结果仅显示商户有权限查看的员工信息；在查询界面系统支持按姓名、账号、状态、角色进行模糊匹配
+!===
+
+|===
