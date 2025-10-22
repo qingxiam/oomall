@@ -6,7 +6,7 @@
 [cols="1,1"]
 !===
 ! 用例编号：MALL-SERVICE-017
-! 用例名称：恢复服务商 (Restore Service Provider)
+! 用例名称：恢复服务商 (Restore ServiceProvider)
 !===
 
 |
@@ -20,7 +20,7 @@
 [frame="none"]
 [cols="2"]
 !===
-! 包： 平台管理员-服务商 (Platform Administrator - Service Provider)
+! 包： 平台管理员-管理服务商 (Platform Administrator - Manage ServiceProvider)
 ! 参与者：平台管理员 (Platform Administrator)
 !===
 
@@ -28,9 +28,10 @@
 [frame="none"]
 [cols="1"]
 !===
-! 描述： 平台管理员恢复某一服务商的营业权限 (Platform administrator restores a service provider's business permissions)
-! 触发事件: 平台管理员恢复服务商 (Platform administrator restores service provider)
+! 描述： 平台管理员恢复某一服务商的服务权限 (Platform administrator restores a ServiceProvider's operating permissions)
+! 触发事件: 平台管理员恢复服务商 (Platform administrator restores ServiceProvider)
 !===
+
 
 |
 [frame="none"]
@@ -46,24 +47,20 @@
 ! 步骤 ! 描述 ! 信息
 
 ! 1
-! 系统显示所有被暂停的服务商
-! 
+! 用户用服务商名称,联系电话、暂停状态查询系统中所有的服务商
+! 服务商名称,联系电话,服务商状态 (ServiceProvider name, contact phone, ServiceProvider status)
 
 ! 2
-! 平台管理员输入服务商名称查询服务商
-! 服务商名称
+! 系统显示符合条件的暂停服务商
+! 服务商名称,联系人信息(姓名，电话，地址) (ServiceProvider name, contact information (name, phone number, address))
 
 ! 3
-! 系统显示查询后的服务商列表
-! 服务商名称,地区,联系电话
+! 平台管理员选择某一暂停服务的服务商,恢复其营业
+! 服务商名称 (ServiceProvider name)
 
 ! 4
-! 平台管理员选择恢复的服务商
-! 
-
-! 5
-! 系统显示恢复成功
-! 
+! 系统返回恢复成功
+!
 
 !===
 
@@ -71,6 +68,6 @@
 [frame="none"]
 [cols="1"]
 !===
-! 其他: 该服务商的所有服务恢复销售
+! 其他: 该服务商所有服务恢复提供，可继续订立服务合同和接受服务单
 !===
 |===
