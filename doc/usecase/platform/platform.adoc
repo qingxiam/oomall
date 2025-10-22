@@ -27,6 +27,7 @@ include::product-mgt/MALL-PRODUCT-017-QueryProduct.adoc[]
 image::管理活动.png[]
 
 include::activity-mgt/MALL-PRODUCT-018-ReviewActivity.adoc[]
+王浩东
 include::activity-mgt/MALL-PRODUCT-019-QueryActivity.adoc[]
 
 === 3.4.4 管理顾客
@@ -41,6 +42,11 @@ include::customer-mgt/MALL-CUST-015-DeregisterCustomer.adoc[]
 === 3.4.5 管理服务商
 
 image::管理服务商.png[]
-
-include::service-mgt/MALL-SERVICE-022-ReviewServiceProvider.adoc[]
-include::service-mgt/MALL-SERVICE-026-CancelServiceProvider.adoc[]
+王浩东
+include::serviceprovider-mgt/MALL-SERVICE-017-RestoreServiceProvider.adoc[]
+王浩东
+include::serviceprovider-mgt/MALL-SERVICE-017-RestoreServiceProvider.adoc[]
+王浩东
+include::serviceprovider-mgt/MALL-SERVICE-016-SuspendServiceProvider.adoc[]
+宋浩元
+include::serviceprovider-mgt/MALL-SERVICE-022-ReviewServiceProvider.adoc[]
