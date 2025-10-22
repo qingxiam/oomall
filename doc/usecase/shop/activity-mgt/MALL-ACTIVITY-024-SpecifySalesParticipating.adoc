@@ -27,7 +27,7 @@
 [frame="none"]
 [cols="1"]
 !===
-! 描述： 商户为销售指定参与优惠和团购活动 (Merchant specifies sales to participate in discount and group-buy activities)
+! 描述： 商户为商品指定参与优惠和团购活动 (Merchant specifies sales to participate in discount and group-buy activities)
 ! 触发事件: 商户指定参与优惠和团购活动的销售 (Merchant specifies sales participating in discount and group-buy activities)
 !===
 
@@ -53,15 +53,15 @@
 !
 
 ! 3
-! 系统显示活动所关联的销售
+! 系统显示活动所关联的商品
 !
 
 ! 4
-! 商户指定预参与的销售, 提交
+! 商户指定预参与的商品, 提交
 !
 
 ! 5
-! 系统将所选择的销售与活动挂钩
+! 系统将所选择的商品与活动挂钩
 !
 
 !===

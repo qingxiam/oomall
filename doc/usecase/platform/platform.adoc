@@ -27,6 +27,7 @@ include::product-mgt/MALL-PRODUCT-017-QueryProduct.adoc[]
 image::管理活动.png[]
 
 include::activity-mgt/MALL-PRODUCT-018-ReviewActivity.adoc[]
+王浩东
 include::activity-mgt/MALL-PRODUCT-019-QueryActivity.adoc[]
 
 === 3.4.4 管理顾客
